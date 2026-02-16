@@ -1,0 +1,10 @@
+<!DOCTYPE suite SYSTEM "https://testng.org/testng-1.0.dtd" >
+<suite name="Mobile Automation Suite">
+
+    <test name="Meezan Bank Tests">
+        <classes>
+            <class name="runners.MeezanTestRunner"/>
+        </classes>
+    </test>
+
+</suite>
