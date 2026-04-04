@@ -6,8 +6,8 @@
       <class name="runners.MeezanTestRunner">
         <methods>
           <include name="setUpClass"/>
+          <include name="runScenario" invocation-numbers="1"/>
           <include name="tearDownClass"/>
-          <include name="runScenario" invocation-numbers="2"/>
         </methods>
       </class> <!-- runners.MeezanTestRunner -->
     </classes>

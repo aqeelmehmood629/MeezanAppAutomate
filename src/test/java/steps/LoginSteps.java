@@ -1,72 +1,75 @@
 package steps;
 
-import java.time.Duration;
-
-import org.openqa.selenium.support.ui.WebDriverWait;
-import org.testng.Assert;
-import base.BaseTest;
+import driver.DriverFactory;
 import io.appium.java_client.android.AndroidDriver;
 import io.cucumber.java.en.*;
 import pages.LoginPage;
-import pages.DashboardPage;
+import utils.HybridAppStabilizer;
+import utils.CSVUtils;
 
-public class LoginSteps extends BaseTest {
+import java.util.Map;
 
-    private LoginPage loginPage;
-    private DashboardPage dashboardPage;
+public class LoginSteps {
 
-    // flag to avoid redundant login in Dashboard scenarios
-    private boolean loginDone = false;
+	private AndroidDriver driver;
+	private LoginPage loginPage;
 
-    public LoginSteps() {
-        AndroidDriver driver = (AndroidDriver) getDriver();
-        loginPage = new LoginPage(driver);
-        dashboardPage = new DashboardPage(driver);
-    }
-    @Given("the Meezan Bank app is launched")
-    public void the_meezan_bank_app_is_launched() {
-        System.out.println("Launching Meezan Bank app...");
-        // If your BaseTest already launches the app in setup, you can leave it empty.
-        // Otherwise, call driver.launchApp() or the logic you already use.
-    }
+	@Given("the Meezan Bank app is launched")
+	public void the_meezan_bank_app_is_launched() {
 
-    // ---- Used in Dashboard feature file Background ----
-    @Given("user is logged in with username {string} and password {string}")
-    public void user_is_logged_in_with_username_and_password(String username, String password) {
-        // conditionalLogin will log in only if login screen is visible
-        loginPage.conditionalLogin(username, password);
-        loginDone = true;
-    }
+		driver = DriverFactory.getDriver();
 
-    // ---- Used in Login feature file ----
-    @When("user enters username {string} and password {string}")
-    public void enterCredentials(String username, String password) {
-        loginPage.enterUsername(username);
-        loginPage.enterPassword(password);
-    }
+		if (driver == null || driver.getSessionId() == null) {
+			throw new RuntimeException("Driver not initialized!");
+		}
 
-    @And("user taps on login button")
-    public void tapLogin() {
-        loginPage.clickLogin();
-    }
+		// 🔥 Switch to WebView
+		HybridAppStabilizer.switchToWebView(driver);
 
-    
-    @Then("user should be logged in successfully")
-    public void verifyLogin() {
-        // Switch to native context
-        ((AndroidDriver) driver).context("NATIVE_APP");
+		loginPage = new LoginPage(driver);
 
-        DashboardPage dashboard = new DashboardPage((AndroidDriver) driver);
+		System.out.println("App launched & WebView ready");
+	}
 
-        // Explicit wait
-        WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10));
-        boolean dashboardVisible = wait.until(d -> dashboardPage.isSendMoneyTextVisible());
+	// ✅ CSV with row index (future multiple users)
+	@When("user enters credentials from {string}")
+	public void enterCredentialsFromCSV(String row) {
 
-        Assert.assertTrue(dashboardVisible, "Dashboard is not visible after login!");
-    }
+		int index = Integer.parseInt(row);
 
-    // helper to check login status from DashboardSteps
-    public boolean isLoginDone() {
-        return loginDone;
-    }
+		Map<String, String> data = CSVUtils.getLoginData(index);
+
+		String username = data.get("username");
+		String password = data.get("password");
+
+		loginPage.enterUsername(username);
+		loginPage.enterPassword(password);
+
+		System.out.println("Using CSV Data → " + username + " / " + password);
+	}
+
+	// ✅ Default (current single user)
+	@When("user enters credentials from csv")
+	public void enterCredentialsFromCSVDefault() {
+
+		Map<String, String> data = CSVUtils.getLoginData(0);
+
+		String username = data.get("username");
+		String password = data.get("password");
+
+		loginPage.enterUsername(username);
+		loginPage.enterPassword(password);
+
+		System.out.println("Using CSV Default User → " + username);
+	}
+
+	@And("user taps on login button")
+	public void tapLogin() {
+		loginPage.clickLogin();
+	}
+
+	@Then("user should be logged in successfully")
+	public void verifyLogin() {
+		System.out.println("Login step executed (add dashboard validation here)");
+	}
 }

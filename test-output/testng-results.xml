@@ -1,31 +1,99 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<testng-results ignored="0" total="3" passed="2" failed="1" skipped="0">
+<testng-results ignored="0" total="3" passed="3" failed="0" skipped="0">
   <reporter-output>
   </reporter-output>
-  <suite started-at="2026-02-13T17:28:36 PKT" name="Default suite" finished-at="2026-02-13T17:31:19 PKT" duration-ms="162800">
+  <suite started-at="2026-04-03T17:36:19 PKT" name="Smoke Suite" finished-at="2026-04-03T17:38:17 PKT" duration-ms="117611">
     <groups>
       <group name="cucumber">
-        <method signature="AbstractTestNGCucumberTests.runScenario(io.cucumber.testng.PickleWrapper,io.cucumber.testng.FeatureWrapper)[pri:0, instance:runners.MeezanTestRunner@2cd76f31]" name="runScenario" class="io.cucumber.testng.AbstractTestNGCucumberTests"/>
+        <method signature="AbstractTestNGCucumberTests.runScenario(io.cucumber.testng.PickleWrapper,io.cucumber.testng.FeatureWrapper)[pri:0, instance:runners.DashboardRunner@22fcf7ab]" name="runScenario" class="io.cucumber.testng.AbstractTestNGCucumberTests"/>
+        <method signature="AbstractTestNGCucumberTests.runScenario(io.cucumber.testng.PickleWrapper,io.cucumber.testng.FeatureWrapper)[pri:0, instance:runners.FundTransferRunner@2de23121]" name="runScenario" class="io.cucumber.testng.AbstractTestNGCucumberTests"/>
+        <method signature="AbstractTestNGCucumberTests.runScenario(io.cucumber.testng.PickleWrapper,io.cucumber.testng.FeatureWrapper)[pri:0, instance:runners.LoginRunner@2002fc1d]" name="runScenario" class="io.cucumber.testng.AbstractTestNGCucumberTests"/>
       </group> <!-- cucumber -->
     </groups>
-    <test started-at="2026-02-13T17:28:36 PKT" name="Default test" finished-at="2026-02-13T17:31:19 PKT" duration-ms="162800">
-      <class name="runners.MeezanTestRunner">
-        <test-method is-config="true" signature="setUpClass(org.testng.ITestContext)[pri:0, instance:runners.MeezanTestRunner@2cd76f31]" started-at="2026-02-13T17:28:36 PKT" name="setUpClass" finished-at="2026-02-13T17:28:37 PKT" duration-ms="775" status="PASS">
+    <test started-at="2026-04-03T17:36:19 PKT" name="Smoke Suite" finished-at="2026-04-03T17:38:17 PKT" duration-ms="117611">
+      <class name="runners.DashboardRunner">
+        <test-method is-config="true" signature="setUpClass(org.testng.ITestContext)[pri:0, instance:runners.DashboardRunner@22fcf7ab]" started-at="2026-04-03T17:37:40 PKT" name="setUpClass" finished-at="2026-04-03T17:37:40 PKT" duration-ms="28" status="PASS">
           <params>
             <param index="0">
               <value>
-                <![CDATA[org.testng.TestRunner@56a4abd0]]>
+                <![CDATA[org.testng.TestRunner@7e848aea]]>
               </value>
             </param>
           </params>
           <reporter-output>
           </reporter-output>
         </test-method> <!-- setUpClass -->
-        <test-method signature="runScenario(io.cucumber.testng.PickleWrapper,io.cucumber.testng.FeatureWrapper)[pri:0, instance:runners.MeezanTestRunner@2cd76f31]" started-at="2026-02-13T17:28:37 PKT" name="runScenario" description="Runs Cucumber Scenarios" data-provider="scenarios" finished-at="2026-02-13T17:29:04 PKT" duration-ms="26885" status="PASS">
+        <test-method signature="runScenario(io.cucumber.testng.PickleWrapper,io.cucumber.testng.FeatureWrapper)[pri:0, instance:runners.DashboardRunner@22fcf7ab]" started-at="2026-04-03T17:37:40 PKT" name="runScenario" description="Runs Cucumber Scenarios" data-provider="scenarios" finished-at="2026-04-03T17:37:50 PKT" duration-ms="9403" status="PASS">
           <params>
             <param index="0">
               <value>
-                <![CDATA["Login with valid credentials"]]>
+                <![CDATA["Click on Show Balance"]]>
+              </value>
+            </param>
+            <param index="1">
+              <value>
+                <![CDATA["Dashboard Validation"]]>
+              </value>
+            </param>
+          </params>
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- runScenario -->
+        <test-method is-config="true" signature="tearDownClass()[pri:0, instance:runners.DashboardRunner@22fcf7ab]" started-at="2026-04-03T17:37:50 PKT" name="tearDownClass" finished-at="2026-04-03T17:37:50 PKT" duration-ms="23" status="PASS">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- tearDownClass -->
+      </class> <!-- runners.DashboardRunner -->
+      <class name="runners.FundTransferRunner">
+        <test-method is-config="true" signature="setUpClass(org.testng.ITestContext)[pri:0, instance:runners.FundTransferRunner@2de23121]" started-at="2026-04-03T17:37:50 PKT" name="setUpClass" finished-at="2026-04-03T17:37:50 PKT" duration-ms="17" status="PASS">
+          <params>
+            <param index="0">
+              <value>
+                <![CDATA[org.testng.TestRunner@7e848aea]]>
+              </value>
+            </param>
+          </params>
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- setUpClass -->
+        <test-method signature="runScenario(io.cucumber.testng.PickleWrapper,io.cucumber.testng.FeatureWrapper)[pri:0, instance:runners.FundTransferRunner@2de23121]" started-at="2026-04-03T17:37:50 PKT" name="runScenario" description="Runs Cucumber Scenarios" data-provider="scenarios" finished-at="2026-04-03T17:38:17 PKT" duration-ms="27122" status="PASS">
+          <params>
+            <param index="0">
+              <value>
+                <![CDATA["Transfer funds to Meezan Bank account"]]>
+              </value>
+            </param>
+            <param index="1">
+              <value>
+                <![CDATA["Fund Transfer"]]>
+              </value>
+            </param>
+          </params>
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- runScenario -->
+        <test-method is-config="true" signature="tearDownClass()[pri:0, instance:runners.FundTransferRunner@2de23121]" started-at="2026-04-03T17:38:17 PKT" name="tearDownClass" finished-at="2026-04-03T17:38:17 PKT" duration-ms="30" status="PASS">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- tearDownClass -->
+      </class> <!-- runners.FundTransferRunner -->
+      <class name="runners.LoginRunner">
+        <test-method is-config="true" signature="setUpClass(org.testng.ITestContext)[pri:0, instance:runners.LoginRunner@2002fc1d]" started-at="2026-04-03T17:36:19 PKT" name="setUpClass" finished-at="2026-04-03T17:36:20 PKT" duration-ms="744" status="PASS">
+          <params>
+            <param index="0">
+              <value>
+                <![CDATA[org.testng.TestRunner@7e848aea]]>
+              </value>
+            </param>
+          </params>
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- setUpClass -->
+        <test-method signature="runScenario(io.cucumber.testng.PickleWrapper,io.cucumber.testng.FeatureWrapper)[pri:0, instance:runners.LoginRunner@2002fc1d]" started-at="2026-04-03T17:36:20 PKT" name="runScenario" description="Runs Cucumber Scenarios" data-provider="scenarios" finished-at="2026-04-03T17:37:40 PKT" duration-ms="79774" status="PASS">
+          <params>
+            <param index="0">
+              <value>
+                <![CDATA["Login with multiple users"]]>
               </value>
             </param>
             <param index="1">
@@ -37,67 +105,11 @@
           <reporter-output>
           </reporter-output>
         </test-method> <!-- runScenario -->
-        <test-method signature="runScenario(io.cucumber.testng.PickleWrapper,io.cucumber.testng.FeatureWrapper)[pri:0, instance:runners.MeezanTestRunner@2cd76f31]" started-at="2026-02-13T17:29:04 PKT" name="runScenario" description="Runs Cucumber Scenarios" data-provider="scenarios" finished-at="2026-02-13T17:29:55 PKT" duration-ms="51127" status="PASS">
-          <params>
-            <param index="0">
-              <value>
-                <![CDATA["Verify Dashboard is visible"]]>
-              </value>
-            </param>
-            <param index="1">
-              <value>
-                <![CDATA["Dashboard Feature"]]>
-              </value>
-            </param>
-          </params>
-          <reporter-output>
-          </reporter-output>
-        </test-method> <!-- runScenario -->
-        <test-method signature="runScenario(io.cucumber.testng.PickleWrapper,io.cucumber.testng.FeatureWrapper)[pri:0, instance:runners.MeezanTestRunner@2cd76f31]" started-at="2026-02-13T17:29:55 PKT" name="runScenario" description="Runs Cucumber Scenarios" data-provider="scenarios" finished-at="2026-02-13T17:31:19 PKT" duration-ms="83895" status="FAIL">
-          <params>
-            <param index="0">
-              <value>
-                <![CDATA["Successful Send Money Transaction"]]>
-              </value>
-            </param>
-            <param index="1">
-              <value>
-                <![CDATA["Send Money Feature"]]>
-              </value>
-            </param>
-          </params>
-          <exception class="org.openqa.selenium.TimeoutException">
-            <message>
-              <![CDATA[Expected condition failed: waiting for visibility of element located by By.xpath: //android.widget.EditText[@resource-id="mznInput"] (tried for 20 second(s) with 500 milliseconds interval)
-Build info: version: '4.8.3', revision: 'e5e76298c3'
-System info: os.name: 'Windows 11', os.arch: 'amd64', os.version: '10.0', java.version: '21.0.9'
-Driver info: io.appium.java_client.android.AndroidDriver
-Capabilities {appium:adbExecTimeout: 60000, appium:appActivity: com.ofss.digx.mobile.androi..., appium:appPackage: invo8.meezan.mb, appium:autoGrantPermissions: true, appium:automationName: UiAutomator2, appium:chromedriverExecutable: C:\Users\ma\Documents\Aqeel..., appium:databaseEnabled: false, appium:desired: {adbExecTimeout: 60000, appActivity: com.ofss.digx.mobile.androi..., appPackage: invo8.meezan.mb, autoGrantPermissions: true, automationName: UiAutomator2, chromedriverExecutable: C:\Users\ma\Documents\Aqeel..., deviceName: Android Device, disableWindowAnimation: true, enforceXPath1: true, ignoreHiddenApiPolicyError: true, newCommandTimeout: 300, noReset: true, platformName: android, udid: 082653732Q003887, uiautomator2ServerInstallTimeout: 60000, uiautomator2ServerLaunchTimeout: 60000, unlockKey: 1234, unlockType: pin}, appium:deviceApiLevel: 31, appium:deviceManufacturer: INFINIX, appium:deviceModel: Infinix X6817, appium:deviceName: 082653732Q003887, appium:deviceScreenDensity: 320, appium:deviceScreenSize: 720x1640, appium:deviceUDID: 082653732Q003887, appium:disableWindowAnimation: true, appium:enforceXPath1: true, appium:ignoreHiddenApiPolicyError: true, appium:javascriptEnabled: true, appium:locationContextEnabled: false, appium:networkConnectionEnabled: true, appium:newCommandTimeout: 300, appium:noReset: true, appium:pixelRatio: 2, appium:platformVersion: 12, appium:statBarHeight: 72, appium:takesScreenshot: true, appium:udid: 082653732Q003887, appium:uiautomator2ServerInstallTimeout: 60000, appium:uiautomator2ServerLaunchTimeout: 60000, appium:unlockKey: 1234, appium:unlockType: pin, appium:viewportRect: {height: 1568, left: 0, top: 72, width: 720}, appium:warnings: {}, appium:webStorageEnabled: false, platformName: ANDROID}
-Session ID: 003adac2-605e-4345-be10-3bc1ad3abcf8]]>
-            </message>
-            <full-stacktrace>
-              <![CDATA[org.openqa.selenium.TimeoutException: Expected condition failed: waiting for visibility of element located by By.xpath: //android.widget.EditText[@resource-id="mznInput"] (tried for 20 second(s) with 500 milliseconds interval)
-Build info: version: '4.8.3', revision: 'e5e76298c3'
-System info: os.name: 'Windows 11', os.arch: 'amd64', os.version: '10.0', java.version: '21.0.9'
-Driver info: io.appium.java_client.android.AndroidDriver
-Capabilities {appium:adbExecTimeout: 60000, appium:appActivity: com.ofss.digx.mobile.androi..., appium:appPackage: invo8.meezan.mb, appium:autoGrantPermissions: true, appium:automationName: UiAutomator2, appium:chromedriverExecutable: C:\Users\ma\Documents\Aqeel..., appium:databaseEnabled: false, appium:desired: {adbExecTimeout: 60000, appActivity: com.ofss.digx.mobile.androi..., appPackage: invo8.meezan.mb, autoGrantPermissions: true, automationName: UiAutomator2, chromedriverExecutable: C:\Users\ma\Documents\Aqeel..., deviceName: Android Device, disableWindowAnimation: true, enforceXPath1: true, ignoreHiddenApiPolicyError: true, newCommandTimeout: 300, noReset: true, platformName: android, udid: 082653732Q003887, uiautomator2ServerInstallTimeout: 60000, uiautomator2ServerLaunchTimeout: 60000, unlockKey: 1234, unlockType: pin}, appium:deviceApiLevel: 31, appium:deviceManufacturer: INFINIX, appium:deviceModel: Infinix X6817, appium:deviceName: 082653732Q003887, appium:deviceScreenDensity: 320, appium:deviceScreenSize: 720x1640, appium:deviceUDID: 082653732Q003887, appium:disableWindowAnimation: true, appium:enforceXPath1: true, appium:ignoreHiddenApiPolicyError: true, appium:javascriptEnabled: true, appium:locationContextEnabled: false, appium:networkConnectionEnabled: true, appium:newCommandTimeout: 300, appium:noReset: true, appium:pixelRatio: 2, appium:platformVersion: 12, appium:statBarHeight: 72, appium:takesScreenshot: true, appium:udid: 082653732Q003887, appium:uiautomator2ServerInstallTimeout: 60000, appium:uiautomator2ServerLaunchTimeout: 60000, appium:unlockKey: 1234, appium:unlockType: pin, appium:viewportRect: {height: 1568, left: 0, top: 72, width: 720}, appium:warnings: {}, appium:webStorageEnabled: false, platformName: ANDROID}
-Session ID: 003adac2-605e-4345-be10-3bc1ad3abcf8
-at org.openqa.selenium.support.ui.WebDriverWait.timeoutException(WebDriverWait.java:87)
-at org.openqa.selenium.support.ui.FluentWait.until(FluentWait.java:231)
-at pages.SendmoneyPage.enterAmount(SendmoneyPage.java:126)
-at steps.SendmoneySteps.user_enters_amount(SendmoneySteps.java:77)
-at ✽.user enters amount "100"(file:///C:/Users/ma/eclipse-workspace/meezanbankApp/src/test/resources/features/sendmoney.feature:15)
-]]>
-            </full-stacktrace>
-          </exception> <!-- org.openqa.selenium.TimeoutException -->
-          <reporter-output>
-          </reporter-output>
-        </test-method> <!-- runScenario -->
-        <test-method is-config="true" signature="tearDownClass()[pri:0, instance:runners.MeezanTestRunner@2cd76f31]" started-at="2026-02-13T17:31:19 PKT" name="tearDownClass" finished-at="2026-02-13T17:31:19 PKT" duration-ms="39" status="PASS">
+        <test-method is-config="true" signature="tearDownClass()[pri:0, instance:runners.LoginRunner@2002fc1d]" started-at="2026-04-03T17:37:40 PKT" name="tearDownClass" finished-at="2026-04-03T17:37:40 PKT" duration-ms="411" status="PASS">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- tearDownClass -->
-      </class> <!-- runners.MeezanTestRunner -->
-    </test> <!-- Default test -->
-  </suite> <!-- Default suite -->
+      </class> <!-- runners.LoginRunner -->
+    </test> <!-- Smoke Suite -->
+  </suite> <!-- Smoke Suite -->
 </testng-results>
