@@ -3,13 +3,13 @@
 <suite name="Failed suite [Smoke Suite]" guice-stage="DEVELOPMENT">
   <test thread-count="5" name="Smoke Suite(failed)">
     <classes>
-      <class name="runners.FundTransferRunner">
+      <class name="runners.ChangeNotificationLanguageRunner">
         <methods>
           <include name="setUpClass"/>
-          <include name="tearDownClass"/>
           <include name="runScenario" invocation-numbers="0"/>
+          <include name="tearDownClass"/>
         </methods>
-      </class> <!-- runners.FundTransferRunner -->
+      </class> <!-- runners.ChangeNotificationLanguageRunner -->
     </classes>
   </test> <!-- Smoke Suite(failed) -->
 </suite> <!-- Failed suite [Smoke Suite] -->

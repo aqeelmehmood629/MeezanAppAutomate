@@ -74,6 +74,12 @@
 			<version>7.14.0</version>
 		</dependency>
 
+		<dependency>
+			<groupId>io.cucumber</groupId>
+			<artifactId>cucumber-plugin</artifactId>
+			<version>7.34.3</version>
+		</dependency>
+
 		<!-- TestNG -->
 		<dependency>
 			<groupId>org.testng</groupId>
@@ -88,11 +94,18 @@
 			<version>5.0.9</version>
 		</dependency>
 
+		<dependency>
+			<groupId>com.opencsv</groupId>
+			<artifactId>opencsv</artifactId>
+			<version>5.7.1</version>
+		</dependency>
+
 	</dependencies>
 
 	<build>
 		<plugins>
-			<!-- Configure compiler plugin to fork and export javac internals for Lombok on Java 9+ -->
+			<!-- Configure compiler plugin to fork and export javac internals
+			for Lombok on Java 9+ -->
 			<plugin>
 				<groupId>org.apache.maven.plugins</groupId>
 				<artifactId>maven-compiler-plugin</artifactId>
@@ -101,7 +114,8 @@
 					<fork>true</fork>
 					<compilerArgs>
 						<arg>--add-exports</arg>
-						<arg>jdk.compiler/com.sun.tools.javac.processing=ALL-UNNAMED</arg>
+						<arg>
+							jdk.compiler/com.sun.tools.javac.processing=ALL-UNNAMED</arg>
 						<arg>--add-exports</arg>
 						<arg>jdk.compiler/com.sun.tools.javac.tree=ALL-UNNAMED</arg>
 						<arg>--add-exports</arg>

@@ -1,2 +1,4 @@
-account,amount,purpose
-01540109184685,50,Hotel
+type,account,amount,purpose
+FT,01540109184685,10,Hotel
+FTOwn,,10,EIDI
+Raast,03157024486,10,EIDI

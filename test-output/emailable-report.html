@@ -9,12 +9,37 @@
 <table>
 <tr><th>Test</th><th># Passed</th><th># Skipped</th><th># Retried</th><th># Failed</th><th>Time (ms)</th><th>Included Groups</th><th>Excluded Groups</th></tr>
 <tr><th colspan="8">Smoke Suite</th></tr>
-<tr><td><a href="#t0">Smoke Suite</a></td><td class="num">3</td><td class="num">0</td><td class="num">0</td><td class="num">0</td><td class="num">117,611</td><td></td><td></td></tr>
+<tr><td><a href="#t0">Smoke Suite</a></td><td class="num">2</td><td class="num">0</td><td class="num">0</td><td class="num attn">1</td><td class="num">317,143</td><td></td><td></td></tr>
 </table>
-<table id='summary'><thead><tr><th>Class</th><th>Method</th><th>Start</th><th>Time (ms)</th></tr></thead><tbody><tr><th colspan="4">Smoke Suite</th></tr></tbody><tbody id="t0"><tr><th colspan="4">Smoke Suite &#8212; passed</th></tr><tr class="passedeven"><td rowspan="1">runners.DashboardRunner</td><td><a href="#m0">runScenario</a></td><td rowspan="1">1775219860856</td><td rowspan="1">9403</td></tr><tr class="passedodd"><td rowspan="1">runners.FundTransferRunner</td><td><a href="#m1">runScenario</a></td><td rowspan="1">1775219870303</td><td rowspan="1">27122</td></tr><tr class="passedeven"><td rowspan="1">runners.LoginRunner</td><td><a href="#m2">runScenario</a></td><td rowspan="1">1775219780632</td><td rowspan="1">79774</td></tr></tbody>
+<table id='summary'><thead><tr><th>Class</th><th>Method</th><th>Start</th><th>Time (ms)</th></tr></thead><tbody><tr><th colspan="4">Smoke Suite</th></tr></tbody><tbody id="t0"><tr><th colspan="4">Smoke Suite &#8212; failed</th></tr><tr class="failedeven"><td rowspan="1">runners.ChangeNotificationLanguageRunner</td><td><a href="#m0">runScenario</a></td><td rowspan="1">1776856523922</td><td rowspan="1">220105</td></tr><tr><th colspan="4">Smoke Suite &#8212; passed</th></tr><tr class="passedeven"><td rowspan="1">runners.DashboardRunner</td><td><a href="#m1">runScenario</a></td><td rowspan="1">1776856510772</td><td rowspan="1">13070</td></tr><tr class="passedodd"><td rowspan="1">runners.LoginRunner</td><td><a href="#m2">runScenario</a></td><td rowspan="1">1776856428020</td><td rowspan="1">82674</td></tr></tbody>
 </table>
-<h2>Smoke Suite</h2><h3 id="m0">runners.DashboardRunner#runScenario</h3><table class="result"><tr class="param"><th>Parameter #1</th><th>Parameter #2</th></tr><tr class="param stripe"><td>&quot;Click on Show Balance&quot;</td><td>&quot;Dashboard Validation&quot;</td></tr></table><p class="totop"><a href="#summary">back to summary</a></p>
-<h3 id="m1">runners.FundTransferRunner#runScenario</h3><table class="result"><tr class="param"><th>Parameter #1</th><th>Parameter #2</th></tr><tr class="param stripe"><td>&quot;Transfer funds to Meezan Bank account&quot;</td><td>&quot;Fund Transfer&quot;</td></tr></table><p class="totop"><a href="#summary">back to summary</a></p>
-<h3 id="m2">runners.LoginRunner#runScenario</h3><table class="result"><tr class="param"><th>Parameter #1</th><th>Parameter #2</th></tr><tr class="param stripe"><td>&quot;Login with multiple users&quot;</td><td>&quot;Meezan Bank Login&quot;</td></tr></table><p class="totop"><a href="#summary">back to summary</a></p>
+<h2>Smoke Suite</h2><h3 id="m0">runners.ChangeNotificationLanguageRunner#runScenario</h3><table class="result"><tr class="param"><th>Parameter #1</th><th>Parameter #2</th></tr><tr class="param stripe"><td>&quot;User changes notification language&quot;</td><td>&quot;Notification Language Change&quot;</td></tr><tr><th colspan="2">Exception</th></tr><tr><td colspan="2"><div class="stacktrace">org.openqa.selenium.WebDriverException: An unknown server-side error occurred while processing the command. Original error: &apos;POST /element&apos; cannot be proxied to UiAutomator2 server because the instrumentation process is not running (probably crashed). Check the server log and/or the logcat output for more details
+Build info: version: &apos;4.8.3&apos;, revision: &apos;e5e76298c3&apos;
+System info: os.name: &apos;Windows 11&apos;, os.arch: &apos;amd64&apos;, os.version: &apos;10.0&apos;, java.version: &apos;21.0.9&apos;
+Driver info: io.appium.java_client.android.AndroidDriver
+Command: [7259bc7a-b0bb-4822-94c3-def687859bdb, findElement {using=xpath, value=//android.widget.Image[@text=&quot;home-icon-purple&quot;]}]
+Capabilities {appium:adbExecTimeout: 120000, appium:appActivity: com.ofss.digx.mobile.androi..., appium:appPackage: com.ofss.tx.meezan, appium:autoGrantPermissions: true, appium:automationName: UiAutomator2, appium:chromedriverAutodownload: true, appium:chromedriverExecutable: C:\Users\ma\Documents\Aqeel..., appium:databaseEnabled: false, appium:desired: {adbExecTimeout: 120000, appActivity: com.ofss.digx.mobile.androi..., appPackage: com.ofss.tx.meezan, autoGrantPermissions: true, automationName: UiAutomator2, chromedriverAutodownload: true, chromedriverExecutable: C:\Users\ma\Documents\Aqeel..., deviceName: Android Device, enforceXPath1: true, ensureWebviewsHavePages: true, fullReset: false, newCommandTimeout: 300, noReset: true, platformName: android, udid: 083672525V005614, uiautomator2ServerLaunchTimeout: 180000, unlockKey: 0000, unlockType: pin, webviewConnectTimeout: 30000}, appium:deviceApiLevel: 33, appium:deviceManufacturer: INFINIX, appium:deviceModel: Infinix X670, appium:deviceName: 083672525V005614, appium:deviceScreenDensity: 480, appium:deviceScreenSize: 1080x2400, appium:deviceUDID: 083672525V005614, appium:enforceXPath1: true, appium:ensureWebviewsHavePages: true, appium:fullReset: false, appium:javascriptEnabled: true, appium:locationContextEnabled: false, appium:networkConnectionEnabled: true, appium:newCommandTimeout: 300, appium:noReset: true, appium:pixelRatio: 3, appium:platformVersion: 13, appium:statBarHeight: 108, appium:takesScreenshot: true, appium:udid: 083672525V005614, appium:uiautomator2ServerLaunchTimeout: 180000, appium:unlockKey: 0000, appium:unlockType: pin, appium:viewportRect: {height: 2292, left: 0, top: 108, width: 1080}, appium:warnings: {}, appium:webStorageEnabled: false, appium:webviewConnectTimeout: 30000, platformName: ANDROID}
+Session ID: 7259bc7a-b0bb-4822-94c3-def687859bdb
+	at org.openqa.selenium.remote.codec.w3c.W3CHttpResponseCodec.createException(W3CHttpResponseCodec.java:200)
+	at org.openqa.selenium.remote.codec.w3c.W3CHttpResponseCodec.decode(W3CHttpResponseCodec.java:133)
+	at org.openqa.selenium.remote.codec.w3c.W3CHttpResponseCodec.decode(W3CHttpResponseCodec.java:53)
+	at org.openqa.selenium.remote.HttpCommandExecutor.execute(HttpCommandExecutor.java:193)
+	at io.appium.java_client.remote.AppiumCommandExecutor.execute(AppiumCommandExecutor.java:250)
+	at org.openqa.selenium.remote.RemoteWebDriver.execute(RemoteWebDriver.java:543)
+	at org.openqa.selenium.remote.ElementLocation$ElementFinder$2.findElement(ElementLocation.java:162)
+	at org.openqa.selenium.remote.ElementLocation.findElement(ElementLocation.java:60)
+	at org.openqa.selenium.remote.RemoteWebDriver.findElement(RemoteWebDriver.java:352)
+	at org.openqa.selenium.remote.RemoteWebDriver.findElement(RemoteWebDriver.java:344)
+	at org.openqa.selenium.support.ui.ExpectedConditions$7.apply(ExpectedConditions.java:197)
+	at org.openqa.selenium.support.ui.ExpectedConditions$7.apply(ExpectedConditions.java:193)
+	at org.openqa.selenium.support.ui.ExpectedConditions$22.apply(ExpectedConditions.java:631)
+	at org.openqa.selenium.support.ui.ExpectedConditions$22.apply(ExpectedConditions.java:628)
+	at org.openqa.selenium.support.ui.FluentWait.until(FluentWait.java:208)
+	at pages.DashboardPage.clickHome(DashboardPage.java:33)
+	at pages.DashboardPage.goToDashboard(DashboardPage.java:26)
+	at steps.CommomSteps.navigateToDashboard(CommomSteps.java:12)
+... Removed 3 stack frames</div></td></tr></table><p class="totop"><a href="#summary">back to summary</a></p>
+<h3 id="m1">runners.DashboardRunner#runScenario</h3><table class="result"><tr class="param"><th>Parameter #1</th><th>Parameter #2</th></tr><tr class="param stripe"><td>&quot;Navigate to Dashboard&quot;</td><td>&quot;Dashboard Validation&quot;</td></tr></table><p class="totop"><a href="#summary">back to summary</a></p>
+<h3 id="m2">runners.LoginRunner#runScenario</h3><table class="result"><tr class="param"><th>Parameter #1</th><th>Parameter #2</th></tr><tr class="param stripe"><td>&quot;Login with Valid user&quot;</td><td>&quot;Meezan Bank Login&quot;</td></tr></table><p class="totop"><a href="#summary">back to summary</a></p>
 </body>
 </html>

@@ -25,7 +25,7 @@
       <span class="top-banner-title-font">Test results</span>
       <button id="button" class="button">Switch Retro Theme</button> <!-- button -->
       <br/>
-      <span class="top-banner-font-1">1 suite</span>
+      <span class="top-banner-font-1">1 suite, 1 failed test</span>
     </div> <!-- top-banner-root -->
     <div class="navigator-root">
       <div class="navigator-suite-header">
@@ -39,7 +39,7 @@
         <div class="rounded-window">
           <div class="suite-header light-rounded-window-top">
             <a href="#" panel-name="suite-Smoke_Suite" class="navigator-link">
-              <span class="suite-name border-passed">Smoke Suite</span>
+              <span class="suite-name border-failed">Smoke Suite</span>
             </a> <!-- navigator-link -->
           </div> <!-- suite-header light-rounded-window-top -->
           <div class="navigator-suite-content">
@@ -92,7 +92,21 @@
               <div class="suite-section-content">
                 <ul>
                   <li>
-                    <span class="method-stats">3 methods,   3 passed</span>
+                    <span class="method-stats">3 methods, 1 failed,   2 passed</span>
+                  </li>
+                  <li>
+                    <span class="method-list-title failed">Failed methods</span>
+                    <span class="show-or-hide-methods failed">
+                      <a href="#" panel-name="suite-Smoke_Suite" class="hide-methods failed suite-Smoke_Suite"> (hide)</a> <!-- hide-methods failed suite-Smoke_Suite -->
+                      <a href="#" panel-name="suite-Smoke_Suite" class="show-methods failed suite-Smoke_Suite"> (show)</a> <!-- show-methods failed suite-Smoke_Suite -->
+                    </span>
+                    <div class="method-list-content failed suite-Smoke_Suite">
+                      <span>
+                        <img src="failed.png" width="3%"/>
+                        <a href="#" panel-name="suite-Smoke_Suite" title="runners.ChangeNotificationLanguageRunner" class="method navigator-link" hash-for-method="runScenario(&quot;User changes notification language&quot;, &quot;Notification Language Change&quot;)">runScenario("User changes notification language", "Notification Language Change")</a> <!-- method navigator-link -->
+                      </span>
+                      <br/>
+                    </div> <!-- method-list-content failed suite-Smoke_Suite -->
                   </li>
                   <li>
                     <span class="method-list-title passed">Passed methods</span>
@@ -103,17 +117,12 @@
                     <div class="method-list-content passed suite-Smoke_Suite">
                       <span>
                         <img src="passed.png" width="3%"/>
-                        <a href="#" panel-name="suite-Smoke_Suite" title="runners.DashboardRunner" class="method navigator-link" hash-for-method="runScenario(&quot;Click on Show Balance&quot;, &quot;Dashboard Validation&quot;)">runScenario("Click on Show Balance", "Dashboard Validation")</a> <!-- method navigator-link -->
+                        <a href="#" panel-name="suite-Smoke_Suite" title="runners.LoginRunner" class="method navigator-link" hash-for-method="runScenario(&quot;Login with Valid user&quot;, &quot;Meezan Bank Login&quot;)">runScenario("Login with Valid user", "Meezan Bank Login")</a> <!-- method navigator-link -->
                       </span>
                       <br/>
                       <span>
                         <img src="passed.png" width="3%"/>
-                        <a href="#" panel-name="suite-Smoke_Suite" title="runners.LoginRunner" class="method navigator-link" hash-for-method="runScenario(&quot;Login with multiple users&quot;, &quot;Meezan Bank Login&quot;)">runScenario("Login with multiple users", "Meezan Bank Login")</a> <!-- method navigator-link -->
-                      </span>
-                      <br/>
-                      <span>
-                        <img src="passed.png" width="3%"/>
-                        <a href="#" panel-name="suite-Smoke_Suite" title="runners.FundTransferRunner" class="method navigator-link" hash-for-method="runScenario(&quot;Transfer funds to Meezan Bank account&quot;, &quot;Fund Transfer&quot;)">runScenario("Transfer funds to Meezan Bank account", "Fund Transfer")</a> <!-- method navigator-link -->
+                        <a href="#" panel-name="suite-Smoke_Suite" title="runners.DashboardRunner" class="method navigator-link" hash-for-method="runScenario(&quot;Navigate to Dashboard&quot;, &quot;Dashboard Validation&quot;)">runScenario("Navigate to Dashboard", "Dashboard Validation")</a> <!-- method navigator-link -->
                       </span>
                       <br/>
                     </div> <!-- method-list-content passed suite-Smoke_Suite -->
@@ -128,24 +137,51 @@
     <div class="wrapper">
       <div class="main-panel-root">
         <div panel-name="suite-Smoke_Suite" class="panel Smoke_Suite">
-          <div class="suite-Smoke_Suite-class-passed">
+          <div class="suite-Smoke_Suite-class-failed">
             <div class="main-panel-header rounded-window-top">
-              <img src="passed.png"/>
-              <span class="class-name">runners.FundTransferRunner</span>
+              <img src="failed.png"/>
+              <span class="class-name">runners.ChangeNotificationLanguageRunner</span>
             </div> <!-- main-panel-header rounded-window-top -->
             <div class="main-panel-content rounded-window-bottom">
               <div class="method">
                 <div class="method-content">
-                  <a name="runScenario(&quot;Transfer funds to Meezan Bank account&quot;, &quot;Fund Transfer&quot;)">
-                  </a> <!-- runScenario("Transfer funds to Meezan Bank account", "Fund Transfer") -->
+                  <a name="runScenario(&quot;User changes notification language&quot;, &quot;Notification Language Change&quot;)">
+                  </a> <!-- runScenario("User changes notification language", "Notification Language Change") -->
                   <span class="method-name">runScenario</span>
-                  <span class="parameters">("Transfer funds to Meezan Bank account","Fund Transfer")</span>
+                  <span class="parameters">("User changes notification language","Notification Language Change")</span>
+                  <div class="stack-trace">org.openqa.selenium.WebDriverException: An unknown server-side error occurred while processing the command. Original error: &apos;POST /element&apos; cannot be proxied to UiAutomator2 server because the instrumentation process is not running (probably crashed). Check the server log and/or the logcat output for more details
+Build info: version: &apos;4.8.3&apos;, revision: &apos;e5e76298c3&apos;
+System info: os.name: &apos;Windows 11&apos;, os.arch: &apos;amd64&apos;, os.version: &apos;10.0&apos;, java.version: &apos;21.0.9&apos;
+Driver info: io.appium.java_client.android.AndroidDriver
+Command: [7259bc7a-b0bb-4822-94c3-def687859bdb, findElement {using=xpath, value=//android.widget.Image[@text=&quot;home-icon-purple&quot;]}]
+Capabilities {appium:adbExecTimeout: 120000, appium:appActivity: com.ofss.digx.mobile.androi..., appium:appPackage: com.ofss.tx.meezan, appium:autoGrantPermissions: true, appium:automationName: UiAutomator2, appium:chromedriverAutodownload: true, appium:chromedriverExecutable: C:\Users\ma\Documents\Aqeel..., appium:databaseEnabled: false, appium:desired: {adbExecTimeout: 120000, appActivity: com.ofss.digx.mobile.androi..., appPackage: com.ofss.tx.meezan, autoGrantPermissions: true, automationName: UiAutomator2, chromedriverAutodownload: true, chromedriverExecutable: C:\Users\ma\Documents\Aqeel..., deviceName: Android Device, enforceXPath1: true, ensureWebviewsHavePages: true, fullReset: false, newCommandTimeout: 300, noReset: true, platformName: android, udid: 083672525V005614, uiautomator2ServerLaunchTimeout: 180000, unlockKey: 0000, unlockType: pin, webviewConnectTimeout: 30000}, appium:deviceApiLevel: 33, appium:deviceManufacturer: INFINIX, appium:deviceModel: Infinix X670, appium:deviceName: 083672525V005614, appium:deviceScreenDensity: 480, appium:deviceScreenSize: 1080x2400, appium:deviceUDID: 083672525V005614, appium:enforceXPath1: true, appium:ensureWebviewsHavePages: true, appium:fullReset: false, appium:javascriptEnabled: true, appium:locationContextEnabled: false, appium:networkConnectionEnabled: true, appium:newCommandTimeout: 300, appium:noReset: true, appium:pixelRatio: 3, appium:platformVersion: 13, appium:statBarHeight: 108, appium:takesScreenshot: true, appium:udid: 083672525V005614, appium:uiautomator2ServerLaunchTimeout: 180000, appium:unlockKey: 0000, appium:unlockType: pin, appium:viewportRect: {height: 2292, left: 0, top: 108, width: 1080}, appium:warnings: {}, appium:webStorageEnabled: false, appium:webviewConnectTimeout: 30000, platformName: ANDROID}
+Session ID: 7259bc7a-b0bb-4822-94c3-def687859bdb
+	at org.openqa.selenium.remote.codec.w3c.W3CHttpResponseCodec.createException(W3CHttpResponseCodec.java:200)
+	at org.openqa.selenium.remote.codec.w3c.W3CHttpResponseCodec.decode(W3CHttpResponseCodec.java:133)
+	at org.openqa.selenium.remote.codec.w3c.W3CHttpResponseCodec.decode(W3CHttpResponseCodec.java:53)
+	at org.openqa.selenium.remote.HttpCommandExecutor.execute(HttpCommandExecutor.java:193)
+	at io.appium.java_client.remote.AppiumCommandExecutor.execute(AppiumCommandExecutor.java:250)
+	at org.openqa.selenium.remote.RemoteWebDriver.execute(RemoteWebDriver.java:543)
+	at org.openqa.selenium.remote.ElementLocation$ElementFinder$2.findElement(ElementLocation.java:162)
+	at org.openqa.selenium.remote.ElementLocation.findElement(ElementLocation.java:60)
+	at org.openqa.selenium.remote.RemoteWebDriver.findElement(RemoteWebDriver.java:352)
+	at org.openqa.selenium.remote.RemoteWebDriver.findElement(RemoteWebDriver.java:344)
+	at org.openqa.selenium.support.ui.ExpectedConditions$7.apply(ExpectedConditions.java:197)
+	at org.openqa.selenium.support.ui.ExpectedConditions$7.apply(ExpectedConditions.java:193)
+	at org.openqa.selenium.support.ui.ExpectedConditions$22.apply(ExpectedConditions.java:631)
+	at org.openqa.selenium.support.ui.ExpectedConditions$22.apply(ExpectedConditions.java:628)
+	at org.openqa.selenium.support.ui.FluentWait.until(FluentWait.java:208)
+	at pages.DashboardPage.clickHome(DashboardPage.java:33)
+	at pages.DashboardPage.goToDashboard(DashboardPage.java:26)
+	at steps.CommomSteps.navigateToDashboard(CommomSteps.java:12)
+... Removed 3 stack frames
+</div> <!-- stack-trace -->
                   <em>
 (Runs Cucumber Scenarios)                  </em>
                 </div> <!-- method-content -->
               </div> <!-- method -->
             </div> <!-- main-panel-content rounded-window-bottom -->
-          </div> <!-- suite-Smoke_Suite-class-passed -->
+          </div> <!-- suite-Smoke_Suite-class-failed -->
           <div class="suite-Smoke_Suite-class-passed">
             <div class="main-panel-header rounded-window-top">
               <img src="passed.png"/>
@@ -154,10 +190,10 @@
             <div class="main-panel-content rounded-window-bottom">
               <div class="method">
                 <div class="method-content">
-                  <a name="runScenario(&quot;Click on Show Balance&quot;, &quot;Dashboard Validation&quot;)">
-                  </a> <!-- runScenario("Click on Show Balance", "Dashboard Validation") -->
+                  <a name="runScenario(&quot;Navigate to Dashboard&quot;, &quot;Dashboard Validation&quot;)">
+                  </a> <!-- runScenario("Navigate to Dashboard", "Dashboard Validation") -->
                   <span class="method-name">runScenario</span>
-                  <span class="parameters">("Click on Show Balance","Dashboard Validation")</span>
+                  <span class="parameters">("Navigate to Dashboard","Dashboard Validation")</span>
                   <em>
 (Runs Cucumber Scenarios)                  </em>
                 </div> <!-- method-content -->
@@ -172,10 +208,10 @@
             <div class="main-panel-content rounded-window-bottom">
               <div class="method">
                 <div class="method-content">
-                  <a name="runScenario(&quot;Login with multiple users&quot;, &quot;Meezan Bank Login&quot;)">
-                  </a> <!-- runScenario("Login with multiple users", "Meezan Bank Login") -->
+                  <a name="runScenario(&quot;Login with Valid user&quot;, &quot;Meezan Bank Login&quot;)">
+                  </a> <!-- runScenario("Login with Valid user", "Meezan Bank Login") -->
                   <span class="method-name">runScenario</span>
-                  <span class="parameters">("Login with multiple users","Meezan Bank Login")</span>
+                  <span class="parameters">("Login with Valid user","Meezan Bank Login")</span>
                   <em>
 (Runs Cucumber Scenarios)                  </em>
                 </div> <!-- method-content -->
@@ -196,7 +232,7 @@
     &lt;classes&gt;
       &lt;class name=&quot;runners.LoginRunner&quot;/&gt;
       &lt;class name=&quot;runners.DashboardRunner&quot;/&gt;
-      &lt;class name=&quot;runners.FundTransferRunner&quot;/&gt;
+      &lt;class name=&quot;runners.ChangeNotificationLanguageRunner&quot;/&gt;
     &lt;/classes&gt;
   &lt;/test&gt; &lt;!-- Smoke Suite --&gt;
 &lt;/suite&gt; &lt;!-- Smoke Suite --&gt;
@@ -247,21 +283,21 @@ data.addColumn('number', 'Time (ms)');
 data.addRows(3);
 data.setCell(0, 0, 0)
 data.setCell(0, 1, 'runScenario')
-data.setCell(0, 2, 'runners.LoginRunner')
-data.setCell(0, 3, 79774);
+data.setCell(0, 2, 'runners.ChangeNotificationLanguageRunner')
+data.setCell(0, 3, 220105);
 data.setCell(1, 0, 1)
 data.setCell(1, 1, 'runScenario')
-data.setCell(1, 2, 'runners.FundTransferRunner')
-data.setCell(1, 3, 27122);
+data.setCell(1, 2, 'runners.LoginRunner')
+data.setCell(1, 3, 82674);
 data.setCell(2, 0, 2)
 data.setCell(2, 1, 'runScenario')
 data.setCell(2, 2, 'runners.DashboardRunner')
-data.setCell(2, 3, 9403);
+data.setCell(2, 3, 13070);
 window.suiteTableData['Smoke_Suite']= { tableData: data, tableDiv: 'times-div-Smoke_Suite'}
 return data;
 }
               </script>
-              <span class="suite-total-time">Total running time: 1 minutes</span>
+              <span class="suite-total-time">Total running time: 5 minutes</span>
               <div id="times-div-Smoke_Suite">
               </div> <!-- times-div-Smoke_Suite -->
             </div> <!-- times-div -->
@@ -289,46 +325,48 @@ return data;
             <div class="chronological-class">
               <div class="chronological-class-name">runners.LoginRunner</div> <!-- chronological-class-name -->
               <div class="configuration-class before">
-                <span class="method-name">setUpClass(org.testng.TestRunner@7e848aea)</span>
+                <span class="method-name">setUpClass(org.testng.TestRunner@3909a854)</span>
                 <span class="method-start">0 ms</span>
               </div> <!-- configuration-class before -->
               <div class="test-method">
-                <span class="method-name">runScenario("Login with multiple users", "Meezan Bank Login")</span>
-                <span class="method-start">760 ms</span>
+                <span class="method-name">runScenario("Login with Valid user", "Meezan Bank Login")</span>
+                <span class="method-start">1052 ms</span>
               </div> <!-- test-method -->
               <div class="configuration-class after">
                 <span class="method-name">tearDownClass</span>
-                <span class="method-start">80540 ms</span>
+                <span class="method-start">83735 ms</span>
               </div> <!-- configuration-class after -->
             </div> <!-- chronological-class -->
             <div class="chronological-class">
               <div class="chronological-class-name">runners.DashboardRunner</div> <!-- chronological-class-name -->
               <div class="configuration-class before">
-                <span class="method-name">setUpClass(org.testng.TestRunner@7e848aea)</span>
-                <span class="method-start">80955 ms</span>
+                <span class="method-name">setUpClass(org.testng.TestRunner@3909a854)</span>
+                <span class="method-start">83785 ms</span>
               </div> <!-- configuration-class before -->
               <div class="test-method">
-                <span class="method-name">runScenario("Click on Show Balance", "Dashboard Validation")</span>
-                <span class="method-start">80984 ms</span>
+                <span class="method-name">runScenario("Navigate to Dashboard", "Dashboard Validation")</span>
+                <span class="method-start">83804 ms</span>
               </div> <!-- test-method -->
               <div class="configuration-class after">
                 <span class="method-name">tearDownClass</span>
-                <span class="method-start">90389 ms</span>
+                <span class="method-start">96895 ms</span>
               </div> <!-- configuration-class after -->
             </div> <!-- chronological-class -->
             <div class="chronological-class">
-              <div class="chronological-class-name">runners.FundTransferRunner</div> <!-- chronological-class-name -->
+              <div class="chronological-class-name">runners.ChangeNotificationLanguageRunner</div> <!-- chronological-class-name -->
               <div class="configuration-class before">
-                <span class="method-name">setUpClass(org.testng.TestRunner@7e848aea)</span>
-                <span class="method-start">90413 ms</span>
+                <span class="method-name">setUpClass(org.testng.TestRunner@3909a854)</span>
+                <span class="method-start">96928 ms</span>
               </div> <!-- configuration-class before -->
               <div class="test-method">
-                <span class="method-name">runScenario("Transfer funds to Meezan Bank account", "Fund Transfer")</span>
-                <span class="method-start">90431 ms</span>
+                <img src="failed.png">
+                </img>
+                <span class="method-name">runScenario("User changes notification language", "Notification Language Change")</span>
+                <span class="method-start">96954 ms</span>
               </div> <!-- test-method -->
               <div class="configuration-class after">
                 <span class="method-name">tearDownClass</span>
-                <span class="method-start">117555 ms</span>
+                <span class="method-start">317069 ms</span>
               </div> <!-- configuration-class after -->
           </div> <!-- main-panel-content rounded-window-bottom -->
         </div> <!-- panel -->

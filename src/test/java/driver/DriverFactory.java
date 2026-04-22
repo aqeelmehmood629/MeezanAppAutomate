@@ -42,6 +42,8 @@ public class DriverFactory {
 				caps.setCapability("uiautomator2ServerLaunchTimeout", 180000);
 				caps.setCapability("newCommandTimeout", 300);
 				caps.setCapability("enforceXPath1", true);
+				caps.setCapability("unlockType", "pin");
+	            caps.setCapability("unlockKey", "0000");
 
 				driver = new AndroidDriver(new URL("http://127.0.0.1:4723"), caps);
 

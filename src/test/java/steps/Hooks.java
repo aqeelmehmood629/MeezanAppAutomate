@@ -7,12 +7,12 @@ import org.testng.annotations.AfterSuite;
 
 import com.aventstack.extentreports.*;
 import utils.ExtentManager;
+import utils.ReportManager;
 import utils.ScreenshotUtil;
 
 public class Hooks {
 
 	private static ExtentReports extent = ExtentManager.getExtentReports();
-	private static ThreadLocal<ExtentTest> test = new ThreadLocal<>();
 
 	@Before
 	public void setup(Scenario scenario) {
@@ -23,43 +23,45 @@ public class Hooks {
 
 		// ✅ Start Extent test
 		ExtentTest extentTest = extent.createTest(scenario.getName());
-		test.set(extentTest);
+		ReportManager.setTest(extentTest);
 	}
 
-	@After
-	public void tearDown(Scenario scenario) {
+		@After
+		public void tearDown(Scenario scenario) {
 
-		String scenarioName = scenario.getName().replaceAll(" ", "_");
-		String status = scenario.isFailed() ? "FAIL" : "PASS";
+		    String scenarioName = scenario.getName().replaceAll(" ", "_");
+		    String status = scenario.isFailed() ? "FAIL" : "PASS";
 
-		// ✅ Capture screenshot
-		String screenshotPath = ScreenshotUtil.captureScreenshot(scenarioName, status);
+		    try {
+		        Thread.sleep(1000);
+		    } catch (Exception e) {}
 
-		if (scenario.isFailed()) {
-			test.get().fail("❌ Test Failed");
-		} else {
-			test.get().pass("✅ Test Passed");
+		    // ✅ Screenshot
+		    String screenshotPath = ScreenshotUtil.captureScreenshot(scenarioName, status);
+
+		    // ✅ USE ReportManager (NOT local ThreadLocal)
+		    if (scenario.isFailed()) {
+		        ReportManager.getTest().fail("❌ Test Failed");
+		    } else {
+		        ReportManager.getTest().pass("✅ Test Passed");
+		    }
+
+		    // ✅ Attach screenshot
+		    if (screenshotPath != null) {
+		        try {
+		            ReportManager.getTest()
+		                    .addScreenCaptureFromPath("./" + screenshotPath);
+		        } catch (Exception e) {
+		            e.printStackTrace();
+		        }
+		    }
 		}
 
-		// ✅ Add screenshot if captured
-		if (screenshotPath != null) {
-			try {
-				test.get().addScreenCaptureFromPath(screenshotPath);
-			} catch (Exception e) {
-				e.printStackTrace();
-			}
-		}
+	// Quit driver only once at end of suite
+		@AfterSuite
+	    public void tearDownSuite() {
 
-		// ✅ Flush report
-		extent.flush();
-
-		// ❌ Do NOT quit driver here to allow session reuse
-		// DriverFactory.quitDriver(); <-- Removed
-	}
-
-	// ✅ Quit driver only once at end of suite
-	@AfterSuite
-	public void tearDownSuite() {
-		DriverFactory.quitDriver();
-	}
+	        extent.flush();   // ✅ correct place
+	        DriverFactory.quitDriver();
+	    }
 }

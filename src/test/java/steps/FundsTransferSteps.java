@@ -68,21 +68,30 @@ public class FundsTransferSteps {
         sendMoneyPage.clickSendNow();
     }
 
-    @Then("transaction should be successful")
+    @And("transaction should be successful")
     public void transaction_should_be_successful() {
         if (!sendMoneyPage.isTransactionSuccessful()) {
             throw new AssertionError("❌ Transfer Failed for row: " + currentIndex);
         }
 
         System.out.println("✅ Transfer successful for row: " + currentIndex);
-
         // Prepare for next CSV row if any
         currentIndex++;
         if (currentIndex < csvData.size()) {
             // Navigate back and click Send Money again
-            sendMoneyPage.navigateBackToDashboard();
-            sendMoneyPage.clickSendMoney();
+         //   sendMoneyPage.navigateBackToDashboard();
+          //  sendMoneyPage.clickSendMoney();
             // Note: next scenario iteration will pick next row
         }
     }
+    @And("user click home screen after ft")
+    public void click_home_screen() {
+    	sendMoneyPage.clickHomeBtn();
+    	
+    }
+    @Then("user click show Balance after ft")
+    public void click_show_Bal() {
+    	sendMoneyPage.clickShowBalance();
+    }
+
 }

@@ -6,8 +6,9 @@ import org.testng.annotations.Test;
 
 @Test
 @CucumberOptions(
-        features = "src/test/resources/features/Dashboard.feature",
+        features = "src/test/resources/features/02_Dashboard.feature",
         glue = "steps",
+        tags ="@Dashboard",
         plugin = {"pretty", "html:target/ft-report.html"}
 )
 public class DashboardRunner extends AbstractTestNGCucumberTests {
