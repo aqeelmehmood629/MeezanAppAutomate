@@ -22,8 +22,12 @@ public class QiblaSteps {
         qiblaPage.clickQibla();
     }
 
-    @Then("user should see Qibla screen")
+    @And("user should see Qibla screen")
     public void user_should_see_qibla_screen() {
         qiblaPage.verifyQiblaScreen();
+    }
+    @Then("user click home icon after qibla view")
+    public void clickhomeqibla() {
+    	qiblaPage.clickHomeIconQibla();
     }
 }

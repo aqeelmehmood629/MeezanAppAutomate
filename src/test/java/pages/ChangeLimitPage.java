@@ -33,6 +33,7 @@ public class ChangeLimitPage {
     By applyBtn = By.xpath("//android.widget.Button[@text='Apply']");
     By increaseBtn = By.xpath("//android.widget.TextView[@text=\"Proceed\"]");
     By decreaseBtn = By.xpath("//android.widget.TextView[@text=\"Close\"]");
+    By clickHomeIconLimitBtn = By.xpath("//android.widget.Image[@resource-id='home-icon']");
 
     public void clickLimitManagement() {
 
@@ -117,6 +118,10 @@ public class ChangeLimitPage {
         } catch (Exception e) {
             return false;
         }
+    }
+    public void clickHomeIconLimit() {
+    	wait.until(ExpectedConditions.elementToBeClickable((clickHomeIconLimitBtn))).click();
+    	
     }
     
 }

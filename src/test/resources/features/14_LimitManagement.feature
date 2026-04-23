@@ -7,6 +7,7 @@ Scenario Outline: User updates limit for transfer types
     And user selects amount using CSV
     And user clicks Apply Button
     And limit should be updated successfully
+    Then user click home icon after limit updated
 
 Examples:
     | LimitType       |

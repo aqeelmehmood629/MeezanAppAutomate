@@ -6,7 +6,7 @@ import org.testng.annotations.Test;
 
 @Test
 @CucumberOptions(
-        features = "src/test/resources/features/Feedback.feature",
+        features = "src/test/resources/features/10_Feedback.feature",
         glue = "steps",
         tags ="@Feedback",
         plugin = {"pretty", "html:target/ft-report.html"}

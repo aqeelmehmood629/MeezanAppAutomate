@@ -22,8 +22,15 @@ public class FAQsSteps {
         faqPage.clickFaqs();
     }
 
-    @Then("user should see FAQs screen for faqs")
+    @And("user should see FAQs screen for faqs")
     public void user_should_see_faqs_screen() {
         faqPage.verifyFaqScreen();
     }
+    @Then("user click home icon after faqs")
+    public void userClickHomeFaqs() {
+    	faqPage.userClickHomeIconFaqs();
+    	
+    	
+    }
+    
 }

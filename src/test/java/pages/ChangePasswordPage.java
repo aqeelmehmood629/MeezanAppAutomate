@@ -41,6 +41,8 @@ public class ChangePasswordPage {
     private By changePasswordSubmitBtn = By.xpath("//android.widget.Button[@text=\"Reset Password\"]");
     
     private By changePasswordSuccessMsg = By.xpath("//android.widget.TextView[@text=\"Your Password has been reset successfully!\"]");
+    
+    private By clickHomeIconPasswordBtn = By.xpath("//android.widget.Image[@resource-id='home-icon']");
     // ================= ACTIONS =================
 
     public void clickSideMenu() {
@@ -84,5 +86,11 @@ public class ChangePasswordPage {
         if (isDisplayed) {
             System.out.println("✅ Reset Password successfully");
         }
+        
+    }
+    public void clickHomeIconPassword() {
+    	
+    	wait.until(ExpectedConditions.elementToBeClickable(clickHomeIconPasswordBtn)).click();
+    	
     }
 }

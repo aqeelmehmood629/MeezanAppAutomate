@@ -7,7 +7,7 @@ import org.testng.annotations.Test;
 
 @Test
 @CucumberOptions(
-        features = "src/test/resources/features/Logout.feature",
+        features = "src/test/resources/features/17_Logout.feature",
         		glue = "steps",
                 tags ="@Logout",
                 plugin = {"pretty", "html:target/ft-report.html"}

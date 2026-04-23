@@ -28,6 +28,7 @@ public class FAQsPage {
 
     private By faqScreen =
             By.xpath("//android.widget.TextView[@text='FAQs']");
+    private By userClickHomeIconFaqsBtn = By.xpath("//android.widget.Image[@resource-id='home-icon']");
 
     // ================= ACTIONS =================
 
@@ -44,5 +45,9 @@ public class FAQsPage {
     public void verifyFaqScreen() {
         wait.until(ExpectedConditions.visibilityOfElementLocated(faqScreen));
         System.out.println("✅ FAQs screen displayed");
+    }
+    public void userClickHomeIconFaqs() {
+    	wait.until(ExpectedConditions.visibilityOfElementLocated(userClickHomeIconFaqsBtn));
+    	
     }
 }

@@ -26,6 +26,7 @@ public class EnableQuickViewBalPage {
 
     // Toggle (Switch or similar)
     By toggleBtn = By.xpath("//android.widget.TextView[@text='Enable Quick View Balance']/following::android.view.View[1]");
+    By clickHomeIconViewBalBtn = By.xpath("//android.widget.Image[@resource-id='home-icon']");
 
     // Actions
     public void clickSideMenuForEnableQucikViewBal() {
@@ -50,5 +51,9 @@ public class EnableQuickViewBalPage {
     public void waitForQuickViewScreen() {
         new WebDriverWait(driver, Duration.ofSeconds(10))
             .until(ExpectedConditions.visibilityOfElementLocated(header));
+    }
+    public void clickHomeIconViewBal() {
+    	wait.until(ExpectedConditions.elementToBeClickable(clickHomeIconViewBalBtn)).click();
+    	
     }
 }

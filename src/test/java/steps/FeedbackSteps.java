@@ -36,8 +36,12 @@ public class FeedbackSteps {
         page.enterFeedbackText(data.get("feedbackText"));
     }
 
-    @Then("user clicks submit feedback button")
+    @And("user clicks submit feedback button")
     public void submit() {
         page.clickSubmit();
+    }
+    @Then("user clicks home icon after feedback")
+    public void feedbackHomeIcon() {
+    	page.feedbackHomeClick();
     }
 }

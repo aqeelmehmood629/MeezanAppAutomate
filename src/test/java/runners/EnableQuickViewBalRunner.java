@@ -7,7 +7,7 @@ import org.testng.annotations.Test;
 
 @Test
 @CucumberOptions(
-        features = "src/test/resources/features/EnableQuickViewBal.feature",
+        features = "src/test/resources/features/08_EnableQuickViewBal.feature",
         		glue = "steps",
                 tags ="@EnableQuickViewBalance",
                 plugin = {"pretty", "html:target/ft-report.html"}

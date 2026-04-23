@@ -55,11 +55,11 @@ function toggleAllBoxes() {
 <body>
 <h2 align='center'>Smoke Suite</h2><table border='1' align="center">
 <tr>
-<td>Tests passed/Failed/Skipped:</td><td>2/1/0</td>
+<td>Tests passed/Failed/Skipped:</td><td>16/5/0</td>
 </tr><tr>
-<td>Started on:</td><td>Wed Apr 22 16:13:46 PKT 2026</td>
+<td>Started on:</td><td>Thu Apr 23 15:07:48 PKT 2026</td>
 </tr>
-<tr><td>Total time:</td><td>317 seconds (317143 ms)</td>
+<tr><td>Total time:</td><td>372 seconds (372518 ms)</td>
 </tr><tr>
 <td>Included groups:</td><td></td>
 </tr><tr>
@@ -76,14 +76,14 @@ function toggleAllBoxes() {
 <td><b>Instance</b></td>
 </tr>
 <tr>
-<td title='runners.ChangeNotificationLanguageRunner.runScenario()'><b>runScenario</b><br>Test class: runners.ChangeNotificationLanguageRunner<br>Test method: Runs Cucumber Scenarios<br>Parameters: "User changes notification language", "Notification Language Change"</td>
+<td title='runners.LoginRunner.runScenario()'><b>runScenario</b><br>Test class: runners.LoginRunner<br>Test method: Runs Cucumber Scenarios<br>Parameters: "Reset password successfully", "Forgot Password"</td>
 <td><div><pre>org.openqa.selenium.WebDriverException: An unknown server-side error occurred while processing the command. Original error: &apos;POST /element&apos; cannot be proxied to UiAutomator2 server because the instrumentation process is not running (probably crashed). Check the server log and/or the logcat output for more details
 Build info: version: &apos;4.8.3&apos;, revision: &apos;e5e76298c3&apos;
 System info: os.name: &apos;Windows 11&apos;, os.arch: &apos;amd64&apos;, os.version: &apos;10.0&apos;, java.version: &apos;21.0.9&apos;
 Driver info: io.appium.java_client.android.AndroidDriver
-Command: [7259bc7a-b0bb-4822-94c3-def687859bdb, findElement {using=xpath, value=//android.widget.Image[@text=&quot;home-icon-purple&quot;]}]
+Command: [8cda3fc4-b169-4f39-b4fb-e25f8dc351e4, findElement {using=xpath, value=//android.widget.TextView[@text=&quot;Forgot Password?&quot;]}]
 Capabilities {appium:adbExecTimeout: 120000, appium:appActivity: com.ofss.digx.mobile.androi..., appium:appPackage: com.ofss.tx.meezan, appium:autoGrantPermissions: true, appium:automationName: UiAutomator2, appium:chromedriverAutodownload: true, appium:chromedriverExecutable: C:\Users\ma\Documents\Aqeel..., appium:databaseEnabled: false, appium:desired: {adbExecTimeout: 120000, appActivity: com.ofss.digx.mobile.androi..., appPackage: com.ofss.tx.meezan, autoGrantPermissions: true, automationName: UiAutomator2, chromedriverAutodownload: true, chromedriverExecutable: C:\Users\ma\Documents\Aqeel..., deviceName: Android Device, enforceXPath1: true, ensureWebviewsHavePages: true, fullReset: false, newCommandTimeout: 300, noReset: true, platformName: android, udid: 083672525V005614, uiautomator2ServerLaunchTimeout: 180000, unlockKey: 0000, unlockType: pin, webviewConnectTimeout: 30000}, appium:deviceApiLevel: 33, appium:deviceManufacturer: INFINIX, appium:deviceModel: Infinix X670, appium:deviceName: 083672525V005614, appium:deviceScreenDensity: 480, appium:deviceScreenSize: 1080x2400, appium:deviceUDID: 083672525V005614, appium:enforceXPath1: true, appium:ensureWebviewsHavePages: true, appium:fullReset: false, appium:javascriptEnabled: true, appium:locationContextEnabled: false, appium:networkConnectionEnabled: true, appium:newCommandTimeout: 300, appium:noReset: true, appium:pixelRatio: 3, appium:platformVersion: 13, appium:statBarHeight: 108, appium:takesScreenshot: true, appium:udid: 083672525V005614, appium:uiautomator2ServerLaunchTimeout: 180000, appium:unlockKey: 0000, appium:unlockType: pin, appium:viewportRect: {height: 2292, left: 0, top: 108, width: 1080}, appium:warnings: {}, appium:webStorageEnabled: false, appium:webviewConnectTimeout: 30000, platformName: ANDROID}
-Session ID: 7259bc7a-b0bb-4822-94c3-def687859bdb
+Session ID: 8cda3fc4-b169-4f39-b4fb-e25f8dc351e4
 	at org.openqa.selenium.remote.codec.w3c.W3CHttpResponseCodec.createException(W3CHttpResponseCodec.java:200)
 	at org.openqa.selenium.remote.codec.w3c.W3CHttpResponseCodec.decode(W3CHttpResponseCodec.java:133)
 	at org.openqa.selenium.remote.codec.w3c.W3CHttpResponseCodec.decode(W3CHttpResponseCodec.java:53)
@@ -99,17 +99,17 @@ Session ID: 7259bc7a-b0bb-4822-94c3-def687859bdb
 	at org.openqa.selenium.support.ui.ExpectedConditions$22.apply(ExpectedConditions.java:631)
 	at org.openqa.selenium.support.ui.ExpectedConditions$22.apply(ExpectedConditions.java:628)
 	at org.openqa.selenium.support.ui.FluentWait.until(FluentWait.java:208)
-	at pages.DashboardPage.clickHome(DashboardPage.java:33)
-	at pages.DashboardPage.goToDashboard(DashboardPage.java:26)
-	at steps.CommomSteps.navigateToDashboard(CommomSteps.java:12)
-... Removed 3 stack frames</pre></div><a href='#' onClick='toggleBox("stack-trace309476445", this, "Click to show all stack frames", "Click to hide stack frames")'>Click to show all stack frames</a>
-<div class='stack-trace' id='stack-trace309476445'><pre>org.openqa.selenium.WebDriverException: An unknown server-side error occurred while processing the command. Original error: &apos;POST /element&apos; cannot be proxied to UiAutomator2 server because the instrumentation process is not running (probably crashed). Check the server log and/or the logcat output for more details
+	at pages.ForgotPasswordPage.clickForgotPassword(ForgotPasswordPage.java:42)
+	at steps.ForgotPasswordSteps.click_forgot_password(ForgotPasswordSteps.java:26)
+	at ✽.user clicks on Forgot Password(file:///C:/Users/ma/eclipse-workspace/meezanbankApp/src/test/resources/features/18_ForgotPassword.feature:5)
+... Removed 3 stack frames</pre></div><a href='#' onClick='toggleBox("stack-trace299617083", this, "Click to show all stack frames", "Click to hide stack frames")'>Click to show all stack frames</a>
+<div class='stack-trace' id='stack-trace299617083'><pre>org.openqa.selenium.WebDriverException: An unknown server-side error occurred while processing the command. Original error: &apos;POST /element&apos; cannot be proxied to UiAutomator2 server because the instrumentation process is not running (probably crashed). Check the server log and/or the logcat output for more details
 Build info: version: &apos;4.8.3&apos;, revision: &apos;e5e76298c3&apos;
 System info: os.name: &apos;Windows 11&apos;, os.arch: &apos;amd64&apos;, os.version: &apos;10.0&apos;, java.version: &apos;21.0.9&apos;
 Driver info: io.appium.java_client.android.AndroidDriver
-Command: [7259bc7a-b0bb-4822-94c3-def687859bdb, findElement {using=xpath, value=//android.widget.Image[@text=&quot;home-icon-purple&quot;]}]
+Command: [8cda3fc4-b169-4f39-b4fb-e25f8dc351e4, findElement {using=xpath, value=//android.widget.TextView[@text=&quot;Forgot Password?&quot;]}]
 Capabilities {appium:adbExecTimeout: 120000, appium:appActivity: com.ofss.digx.mobile.androi..., appium:appPackage: com.ofss.tx.meezan, appium:autoGrantPermissions: true, appium:automationName: UiAutomator2, appium:chromedriverAutodownload: true, appium:chromedriverExecutable: C:\Users\ma\Documents\Aqeel..., appium:databaseEnabled: false, appium:desired: {adbExecTimeout: 120000, appActivity: com.ofss.digx.mobile.androi..., appPackage: com.ofss.tx.meezan, autoGrantPermissions: true, automationName: UiAutomator2, chromedriverAutodownload: true, chromedriverExecutable: C:\Users\ma\Documents\Aqeel..., deviceName: Android Device, enforceXPath1: true, ensureWebviewsHavePages: true, fullReset: false, newCommandTimeout: 300, noReset: true, platformName: android, udid: 083672525V005614, uiautomator2ServerLaunchTimeout: 180000, unlockKey: 0000, unlockType: pin, webviewConnectTimeout: 30000}, appium:deviceApiLevel: 33, appium:deviceManufacturer: INFINIX, appium:deviceModel: Infinix X670, appium:deviceName: 083672525V005614, appium:deviceScreenDensity: 480, appium:deviceScreenSize: 1080x2400, appium:deviceUDID: 083672525V005614, appium:enforceXPath1: true, appium:ensureWebviewsHavePages: true, appium:fullReset: false, appium:javascriptEnabled: true, appium:locationContextEnabled: false, appium:networkConnectionEnabled: true, appium:newCommandTimeout: 300, appium:noReset: true, appium:pixelRatio: 3, appium:platformVersion: 13, appium:statBarHeight: 108, appium:takesScreenshot: true, appium:udid: 083672525V005614, appium:uiautomator2ServerLaunchTimeout: 180000, appium:unlockKey: 0000, appium:unlockType: pin, appium:viewportRect: {height: 2292, left: 0, top: 108, width: 1080}, appium:warnings: {}, appium:webStorageEnabled: false, appium:webviewConnectTimeout: 30000, platformName: ANDROID}
-Session ID: 7259bc7a-b0bb-4822-94c3-def687859bdb
+Session ID: 8cda3fc4-b169-4f39-b4fb-e25f8dc351e4
 	at java.base/jdk.internal.reflect.DirectConstructorHandleAccessor.newInstance(DirectConstructorHandleAccessor.java:62)
 	at java.base/java.lang.reflect.Constructor.newInstanceWithCaller(Constructor.java:502)
 	at java.base/java.lang.reflect.Constructor.newInstance(Constructor.java:486)
@@ -128,12 +128,182 @@ Session ID: 7259bc7a-b0bb-4822-94c3-def687859bdb
 	at org.openqa.selenium.support.ui.ExpectedConditions$22.apply(ExpectedConditions.java:631)
 	at org.openqa.selenium.support.ui.ExpectedConditions$22.apply(ExpectedConditions.java:628)
 	at org.openqa.selenium.support.ui.FluentWait.until(FluentWait.java:208)
-	at pages.DashboardPage.clickHome(DashboardPage.java:33)
-	at pages.DashboardPage.goToDashboard(DashboardPage.java:26)
-	at steps.CommomSteps.navigateToDashboard(CommomSteps.java:12)
+	at pages.ForgotPasswordPage.clickForgotPassword(ForgotPasswordPage.java:42)
+	at steps.ForgotPasswordSteps.click_forgot_password(ForgotPasswordSteps.java:26)
+	at ✽.user clicks on Forgot Password(file:///C:/Users/ma/eclipse-workspace/meezanbankApp/src/test/resources/features/18_ForgotPassword.feature:5)
 </pre></div></td>
-<td>220</td>
-<td>runners.ChangeNotificationLanguageRunner@305b7c14</td></tr>
+<td>1</td>
+<td>runners.LoginRunner@6f4a47c7</td></tr>
+<tr>
+<td title='runners.LoginRunner.runScenario()'><b>runScenario</b><br>Test class: runners.LoginRunner<br>Test method: Runs Cucumber Scenarios<br>Parameters: "View Customer Accounts", "Verify Account"</td>
+<td><div><pre>org.openqa.selenium.TimeoutException: Expected condition failed: waiting for visibility of element located by By.xpath: //android.widget.TextView[contains(@text,&apos;FRAZ&apos;)] (tried for 15 second(s) with 500 milliseconds interval)
+Build info: version: &apos;4.8.3&apos;, revision: &apos;e5e76298c3&apos;
+System info: os.name: &apos;Windows 11&apos;, os.arch: &apos;amd64&apos;, os.version: &apos;10.0&apos;, java.version: &apos;21.0.9&apos;
+Driver info: io.appium.java_client.android.AndroidDriver
+Capabilities {appium:adbExecTimeout: 120000, appium:appActivity: com.ofss.digx.mobile.androi..., appium:appPackage: com.ofss.tx.meezan, appium:autoGrantPermissions: true, appium:automationName: UiAutomator2, appium:chromedriverAutodownload: true, appium:chromedriverExecutable: C:\Users\ma\Documents\Aqeel..., appium:databaseEnabled: false, appium:desired: {adbExecTimeout: 120000, appActivity: com.ofss.digx.mobile.androi..., appPackage: com.ofss.tx.meezan, autoGrantPermissions: true, automationName: UiAutomator2, chromedriverAutodownload: true, chromedriverExecutable: C:\Users\ma\Documents\Aqeel..., deviceName: Android Device, enforceXPath1: true, ensureWebviewsHavePages: true, fullReset: false, newCommandTimeout: 300, noReset: true, platformName: android, udid: 083672525V005614, uiautomator2ServerLaunchTimeout: 180000, unlockKey: 0000, unlockType: pin, webviewConnectTimeout: 30000}, appium:deviceApiLevel: 33, appium:deviceManufacturer: INFINIX, appium:deviceModel: Infinix X670, appium:deviceName: 083672525V005614, appium:deviceScreenDensity: 480, appium:deviceScreenSize: 1080x2400, appium:deviceUDID: 083672525V005614, appium:enforceXPath1: true, appium:ensureWebviewsHavePages: true, appium:fullReset: false, appium:javascriptEnabled: true, appium:locationContextEnabled: false, appium:networkConnectionEnabled: true, appium:newCommandTimeout: 300, appium:noReset: true, appium:pixelRatio: 3, appium:platformVersion: 13, appium:statBarHeight: 108, appium:takesScreenshot: true, appium:udid: 083672525V005614, appium:uiautomator2ServerLaunchTimeout: 180000, appium:unlockKey: 0000, appium:unlockType: pin, appium:viewportRect: {height: 2292, left: 0, top: 108, width: 1080}, appium:warnings: {}, appium:webStorageEnabled: false, appium:webviewConnectTimeout: 30000, platformName: ANDROID}
+Session ID: 8cda3fc4-b169-4f39-b4fb-e25f8dc351e4
+	at org.openqa.selenium.support.ui.WebDriverWait.timeoutException(WebDriverWait.java:87)
+	at org.openqa.selenium.support.ui.FluentWait.until(FluentWait.java:231)
+	at pages.ViewAccountsPage.getDashboardAccountTitle(ViewAccountsPage.java:38)
+	at steps.ViewAccountsSteps.store_account_title(ViewAccountsSteps.java:14)
+	at ✽.user stores account title from dashboard(file:///C:/Users/ma/eclipse-workspace/meezanbankApp/src/test/resources/features/15_ViewAccounts.feature:5)
+</pre></div><a href='#' onClick='toggleBox("stack-trace859137638", this, "Click to show all stack frames", "Click to hide stack frames")'>Click to show all stack frames</a>
+<div class='stack-trace' id='stack-trace859137638'><pre>org.openqa.selenium.TimeoutException: Expected condition failed: waiting for visibility of element located by By.xpath: //android.widget.TextView[contains(@text,&apos;FRAZ&apos;)] (tried for 15 second(s) with 500 milliseconds interval)
+Build info: version: &apos;4.8.3&apos;, revision: &apos;e5e76298c3&apos;
+System info: os.name: &apos;Windows 11&apos;, os.arch: &apos;amd64&apos;, os.version: &apos;10.0&apos;, java.version: &apos;21.0.9&apos;
+Driver info: io.appium.java_client.android.AndroidDriver
+Capabilities {appium:adbExecTimeout: 120000, appium:appActivity: com.ofss.digx.mobile.androi..., appium:appPackage: com.ofss.tx.meezan, appium:autoGrantPermissions: true, appium:automationName: UiAutomator2, appium:chromedriverAutodownload: true, appium:chromedriverExecutable: C:\Users\ma\Documents\Aqeel..., appium:databaseEnabled: false, appium:desired: {adbExecTimeout: 120000, appActivity: com.ofss.digx.mobile.androi..., appPackage: com.ofss.tx.meezan, autoGrantPermissions: true, automationName: UiAutomator2, chromedriverAutodownload: true, chromedriverExecutable: C:\Users\ma\Documents\Aqeel..., deviceName: Android Device, enforceXPath1: true, ensureWebviewsHavePages: true, fullReset: false, newCommandTimeout: 300, noReset: true, platformName: android, udid: 083672525V005614, uiautomator2ServerLaunchTimeout: 180000, unlockKey: 0000, unlockType: pin, webviewConnectTimeout: 30000}, appium:deviceApiLevel: 33, appium:deviceManufacturer: INFINIX, appium:deviceModel: Infinix X670, appium:deviceName: 083672525V005614, appium:deviceScreenDensity: 480, appium:deviceScreenSize: 1080x2400, appium:deviceUDID: 083672525V005614, appium:enforceXPath1: true, appium:ensureWebviewsHavePages: true, appium:fullReset: false, appium:javascriptEnabled: true, appium:locationContextEnabled: false, appium:networkConnectionEnabled: true, appium:newCommandTimeout: 300, appium:noReset: true, appium:pixelRatio: 3, appium:platformVersion: 13, appium:statBarHeight: 108, appium:takesScreenshot: true, appium:udid: 083672525V005614, appium:uiautomator2ServerLaunchTimeout: 180000, appium:unlockKey: 0000, appium:unlockType: pin, appium:viewportRect: {height: 2292, left: 0, top: 108, width: 1080}, appium:warnings: {}, appium:webStorageEnabled: false, appium:webviewConnectTimeout: 30000, platformName: ANDROID}
+Session ID: 8cda3fc4-b169-4f39-b4fb-e25f8dc351e4
+	at org.openqa.selenium.support.ui.WebDriverWait.timeoutException(WebDriverWait.java:87)
+	at org.openqa.selenium.support.ui.FluentWait.until(FluentWait.java:231)
+	at pages.ViewAccountsPage.getDashboardAccountTitle(ViewAccountsPage.java:38)
+	at steps.ViewAccountsSteps.store_account_title(ViewAccountsSteps.java:14)
+	at ✽.user stores account title from dashboard(file:///C:/Users/ma/eclipse-workspace/meezanbankApp/src/test/resources/features/15_ViewAccounts.feature:5)
+</pre></div></td>
+<td>16</td>
+<td>runners.LoginRunner@6f4a47c7</td></tr>
+<tr>
+<td title='runners.LoginRunner.runScenario()'><b>runScenario</b><br>Test class: runners.LoginRunner<br>Test method: Runs Cucumber Scenarios<br>Parameters: "Change password using CSV data", "Change Password with CSV"</td>
+<td><div><pre>org.openqa.selenium.WebDriverException: An unknown server-side error occurred while processing the command. Original error: &apos;POST /element&apos; cannot be proxied to UiAutomator2 server because the instrumentation process is not running (probably crashed). Check the server log and/or the logcat output for more details
+Build info: version: &apos;4.8.3&apos;, revision: &apos;e5e76298c3&apos;
+System info: os.name: &apos;Windows 11&apos;, os.arch: &apos;amd64&apos;, os.version: &apos;10.0&apos;, java.version: &apos;21.0.9&apos;
+Driver info: io.appium.java_client.android.AndroidDriver
+Command: [8cda3fc4-b169-4f39-b4fb-e25f8dc351e4, findElement {using=xpath, value=//android.widget.TextView[@text=&quot;Your Password has been reset successfully!&quot;]}]
+Capabilities {appium:adbExecTimeout: 120000, appium:appActivity: com.ofss.digx.mobile.androi..., appium:appPackage: com.ofss.tx.meezan, appium:autoGrantPermissions: true, appium:automationName: UiAutomator2, appium:chromedriverAutodownload: true, appium:chromedriverExecutable: C:\Users\ma\Documents\Aqeel..., appium:databaseEnabled: false, appium:desired: {adbExecTimeout: 120000, appActivity: com.ofss.digx.mobile.androi..., appPackage: com.ofss.tx.meezan, autoGrantPermissions: true, automationName: UiAutomator2, chromedriverAutodownload: true, chromedriverExecutable: C:\Users\ma\Documents\Aqeel..., deviceName: Android Device, enforceXPath1: true, ensureWebviewsHavePages: true, fullReset: false, newCommandTimeout: 300, noReset: true, platformName: android, udid: 083672525V005614, uiautomator2ServerLaunchTimeout: 180000, unlockKey: 0000, unlockType: pin, webviewConnectTimeout: 30000}, appium:deviceApiLevel: 33, appium:deviceManufacturer: INFINIX, appium:deviceModel: Infinix X670, appium:deviceName: 083672525V005614, appium:deviceScreenDensity: 480, appium:deviceScreenSize: 1080x2400, appium:deviceUDID: 083672525V005614, appium:enforceXPath1: true, appium:ensureWebviewsHavePages: true, appium:fullReset: false, appium:javascriptEnabled: true, appium:locationContextEnabled: false, appium:networkConnectionEnabled: true, appium:newCommandTimeout: 300, appium:noReset: true, appium:pixelRatio: 3, appium:platformVersion: 13, appium:statBarHeight: 108, appium:takesScreenshot: true, appium:udid: 083672525V005614, appium:uiautomator2ServerLaunchTimeout: 180000, appium:unlockKey: 0000, appium:unlockType: pin, appium:viewportRect: {height: 2292, left: 0, top: 108, width: 1080}, appium:warnings: {}, appium:webStorageEnabled: false, appium:webviewConnectTimeout: 30000, platformName: ANDROID}
+Session ID: 8cda3fc4-b169-4f39-b4fb-e25f8dc351e4
+	at org.openqa.selenium.remote.codec.w3c.W3CHttpResponseCodec.createException(W3CHttpResponseCodec.java:200)
+	at org.openqa.selenium.remote.codec.w3c.W3CHttpResponseCodec.decode(W3CHttpResponseCodec.java:133)
+	at org.openqa.selenium.remote.codec.w3c.W3CHttpResponseCodec.decode(W3CHttpResponseCodec.java:53)
+	at org.openqa.selenium.remote.HttpCommandExecutor.execute(HttpCommandExecutor.java:193)
+	at io.appium.java_client.remote.AppiumCommandExecutor.execute(AppiumCommandExecutor.java:250)
+	at org.openqa.selenium.remote.RemoteWebDriver.execute(RemoteWebDriver.java:543)
+	at org.openqa.selenium.remote.ElementLocation$ElementFinder$2.findElement(ElementLocation.java:162)
+	at org.openqa.selenium.remote.ElementLocation.findElement(ElementLocation.java:60)
+	at org.openqa.selenium.remote.RemoteWebDriver.findElement(RemoteWebDriver.java:352)
+	at org.openqa.selenium.remote.RemoteWebDriver.findElement(RemoteWebDriver.java:344)
+	at org.openqa.selenium.support.ui.ExpectedConditions$7.apply(ExpectedConditions.java:197)
+	at org.openqa.selenium.support.ui.ExpectedConditions$7.apply(ExpectedConditions.java:193)
+	at org.openqa.selenium.support.ui.FluentWait.until(FluentWait.java:208)
+	at pages.ChangePasswordPage.verifyFieldsFilled(ChangePasswordPage.java:85)
+	at steps.ChangePasswordSteps.password_fields_should_be_filled_successfully(ChangePasswordSteps.java:72)
+	at ✽.password fields should be filled successfully(file:///C:/Users/ma/eclipse-workspace/meezanbankApp/src/test/resources/features/16_ChangePassword.feature:14)
+... Removed 3 stack frames</pre></div><a href='#' onClick='toggleBox("stack-trace1139678455", this, "Click to show all stack frames", "Click to hide stack frames")'>Click to show all stack frames</a>
+<div class='stack-trace' id='stack-trace1139678455'><pre>org.openqa.selenium.WebDriverException: An unknown server-side error occurred while processing the command. Original error: &apos;POST /element&apos; cannot be proxied to UiAutomator2 server because the instrumentation process is not running (probably crashed). Check the server log and/or the logcat output for more details
+Build info: version: &apos;4.8.3&apos;, revision: &apos;e5e76298c3&apos;
+System info: os.name: &apos;Windows 11&apos;, os.arch: &apos;amd64&apos;, os.version: &apos;10.0&apos;, java.version: &apos;21.0.9&apos;
+Driver info: io.appium.java_client.android.AndroidDriver
+Command: [8cda3fc4-b169-4f39-b4fb-e25f8dc351e4, findElement {using=xpath, value=//android.widget.TextView[@text=&quot;Your Password has been reset successfully!&quot;]}]
+Capabilities {appium:adbExecTimeout: 120000, appium:appActivity: com.ofss.digx.mobile.androi..., appium:appPackage: com.ofss.tx.meezan, appium:autoGrantPermissions: true, appium:automationName: UiAutomator2, appium:chromedriverAutodownload: true, appium:chromedriverExecutable: C:\Users\ma\Documents\Aqeel..., appium:databaseEnabled: false, appium:desired: {adbExecTimeout: 120000, appActivity: com.ofss.digx.mobile.androi..., appPackage: com.ofss.tx.meezan, autoGrantPermissions: true, automationName: UiAutomator2, chromedriverAutodownload: true, chromedriverExecutable: C:\Users\ma\Documents\Aqeel..., deviceName: Android Device, enforceXPath1: true, ensureWebviewsHavePages: true, fullReset: false, newCommandTimeout: 300, noReset: true, platformName: android, udid: 083672525V005614, uiautomator2ServerLaunchTimeout: 180000, unlockKey: 0000, unlockType: pin, webviewConnectTimeout: 30000}, appium:deviceApiLevel: 33, appium:deviceManufacturer: INFINIX, appium:deviceModel: Infinix X670, appium:deviceName: 083672525V005614, appium:deviceScreenDensity: 480, appium:deviceScreenSize: 1080x2400, appium:deviceUDID: 083672525V005614, appium:enforceXPath1: true, appium:ensureWebviewsHavePages: true, appium:fullReset: false, appium:javascriptEnabled: true, appium:locationContextEnabled: false, appium:networkConnectionEnabled: true, appium:newCommandTimeout: 300, appium:noReset: true, appium:pixelRatio: 3, appium:platformVersion: 13, appium:statBarHeight: 108, appium:takesScreenshot: true, appium:udid: 083672525V005614, appium:uiautomator2ServerLaunchTimeout: 180000, appium:unlockKey: 0000, appium:unlockType: pin, appium:viewportRect: {height: 2292, left: 0, top: 108, width: 1080}, appium:warnings: {}, appium:webStorageEnabled: false, appium:webviewConnectTimeout: 30000, platformName: ANDROID}
+Session ID: 8cda3fc4-b169-4f39-b4fb-e25f8dc351e4
+	at java.base/jdk.internal.reflect.DirectConstructorHandleAccessor.newInstance(DirectConstructorHandleAccessor.java:62)
+	at java.base/java.lang.reflect.Constructor.newInstanceWithCaller(Constructor.java:502)
+	at java.base/java.lang.reflect.Constructor.newInstance(Constructor.java:486)
+	at org.openqa.selenium.remote.codec.w3c.W3CHttpResponseCodec.createException(W3CHttpResponseCodec.java:200)
+	at org.openqa.selenium.remote.codec.w3c.W3CHttpResponseCodec.decode(W3CHttpResponseCodec.java:133)
+	at org.openqa.selenium.remote.codec.w3c.W3CHttpResponseCodec.decode(W3CHttpResponseCodec.java:53)
+	at org.openqa.selenium.remote.HttpCommandExecutor.execute(HttpCommandExecutor.java:193)
+	at io.appium.java_client.remote.AppiumCommandExecutor.execute(AppiumCommandExecutor.java:250)
+	at org.openqa.selenium.remote.RemoteWebDriver.execute(RemoteWebDriver.java:543)
+	at org.openqa.selenium.remote.ElementLocation$ElementFinder$2.findElement(ElementLocation.java:162)
+	at org.openqa.selenium.remote.ElementLocation.findElement(ElementLocation.java:60)
+	at org.openqa.selenium.remote.RemoteWebDriver.findElement(RemoteWebDriver.java:352)
+	at org.openqa.selenium.remote.RemoteWebDriver.findElement(RemoteWebDriver.java:344)
+	at org.openqa.selenium.support.ui.ExpectedConditions$7.apply(ExpectedConditions.java:197)
+	at org.openqa.selenium.support.ui.ExpectedConditions$7.apply(ExpectedConditions.java:193)
+	at org.openqa.selenium.support.ui.FluentWait.until(FluentWait.java:208)
+	at pages.ChangePasswordPage.verifyFieldsFilled(ChangePasswordPage.java:85)
+	at steps.ChangePasswordSteps.password_fields_should_be_filled_successfully(ChangePasswordSteps.java:72)
+	at ✽.password fields should be filled successfully(file:///C:/Users/ma/eclipse-workspace/meezanbankApp/src/test/resources/features/16_ChangePassword.feature:14)
+</pre></div></td>
+<td>23</td>
+<td>runners.LoginRunner@6f4a47c7</td></tr>
+<tr>
+<td title='runners.LoginRunner.runScenario()'><b>runScenario</b><br>Test class: runners.LoginRunner<br>Test method: Runs Cucumber Scenarios<br>Parameters: "User navigates to Profile", "Open Profile"</td>
+<td><div><pre>org.openqa.selenium.TimeoutException: Expected condition failed: waiting for element to be clickable: By.xpath: //android.widget.Image[@resource-id=&quot;hamBurger&quot;] (tried for 15 second(s) with 500 milliseconds interval)
+Build info: version: &apos;4.8.3&apos;, revision: &apos;e5e76298c3&apos;
+System info: os.name: &apos;Windows 11&apos;, os.arch: &apos;amd64&apos;, os.version: &apos;10.0&apos;, java.version: &apos;21.0.9&apos;
+Driver info: io.appium.java_client.android.AndroidDriver
+Capabilities {appium:adbExecTimeout: 120000, appium:appActivity: com.ofss.digx.mobile.androi..., appium:appPackage: com.ofss.tx.meezan, appium:autoGrantPermissions: true, appium:automationName: UiAutomator2, appium:chromedriverAutodownload: true, appium:chromedriverExecutable: C:\Users\ma\Documents\Aqeel..., appium:databaseEnabled: false, appium:desired: {adbExecTimeout: 120000, appActivity: com.ofss.digx.mobile.androi..., appPackage: com.ofss.tx.meezan, autoGrantPermissions: true, automationName: UiAutomator2, chromedriverAutodownload: true, chromedriverExecutable: C:\Users\ma\Documents\Aqeel..., deviceName: Android Device, enforceXPath1: true, ensureWebviewsHavePages: true, fullReset: false, newCommandTimeout: 300, noReset: true, platformName: android, udid: 083672525V005614, uiautomator2ServerLaunchTimeout: 180000, unlockKey: 0000, unlockType: pin, webviewConnectTimeout: 30000}, appium:deviceApiLevel: 33, appium:deviceManufacturer: INFINIX, appium:deviceModel: Infinix X670, appium:deviceName: 083672525V005614, appium:deviceScreenDensity: 480, appium:deviceScreenSize: 1080x2400, appium:deviceUDID: 083672525V005614, appium:enforceXPath1: true, appium:ensureWebviewsHavePages: true, appium:fullReset: false, appium:javascriptEnabled: true, appium:locationContextEnabled: false, appium:networkConnectionEnabled: true, appium:newCommandTimeout: 300, appium:noReset: true, appium:pixelRatio: 3, appium:platformVersion: 13, appium:statBarHeight: 108, appium:takesScreenshot: true, appium:udid: 083672525V005614, appium:uiautomator2ServerLaunchTimeout: 180000, appium:unlockKey: 0000, appium:unlockType: pin, appium:viewportRect: {height: 2292, left: 0, top: 108, width: 1080}, appium:warnings: {}, appium:webStorageEnabled: false, appium:webviewConnectTimeout: 30000, platformName: ANDROID}
+Session ID: 8cda3fc4-b169-4f39-b4fb-e25f8dc351e4
+	at org.openqa.selenium.support.ui.WebDriverWait.timeoutException(WebDriverWait.java:87)
+	at org.openqa.selenium.support.ui.FluentWait.until(FluentWait.java:231)
+	at pages.ViewProfilePage.openSideMenu(ViewProfilePage.java:33)
+	at steps.ViewProfileSteps.open_sidebar(ViewProfileSteps.java:12)
+	at ✽.user clicks on side bar menu(file:///C:/Users/ma/eclipse-workspace/meezanbankApp/src/test/resources/features/12_Profile.feature:5)
+</pre></div><a href='#' onClick='toggleBox("stack-trace1339257929", this, "Click to show all stack frames", "Click to hide stack frames")'>Click to show all stack frames</a>
+<div class='stack-trace' id='stack-trace1339257929'><pre>org.openqa.selenium.TimeoutException: Expected condition failed: waiting for element to be clickable: By.xpath: //android.widget.Image[@resource-id=&quot;hamBurger&quot;] (tried for 15 second(s) with 500 milliseconds interval)
+Build info: version: &apos;4.8.3&apos;, revision: &apos;e5e76298c3&apos;
+System info: os.name: &apos;Windows 11&apos;, os.arch: &apos;amd64&apos;, os.version: &apos;10.0&apos;, java.version: &apos;21.0.9&apos;
+Driver info: io.appium.java_client.android.AndroidDriver
+Capabilities {appium:adbExecTimeout: 120000, appium:appActivity: com.ofss.digx.mobile.androi..., appium:appPackage: com.ofss.tx.meezan, appium:autoGrantPermissions: true, appium:automationName: UiAutomator2, appium:chromedriverAutodownload: true, appium:chromedriverExecutable: C:\Users\ma\Documents\Aqeel..., appium:databaseEnabled: false, appium:desired: {adbExecTimeout: 120000, appActivity: com.ofss.digx.mobile.androi..., appPackage: com.ofss.tx.meezan, autoGrantPermissions: true, automationName: UiAutomator2, chromedriverAutodownload: true, chromedriverExecutable: C:\Users\ma\Documents\Aqeel..., deviceName: Android Device, enforceXPath1: true, ensureWebviewsHavePages: true, fullReset: false, newCommandTimeout: 300, noReset: true, platformName: android, udid: 083672525V005614, uiautomator2ServerLaunchTimeout: 180000, unlockKey: 0000, unlockType: pin, webviewConnectTimeout: 30000}, appium:deviceApiLevel: 33, appium:deviceManufacturer: INFINIX, appium:deviceModel: Infinix X670, appium:deviceName: 083672525V005614, appium:deviceScreenDensity: 480, appium:deviceScreenSize: 1080x2400, appium:deviceUDID: 083672525V005614, appium:enforceXPath1: true, appium:ensureWebviewsHavePages: true, appium:fullReset: false, appium:javascriptEnabled: true, appium:locationContextEnabled: false, appium:networkConnectionEnabled: true, appium:newCommandTimeout: 300, appium:noReset: true, appium:pixelRatio: 3, appium:platformVersion: 13, appium:statBarHeight: 108, appium:takesScreenshot: true, appium:udid: 083672525V005614, appium:uiautomator2ServerLaunchTimeout: 180000, appium:unlockKey: 0000, appium:unlockType: pin, appium:viewportRect: {height: 2292, left: 0, top: 108, width: 1080}, appium:warnings: {}, appium:webStorageEnabled: false, appium:webviewConnectTimeout: 30000, platformName: ANDROID}
+Session ID: 8cda3fc4-b169-4f39-b4fb-e25f8dc351e4
+	at org.openqa.selenium.support.ui.WebDriverWait.timeoutException(WebDriverWait.java:87)
+	at org.openqa.selenium.support.ui.FluentWait.until(FluentWait.java:231)
+	at pages.ViewProfilePage.openSideMenu(ViewProfilePage.java:33)
+	at steps.ViewProfileSteps.open_sidebar(ViewProfileSteps.java:12)
+	at ✽.user clicks on side bar menu(file:///C:/Users/ma/eclipse-workspace/meezanbankApp/src/test/resources/features/12_Profile.feature:5)
+</pre></div></td>
+<td>18</td>
+<td>runners.LoginRunner@6f4a47c7</td></tr>
+<tr>
+<td title='runners.LoginRunner.runScenario()'><b>runScenario</b><br>Test class: runners.LoginRunner<br>Test method: Runs Cucumber Scenarios<br>Parameters: "User logs out and exits app", "Logout Functionality"</td>
+<td><div><pre>org.openqa.selenium.WebDriverException: An unknown server-side error occurred while processing the command. Original error: &apos;POST /element&apos; cannot be proxied to UiAutomator2 server because the instrumentation process is not running (probably crashed). Check the server log and/or the logcat output for more details
+Build info: version: &apos;4.8.3&apos;, revision: &apos;e5e76298c3&apos;
+System info: os.name: &apos;Windows 11&apos;, os.arch: &apos;amd64&apos;, os.version: &apos;10.0&apos;, java.version: &apos;21.0.9&apos;
+Driver info: io.appium.java_client.android.AndroidDriver
+Command: [8cda3fc4-b169-4f39-b4fb-e25f8dc351e4, findElement {using=xpath, value=//android.widget.Image[@content-desc=&quot;Logout&quot;]}]
+Capabilities {appium:adbExecTimeout: 120000, appium:appActivity: com.ofss.digx.mobile.androi..., appium:appPackage: com.ofss.tx.meezan, appium:autoGrantPermissions: true, appium:automationName: UiAutomator2, appium:chromedriverAutodownload: true, appium:chromedriverExecutable: C:\Users\ma\Documents\Aqeel..., appium:databaseEnabled: false, appium:desired: {adbExecTimeout: 120000, appActivity: com.ofss.digx.mobile.androi..., appPackage: com.ofss.tx.meezan, autoGrantPermissions: true, automationName: UiAutomator2, chromedriverAutodownload: true, chromedriverExecutable: C:\Users\ma\Documents\Aqeel..., deviceName: Android Device, enforceXPath1: true, ensureWebviewsHavePages: true, fullReset: false, newCommandTimeout: 300, noReset: true, platformName: android, udid: 083672525V005614, uiautomator2ServerLaunchTimeout: 180000, unlockKey: 0000, unlockType: pin, webviewConnectTimeout: 30000}, appium:deviceApiLevel: 33, appium:deviceManufacturer: INFINIX, appium:deviceModel: Infinix X670, appium:deviceName: 083672525V005614, appium:deviceScreenDensity: 480, appium:deviceScreenSize: 1080x2400, appium:deviceUDID: 083672525V005614, appium:enforceXPath1: true, appium:ensureWebviewsHavePages: true, appium:fullReset: false, appium:javascriptEnabled: true, appium:locationContextEnabled: false, appium:networkConnectionEnabled: true, appium:newCommandTimeout: 300, appium:noReset: true, appium:pixelRatio: 3, appium:platformVersion: 13, appium:statBarHeight: 108, appium:takesScreenshot: true, appium:udid: 083672525V005614, appium:uiautomator2ServerLaunchTimeout: 180000, appium:unlockKey: 0000, appium:unlockType: pin, appium:viewportRect: {height: 2292, left: 0, top: 108, width: 1080}, appium:warnings: {}, appium:webStorageEnabled: false, appium:webviewConnectTimeout: 30000, platformName: ANDROID}
+Session ID: 8cda3fc4-b169-4f39-b4fb-e25f8dc351e4
+	at org.openqa.selenium.remote.codec.w3c.W3CHttpResponseCodec.createException(W3CHttpResponseCodec.java:200)
+	at org.openqa.selenium.remote.codec.w3c.W3CHttpResponseCodec.decode(W3CHttpResponseCodec.java:133)
+	at org.openqa.selenium.remote.codec.w3c.W3CHttpResponseCodec.decode(W3CHttpResponseCodec.java:53)
+	at org.openqa.selenium.remote.HttpCommandExecutor.execute(HttpCommandExecutor.java:193)
+	at io.appium.java_client.remote.AppiumCommandExecutor.execute(AppiumCommandExecutor.java:250)
+	at org.openqa.selenium.remote.RemoteWebDriver.execute(RemoteWebDriver.java:543)
+	at org.openqa.selenium.remote.ElementLocation$ElementFinder$2.findElement(ElementLocation.java:162)
+	at org.openqa.selenium.remote.ElementLocation.findElement(ElementLocation.java:60)
+	at org.openqa.selenium.remote.RemoteWebDriver.findElement(RemoteWebDriver.java:352)
+	at org.openqa.selenium.remote.RemoteWebDriver.findElement(RemoteWebDriver.java:344)
+	at org.openqa.selenium.support.ui.ExpectedConditions$7.apply(ExpectedConditions.java:197)
+	at org.openqa.selenium.support.ui.ExpectedConditions$7.apply(ExpectedConditions.java:193)
+	at org.openqa.selenium.support.ui.ExpectedConditions$22.apply(ExpectedConditions.java:631)
+	at org.openqa.selenium.support.ui.ExpectedConditions$22.apply(ExpectedConditions.java:628)
+	at org.openqa.selenium.support.ui.FluentWait.until(FluentWait.java:208)
+	at pages.LogoutPage.clickLogout(LogoutPage.java:27)
+	at steps.LogoutSteps.user_clicks_logout_icon_and_app_exits(LogoutSteps.java:14)
+	at ✽.user clicks logout icon and app exits(file:///C:/Users/ma/eclipse-workspace/meezanbankApp/src/test/resources/features/17_Logout.feature:5)
+... Removed 3 stack frames</pre></div><a href='#' onClick='toggleBox("stack-trace1519407613", this, "Click to show all stack frames", "Click to hide stack frames")'>Click to show all stack frames</a>
+<div class='stack-trace' id='stack-trace1519407613'><pre>org.openqa.selenium.WebDriverException: An unknown server-side error occurred while processing the command. Original error: &apos;POST /element&apos; cannot be proxied to UiAutomator2 server because the instrumentation process is not running (probably crashed). Check the server log and/or the logcat output for more details
+Build info: version: &apos;4.8.3&apos;, revision: &apos;e5e76298c3&apos;
+System info: os.name: &apos;Windows 11&apos;, os.arch: &apos;amd64&apos;, os.version: &apos;10.0&apos;, java.version: &apos;21.0.9&apos;
+Driver info: io.appium.java_client.android.AndroidDriver
+Command: [8cda3fc4-b169-4f39-b4fb-e25f8dc351e4, findElement {using=xpath, value=//android.widget.Image[@content-desc=&quot;Logout&quot;]}]
+Capabilities {appium:adbExecTimeout: 120000, appium:appActivity: com.ofss.digx.mobile.androi..., appium:appPackage: com.ofss.tx.meezan, appium:autoGrantPermissions: true, appium:automationName: UiAutomator2, appium:chromedriverAutodownload: true, appium:chromedriverExecutable: C:\Users\ma\Documents\Aqeel..., appium:databaseEnabled: false, appium:desired: {adbExecTimeout: 120000, appActivity: com.ofss.digx.mobile.androi..., appPackage: com.ofss.tx.meezan, autoGrantPermissions: true, automationName: UiAutomator2, chromedriverAutodownload: true, chromedriverExecutable: C:\Users\ma\Documents\Aqeel..., deviceName: Android Device, enforceXPath1: true, ensureWebviewsHavePages: true, fullReset: false, newCommandTimeout: 300, noReset: true, platformName: android, udid: 083672525V005614, uiautomator2ServerLaunchTimeout: 180000, unlockKey: 0000, unlockType: pin, webviewConnectTimeout: 30000}, appium:deviceApiLevel: 33, appium:deviceManufacturer: INFINIX, appium:deviceModel: Infinix X670, appium:deviceName: 083672525V005614, appium:deviceScreenDensity: 480, appium:deviceScreenSize: 1080x2400, appium:deviceUDID: 083672525V005614, appium:enforceXPath1: true, appium:ensureWebviewsHavePages: true, appium:fullReset: false, appium:javascriptEnabled: true, appium:locationContextEnabled: false, appium:networkConnectionEnabled: true, appium:newCommandTimeout: 300, appium:noReset: true, appium:pixelRatio: 3, appium:platformVersion: 13, appium:statBarHeight: 108, appium:takesScreenshot: true, appium:udid: 083672525V005614, appium:uiautomator2ServerLaunchTimeout: 180000, appium:unlockKey: 0000, appium:unlockType: pin, appium:viewportRect: {height: 2292, left: 0, top: 108, width: 1080}, appium:warnings: {}, appium:webStorageEnabled: false, appium:webviewConnectTimeout: 30000, platformName: ANDROID}
+Session ID: 8cda3fc4-b169-4f39-b4fb-e25f8dc351e4
+	at java.base/jdk.internal.reflect.DirectConstructorHandleAccessor.newInstance(DirectConstructorHandleAccessor.java:62)
+	at java.base/java.lang.reflect.Constructor.newInstanceWithCaller(Constructor.java:502)
+	at java.base/java.lang.reflect.Constructor.newInstance(Constructor.java:486)
+	at org.openqa.selenium.remote.codec.w3c.W3CHttpResponseCodec.createException(W3CHttpResponseCodec.java:200)
+	at org.openqa.selenium.remote.codec.w3c.W3CHttpResponseCodec.decode(W3CHttpResponseCodec.java:133)
+	at org.openqa.selenium.remote.codec.w3c.W3CHttpResponseCodec.decode(W3CHttpResponseCodec.java:53)
+	at org.openqa.selenium.remote.HttpCommandExecutor.execute(HttpCommandExecutor.java:193)
+	at io.appium.java_client.remote.AppiumCommandExecutor.execute(AppiumCommandExecutor.java:250)
+	at org.openqa.selenium.remote.RemoteWebDriver.execute(RemoteWebDriver.java:543)
+	at org.openqa.selenium.remote.ElementLocation$ElementFinder$2.findElement(ElementLocation.java:162)
+	at org.openqa.selenium.remote.ElementLocation.findElement(ElementLocation.java:60)
+	at org.openqa.selenium.remote.RemoteWebDriver.findElement(RemoteWebDriver.java:352)
+	at org.openqa.selenium.remote.RemoteWebDriver.findElement(RemoteWebDriver.java:344)
+	at org.openqa.selenium.support.ui.ExpectedConditions$7.apply(ExpectedConditions.java:197)
+	at org.openqa.selenium.support.ui.ExpectedConditions$7.apply(ExpectedConditions.java:193)
+	at org.openqa.selenium.support.ui.ExpectedConditions$22.apply(ExpectedConditions.java:631)
+	at org.openqa.selenium.support.ui.ExpectedConditions$22.apply(ExpectedConditions.java:628)
+	at org.openqa.selenium.support.ui.FluentWait.until(FluentWait.java:208)
+	at pages.LogoutPage.clickLogout(LogoutPage.java:27)
+	at steps.LogoutSteps.user_clicks_logout_icon_and_app_exits(LogoutSteps.java:14)
+	at ✽.user clicks logout icon and app exits(file:///C:/Users/ma/eclipse-workspace/meezanbankApp/src/test/resources/features/17_Logout.feature:5)
+</pre></div></td>
+<td>1</td>
+<td>runners.LoginRunner@6f4a47c7</td></tr>
 </table><p>
 <table width='100%' border='1' class='invocation-passed'>
 <tr><td colspan='4' align='center'><b>PASSED TESTS</b></td></tr>
@@ -144,15 +314,85 @@ Session ID: 7259bc7a-b0bb-4822-94c3-def687859bdb
 <td><b>Instance</b></td>
 </tr>
 <tr>
+<td title='runners.LoginRunner.runScenario()'><b>runScenario</b><br>Test class: runners.LoginRunner<br>Test method: Runs Cucumber Scenarios<br>Parameters: "View Notifications", "Notification Flow"</td>
+<td></td>
+<td>12</td>
+<td>runners.LoginRunner@6f4a47c7</td></tr>
+<tr>
+<td title='runners.LoginRunner.runScenario()'><b>runScenario</b><br>Test class: runners.LoginRunner<br>Test method: Runs Cucumber Scenarios<br>Parameters: "Transfer funds to Own Account", "Fund Transfer"</td>
+<td></td>
+<td>28</td>
+<td>runners.LoginRunner@6f4a47c7</td></tr>
+<tr>
+<td title='runners.LoginRunner.runScenario()'><b>runScenario</b><br>Test class: runners.LoginRunner<br>Test method: Runs Cucumber Scenarios<br>Parameters: "User submits feedback successfully", "Submit Feedback"</td>
+<td></td>
+<td>48</td>
+<td>runners.LoginRunner@6f4a47c7</td></tr>
+<tr>
 <td title='runners.LoginRunner.runScenario()'><b>runScenario</b><br>Test class: runners.LoginRunner<br>Test method: Runs Cucumber Scenarios<br>Parameters: "Login with Valid user", "Meezan Bank Login"</td>
 <td></td>
-<td>82</td>
-<td>runners.LoginRunner@3d34d211</td></tr>
+<td>49</td>
+<td>runners.LoginRunner@6f4a47c7</td></tr>
 <tr>
-<td title='runners.DashboardRunner.runScenario()'><b>runScenario</b><br>Test class: runners.DashboardRunner<br>Test method: Runs Cucumber Scenarios<br>Parameters: "Navigate to Dashboard", "Dashboard Validation"</td>
+<td title='runners.LoginRunner.runScenario()'><b>runScenario</b><br>Test class: runners.LoginRunner<br>Test method: Runs Cucumber Scenarios<br>Parameters: "View Qibla Locator", "Qibla Locator"</td>
+<td></td>
+<td>14</td>
+<td>runners.LoginRunner@6f4a47c7</td></tr>
+<tr>
+<td title='runners.LoginRunner.runScenario()'><b>runScenario</b><br>Test class: runners.LoginRunner<br>Test method: Runs Cucumber Scenarios<br>Parameters: "View FAQs", "FAQs Feature"</td>
+<td></td>
+<td>4</td>
+<td>runners.LoginRunner@6f4a47c7</td></tr>
+<tr>
+<td title='runners.LoginRunner.runScenario()'><b>runScenario</b><br>Test class: runners.LoginRunner<br>Test method: Runs Cucumber Scenarios<br>Parameters: "User deselects account", "Account Management"</td>
+<td></td>
+<td>7</td>
+<td>runners.LoginRunner@6f4a47c7</td></tr>
+<tr>
+<td title='runners.LoginRunner.runScenario()'><b>runScenario</b><br>Test class: runners.LoginRunner<br>Test method: Runs Cucumber Scenarios<br>Parameters: "Transfer funds to Meezan Bank account", "Fund Transfer"</td>
+<td></td>
+<td>28</td>
+<td>runners.LoginRunner@6f4a47c7</td></tr>
+<tr>
+<td title='runners.LoginRunner.runScenario()'><b>runScenario</b><br>Test class: runners.LoginRunner<br>Test method: Runs Cucumber Scenarios<br>Parameters: "Perform Zakat donation", "Sadqa & Zakat Donations"</td>
+<td></td>
+<td>21</td>
+<td>runners.LoginRunner@6f4a47c7</td></tr>
+<tr>
+<td title='runners.LoginRunner.runScenario()'><b>runScenario</b><br>Test class: runners.LoginRunner<br>Test method: Runs Cucumber Scenarios<br>Parameters: "Navigate to Dashboard", "Dashboard Validation"</td>
 <td></td>
 <td>13</td>
-<td>runners.DashboardRunner@c0c2f8d</td></tr>
+<td>runners.LoginRunner@6f4a47c7</td></tr>
+<tr>
+<td title='runners.LoginRunner.runScenario()'><b>runScenario</b><br>Test class: runners.LoginRunner<br>Test method: Runs Cucumber Scenarios<br>Parameters: "User updates limit for transfer types", "Limit Management"</td>
+<td></td>
+<td>20</td>
+<td>runners.LoginRunner@6f4a47c7</td></tr>
+<tr>
+<td title='runners.LoginRunner.runScenario()'><b>runScenario</b><br>Test class: runners.LoginRunner<br>Test method: Runs Cucumber Scenarios<br>Parameters: "View Deals and Discounts", "Deals and Discounts"</td>
+<td></td>
+<td>8</td>
+<td>runners.LoginRunner@6f4a47c7</td></tr>
+<tr>
+<td title='runners.LoginRunner.runScenario()'><b>runScenario</b><br>Test class: runners.LoginRunner<br>Test method: Runs Cucumber Scenarios<br>Parameters: "Enable quick view balance", "Quick View Balance Toggle"</td>
+<td></td>
+<td>5</td>
+<td>runners.LoginRunner@6f4a47c7</td></tr>
+<tr>
+<td title='runners.LoginRunner.runScenario()'><b>runScenario</b><br>Test class: runners.LoginRunner<br>Test method: Runs Cucumber Scenarios<br>Parameters: "Perform Raast payment successfully", "Fund Transfer"</td>
+<td></td>
+<td>19</td>
+<td>runners.LoginRunner@6f4a47c7</td></tr>
+<tr>
+<td title='runners.LoginRunner.runScenario()'><b>runScenario</b><br>Test class: runners.LoginRunner<br>Test method: Runs Cucumber Scenarios<br>Parameters: "Perform Sadqa donation", "Sadqa & Zakat Donations"</td>
+<td></td>
+<td>20</td>
+<td>runners.LoginRunner@6f4a47c7</td></tr>
+<tr>
+<td title='runners.LoginRunner.runScenario()'><b>runScenario</b><br>Test class: runners.LoginRunner<br>Test method: Runs Cucumber Scenarios<br>Parameters: "User changes notification language", "Notification Language Change"</td>
+<td></td>
+<td>6</td>
+<td>runners.LoginRunner@6f4a47c7</td></tr>
 </table><p>
 </body>
 </html>

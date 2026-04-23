@@ -25,7 +25,7 @@ public class ViewAccountsSteps {
         page.clickMyAccounts();
     }
 
-    @Then("user verifies account title with dashboard")
+    @And("user verifies account title with dashboard")
     public void verify_account_title() {
 
         String myAccountTitle = page.getMyAccountTitle();
@@ -40,4 +40,9 @@ public class ViewAccountsSteps {
 
         System.out.println("✅ Account Title Verified Successfully");
     }
+    @Then("user click home icon after view Account")
+    public void homeIconViewAccount() {
+    	page.homeIconAfterViewAccount();
+    }
+    
 }

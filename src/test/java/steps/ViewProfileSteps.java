@@ -17,7 +17,7 @@ public class ViewProfileSteps {
         page.clickMyProfile();
     }
 
-    @Then("My Profile screen should be displayed")
+    @And("My Profile screen should be displayed")
     public void verify_profile_screen() {
 
         if (!page.isMyProfileDisplayed()) {
@@ -25,5 +25,9 @@ public class ViewProfileSteps {
         }
 
         System.out.println("✅ My Profile screen displayed");
+    }
+    @Then("user clicks home icon after profile view")
+    public void clickHomeIconProfile() {
+    	page.clickHomeIconAfterProfile();
     }
 }

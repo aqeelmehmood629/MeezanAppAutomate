@@ -35,6 +35,8 @@ public class NotificationPage {
 
     private By verifyBtn =
             By.xpath("//android.view.View[@text=\"Non Financial\"]");
+    
+    private By clickHomeIconNotificationsBtn = By.xpath("//android.widget.Image[@resource-id='home-icon']");
 
     // ================= ACTIONS =================
 
@@ -51,5 +53,9 @@ public class NotificationPage {
     public void verifyShownotification() {
         wait.until(ExpectedConditions.elementToBeClickable(verifyBtn)).click();
         System.out.println("✅ Side menu opened");
+    }
+    public void clickHomeIconNotifications() {
+    	wait.until(ExpectedConditions.elementToBeClickable(clickHomeIconNotificationsBtn)).click();
+    	
     }
 }

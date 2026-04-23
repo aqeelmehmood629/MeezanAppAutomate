@@ -1,29 +1,139 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<testng-results ignored="0" total="3" passed="2" failed="1" skipped="0">
+<testng-results ignored="0" total="21" passed="16" failed="5" skipped="0">
   <reporter-output>
   </reporter-output>
-  <suite started-at="2026-04-22T16:13:46 PKT" name="Smoke Suite" finished-at="2026-04-22T16:19:04 PKT" duration-ms="317143">
+  <suite started-at="2026-04-23T15:07:48 PKT" name="Smoke Suite" finished-at="2026-04-23T15:14:01 PKT" duration-ms="372518">
     <groups>
       <group name="cucumber">
-        <method signature="AbstractTestNGCucumberTests.runScenario(io.cucumber.testng.PickleWrapper,io.cucumber.testng.FeatureWrapper)[pri:0, instance:runners.ChangeNotificationLanguageRunner@305b7c14]" name="runScenario" class="io.cucumber.testng.AbstractTestNGCucumberTests"/>
-        <method signature="AbstractTestNGCucumberTests.runScenario(io.cucumber.testng.PickleWrapper,io.cucumber.testng.FeatureWrapper)[pri:0, instance:runners.DashboardRunner@c0c2f8d]" name="runScenario" class="io.cucumber.testng.AbstractTestNGCucumberTests"/>
-        <method signature="AbstractTestNGCucumberTests.runScenario(io.cucumber.testng.PickleWrapper,io.cucumber.testng.FeatureWrapper)[pri:0, instance:runners.LoginRunner@3d34d211]" name="runScenario" class="io.cucumber.testng.AbstractTestNGCucumberTests"/>
+        <method signature="AbstractTestNGCucumberTests.runScenario(io.cucumber.testng.PickleWrapper,io.cucumber.testng.FeatureWrapper)[pri:0, instance:runners.LoginRunner@6f4a47c7]" name="runScenario" class="io.cucumber.testng.AbstractTestNGCucumberTests"/>
       </group> <!-- cucumber -->
     </groups>
-    <test started-at="2026-04-22T16:13:46 PKT" name="Smoke Suite" finished-at="2026-04-22T16:19:04 PKT" duration-ms="317143">
-      <class name="runners.ChangeNotificationLanguageRunner">
-        <test-method is-config="true" signature="setUpClass(org.testng.ITestContext)[pri:0, instance:runners.ChangeNotificationLanguageRunner@305b7c14]" started-at="2026-04-22T16:15:23 PKT" name="setUpClass" finished-at="2026-04-22T16:15:23 PKT" duration-ms="24" status="PASS">
+    <test started-at="2026-04-23T15:07:48 PKT" name="Smoke Suite" finished-at="2026-04-23T15:14:01 PKT" duration-ms="372518">
+      <class name="runners.LoginRunner">
+        <test-method is-config="true" signature="setUpClass(org.testng.ITestContext)[pri:0, instance:runners.LoginRunner@6f4a47c7]" started-at="2026-04-23T15:07:48 PKT" name="setUpClass" finished-at="2026-04-23T15:07:50 PKT" duration-ms="1534" status="PASS">
           <params>
             <param index="0">
               <value>
-                <![CDATA[org.testng.TestRunner@3909a854]]>
+                <![CDATA[org.testng.TestRunner@2ba9f743]]>
               </value>
             </param>
           </params>
           <reporter-output>
           </reporter-output>
         </test-method> <!-- setUpClass -->
-        <test-method signature="runScenario(io.cucumber.testng.PickleWrapper,io.cucumber.testng.FeatureWrapper)[pri:0, instance:runners.ChangeNotificationLanguageRunner@305b7c14]" started-at="2026-04-22T16:15:23 PKT" name="runScenario" description="Runs Cucumber Scenarios" data-provider="scenarios" finished-at="2026-04-22T16:19:04 PKT" duration-ms="220105" status="FAIL">
+        <test-method signature="runScenario(io.cucumber.testng.PickleWrapper,io.cucumber.testng.FeatureWrapper)[pri:0, instance:runners.LoginRunner@6f4a47c7]" started-at="2026-04-23T15:07:50 PKT" name="runScenario" description="Runs Cucumber Scenarios" data-provider="scenarios" finished-at="2026-04-23T15:08:39 PKT" duration-ms="49109" status="PASS">
+          <params>
+            <param index="0">
+              <value>
+                <![CDATA["Login with Valid user"]]>
+              </value>
+            </param>
+            <param index="1">
+              <value>
+                <![CDATA["Meezan Bank Login"]]>
+              </value>
+            </param>
+          </params>
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- runScenario -->
+        <test-method signature="runScenario(io.cucumber.testng.PickleWrapper,io.cucumber.testng.FeatureWrapper)[pri:0, instance:runners.LoginRunner@6f4a47c7]" started-at="2026-04-23T15:08:39 PKT" name="runScenario" description="Runs Cucumber Scenarios" data-provider="scenarios" finished-at="2026-04-23T15:08:53 PKT" duration-ms="13885" status="PASS">
+          <params>
+            <param index="0">
+              <value>
+                <![CDATA["Navigate to Dashboard"]]>
+              </value>
+            </param>
+            <param index="1">
+              <value>
+                <![CDATA["Dashboard Validation"]]>
+              </value>
+            </param>
+          </params>
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- runScenario -->
+        <test-method signature="runScenario(io.cucumber.testng.PickleWrapper,io.cucumber.testng.FeatureWrapper)[pri:0, instance:runners.LoginRunner@6f4a47c7]" started-at="2026-04-23T15:08:53 PKT" name="runScenario" description="Runs Cucumber Scenarios" data-provider="scenarios" finished-at="2026-04-23T15:09:21 PKT" duration-ms="28362" status="PASS">
+          <params>
+            <param index="0">
+              <value>
+                <![CDATA["Transfer funds to Meezan Bank account"]]>
+              </value>
+            </param>
+            <param index="1">
+              <value>
+                <![CDATA["Fund Transfer"]]>
+              </value>
+            </param>
+          </params>
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- runScenario -->
+        <test-method signature="runScenario(io.cucumber.testng.PickleWrapper,io.cucumber.testng.FeatureWrapper)[pri:0, instance:runners.LoginRunner@6f4a47c7]" started-at="2026-04-23T15:09:21 PKT" name="runScenario" description="Runs Cucumber Scenarios" data-provider="scenarios" finished-at="2026-04-23T15:09:49 PKT" duration-ms="28010" status="PASS">
+          <params>
+            <param index="0">
+              <value>
+                <![CDATA["Transfer funds to Own Account"]]>
+              </value>
+            </param>
+            <param index="1">
+              <value>
+                <![CDATA["Fund Transfer"]]>
+              </value>
+            </param>
+          </params>
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- runScenario -->
+        <test-method signature="runScenario(io.cucumber.testng.PickleWrapper,io.cucumber.testng.FeatureWrapper)[pri:0, instance:runners.LoginRunner@6f4a47c7]" started-at="2026-04-23T15:09:49 PKT" name="runScenario" description="Runs Cucumber Scenarios" data-provider="scenarios" finished-at="2026-04-23T15:10:09 PKT" duration-ms="19586" status="PASS">
+          <params>
+            <param index="0">
+              <value>
+                <![CDATA["Perform Raast payment successfully"]]>
+              </value>
+            </param>
+            <param index="1">
+              <value>
+                <![CDATA["Fund Transfer"]]>
+              </value>
+            </param>
+          </params>
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- runScenario -->
+        <test-method signature="runScenario(io.cucumber.testng.PickleWrapper,io.cucumber.testng.FeatureWrapper)[pri:0, instance:runners.LoginRunner@6f4a47c7]" started-at="2026-04-23T15:10:09 PKT" name="runScenario" description="Runs Cucumber Scenarios" data-provider="scenarios" finished-at="2026-04-23T15:10:30 PKT" duration-ms="20804" status="PASS">
+          <params>
+            <param index="0">
+              <value>
+                <![CDATA["Perform Sadqa donation"]]>
+              </value>
+            </param>
+            <param index="1">
+              <value>
+                <![CDATA["Sadqa & Zakat Donations"]]>
+              </value>
+            </param>
+          </params>
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- runScenario -->
+        <test-method signature="runScenario(io.cucumber.testng.PickleWrapper,io.cucumber.testng.FeatureWrapper)[pri:0, instance:runners.LoginRunner@6f4a47c7]" started-at="2026-04-23T15:10:30 PKT" name="runScenario" description="Runs Cucumber Scenarios" data-provider="scenarios" finished-at="2026-04-23T15:10:52 PKT" duration-ms="21987" status="PASS">
+          <params>
+            <param index="0">
+              <value>
+                <![CDATA["Perform Zakat donation"]]>
+              </value>
+            </param>
+            <param index="1">
+              <value>
+                <![CDATA["Sadqa & Zakat Donations"]]>
+              </value>
+            </param>
+          </params>
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- runScenario -->
+        <test-method signature="runScenario(io.cucumber.testng.PickleWrapper,io.cucumber.testng.FeatureWrapper)[pri:0, instance:runners.LoginRunner@6f4a47c7]" started-at="2026-04-23T15:10:52 PKT" name="runScenario" description="Runs Cucumber Scenarios" data-provider="scenarios" finished-at="2026-04-23T15:10:58 PKT" duration-ms="6223" status="PASS">
           <params>
             <param index="0">
               <value>
@@ -36,24 +146,304 @@
               </value>
             </param>
           </params>
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- runScenario -->
+        <test-method signature="runScenario(io.cucumber.testng.PickleWrapper,io.cucumber.testng.FeatureWrapper)[pri:0, instance:runners.LoginRunner@6f4a47c7]" started-at="2026-04-23T15:10:58 PKT" name="runScenario" description="Runs Cucumber Scenarios" data-provider="scenarios" finished-at="2026-04-23T15:11:06 PKT" duration-ms="8275" status="PASS">
+          <params>
+            <param index="0">
+              <value>
+                <![CDATA["View Deals and Discounts"]]>
+              </value>
+            </param>
+            <param index="1">
+              <value>
+                <![CDATA["Deals and Discounts"]]>
+              </value>
+            </param>
+          </params>
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- runScenario -->
+        <test-method signature="runScenario(io.cucumber.testng.PickleWrapper,io.cucumber.testng.FeatureWrapper)[pri:0, instance:runners.LoginRunner@6f4a47c7]" started-at="2026-04-23T15:11:06 PKT" name="runScenario" description="Runs Cucumber Scenarios" data-provider="scenarios" finished-at="2026-04-23T15:11:13 PKT" duration-ms="7246" status="PASS">
+          <params>
+            <param index="0">
+              <value>
+                <![CDATA["User deselects account"]]>
+              </value>
+            </param>
+            <param index="1">
+              <value>
+                <![CDATA["Account Management"]]>
+              </value>
+            </param>
+          </params>
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- runScenario -->
+        <test-method signature="runScenario(io.cucumber.testng.PickleWrapper,io.cucumber.testng.FeatureWrapper)[pri:0, instance:runners.LoginRunner@6f4a47c7]" started-at="2026-04-23T15:11:13 PKT" name="runScenario" description="Runs Cucumber Scenarios" data-provider="scenarios" finished-at="2026-04-23T15:11:19 PKT" duration-ms="5733" status="PASS">
+          <params>
+            <param index="0">
+              <value>
+                <![CDATA["Enable quick view balance"]]>
+              </value>
+            </param>
+            <param index="1">
+              <value>
+                <![CDATA["Quick View Balance Toggle"]]>
+              </value>
+            </param>
+          </params>
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- runScenario -->
+        <test-method signature="runScenario(io.cucumber.testng.PickleWrapper,io.cucumber.testng.FeatureWrapper)[pri:0, instance:runners.LoginRunner@6f4a47c7]" started-at="2026-04-23T15:11:19 PKT" name="runScenario" description="Runs Cucumber Scenarios" data-provider="scenarios" finished-at="2026-04-23T15:11:24 PKT" duration-ms="4703" status="PASS">
+          <params>
+            <param index="0">
+              <value>
+                <![CDATA["View FAQs"]]>
+              </value>
+            </param>
+            <param index="1">
+              <value>
+                <![CDATA["FAQs Feature"]]>
+              </value>
+            </param>
+          </params>
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- runScenario -->
+        <test-method signature="runScenario(io.cucumber.testng.PickleWrapper,io.cucumber.testng.FeatureWrapper)[pri:0, instance:runners.LoginRunner@6f4a47c7]" started-at="2026-04-23T15:11:24 PKT" name="runScenario" description="Runs Cucumber Scenarios" data-provider="scenarios" finished-at="2026-04-23T15:12:12 PKT" duration-ms="48392" status="PASS">
+          <params>
+            <param index="0">
+              <value>
+                <![CDATA["User submits feedback successfully"]]>
+              </value>
+            </param>
+            <param index="1">
+              <value>
+                <![CDATA["Submit Feedback"]]>
+              </value>
+            </param>
+          </params>
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- runScenario -->
+        <test-method signature="runScenario(io.cucumber.testng.PickleWrapper,io.cucumber.testng.FeatureWrapper)[pri:0, instance:runners.LoginRunner@6f4a47c7]" started-at="2026-04-23T15:12:12 PKT" name="runScenario" description="Runs Cucumber Scenarios" data-provider="scenarios" finished-at="2026-04-23T15:12:25 PKT" duration-ms="12414" status="PASS">
+          <params>
+            <param index="0">
+              <value>
+                <![CDATA["View Notifications"]]>
+              </value>
+            </param>
+            <param index="1">
+              <value>
+                <![CDATA["Notification Flow"]]>
+              </value>
+            </param>
+          </params>
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- runScenario -->
+        <test-method signature="runScenario(io.cucumber.testng.PickleWrapper,io.cucumber.testng.FeatureWrapper)[pri:0, instance:runners.LoginRunner@6f4a47c7]" started-at="2026-04-23T15:12:25 PKT" name="runScenario" description="Runs Cucumber Scenarios" data-provider="scenarios" finished-at="2026-04-23T15:12:43 PKT" duration-ms="18420" status="FAIL">
+          <params>
+            <param index="0">
+              <value>
+                <![CDATA["User navigates to Profile"]]>
+              </value>
+            </param>
+            <param index="1">
+              <value>
+                <![CDATA["Open Profile"]]>
+              </value>
+            </param>
+          </params>
+          <exception class="org.openqa.selenium.TimeoutException">
+            <message>
+              <![CDATA[Expected condition failed: waiting for element to be clickable: By.xpath: //android.widget.Image[@resource-id="hamBurger"] (tried for 15 second(s) with 500 milliseconds interval)
+Build info: version: '4.8.3', revision: 'e5e76298c3'
+System info: os.name: 'Windows 11', os.arch: 'amd64', os.version: '10.0', java.version: '21.0.9'
+Driver info: io.appium.java_client.android.AndroidDriver
+Capabilities {appium:adbExecTimeout: 120000, appium:appActivity: com.ofss.digx.mobile.androi..., appium:appPackage: com.ofss.tx.meezan, appium:autoGrantPermissions: true, appium:automationName: UiAutomator2, appium:chromedriverAutodownload: true, appium:chromedriverExecutable: C:\Users\ma\Documents\Aqeel..., appium:databaseEnabled: false, appium:desired: {adbExecTimeout: 120000, appActivity: com.ofss.digx.mobile.androi..., appPackage: com.ofss.tx.meezan, autoGrantPermissions: true, automationName: UiAutomator2, chromedriverAutodownload: true, chromedriverExecutable: C:\Users\ma\Documents\Aqeel..., deviceName: Android Device, enforceXPath1: true, ensureWebviewsHavePages: true, fullReset: false, newCommandTimeout: 300, noReset: true, platformName: android, udid: 083672525V005614, uiautomator2ServerLaunchTimeout: 180000, unlockKey: 0000, unlockType: pin, webviewConnectTimeout: 30000}, appium:deviceApiLevel: 33, appium:deviceManufacturer: INFINIX, appium:deviceModel: Infinix X670, appium:deviceName: 083672525V005614, appium:deviceScreenDensity: 480, appium:deviceScreenSize: 1080x2400, appium:deviceUDID: 083672525V005614, appium:enforceXPath1: true, appium:ensureWebviewsHavePages: true, appium:fullReset: false, appium:javascriptEnabled: true, appium:locationContextEnabled: false, appium:networkConnectionEnabled: true, appium:newCommandTimeout: 300, appium:noReset: true, appium:pixelRatio: 3, appium:platformVersion: 13, appium:statBarHeight: 108, appium:takesScreenshot: true, appium:udid: 083672525V005614, appium:uiautomator2ServerLaunchTimeout: 180000, appium:unlockKey: 0000, appium:unlockType: pin, appium:viewportRect: {height: 2292, left: 0, top: 108, width: 1080}, appium:warnings: {}, appium:webStorageEnabled: false, appium:webviewConnectTimeout: 30000, platformName: ANDROID}
+Session ID: 8cda3fc4-b169-4f39-b4fb-e25f8dc351e4]]>
+            </message>
+            <full-stacktrace>
+              <![CDATA[org.openqa.selenium.TimeoutException: Expected condition failed: waiting for element to be clickable: By.xpath: //android.widget.Image[@resource-id="hamBurger"] (tried for 15 second(s) with 500 milliseconds interval)
+Build info: version: '4.8.3', revision: 'e5e76298c3'
+System info: os.name: 'Windows 11', os.arch: 'amd64', os.version: '10.0', java.version: '21.0.9'
+Driver info: io.appium.java_client.android.AndroidDriver
+Capabilities {appium:adbExecTimeout: 120000, appium:appActivity: com.ofss.digx.mobile.androi..., appium:appPackage: com.ofss.tx.meezan, appium:autoGrantPermissions: true, appium:automationName: UiAutomator2, appium:chromedriverAutodownload: true, appium:chromedriverExecutable: C:\Users\ma\Documents\Aqeel..., appium:databaseEnabled: false, appium:desired: {adbExecTimeout: 120000, appActivity: com.ofss.digx.mobile.androi..., appPackage: com.ofss.tx.meezan, autoGrantPermissions: true, automationName: UiAutomator2, chromedriverAutodownload: true, chromedriverExecutable: C:\Users\ma\Documents\Aqeel..., deviceName: Android Device, enforceXPath1: true, ensureWebviewsHavePages: true, fullReset: false, newCommandTimeout: 300, noReset: true, platformName: android, udid: 083672525V005614, uiautomator2ServerLaunchTimeout: 180000, unlockKey: 0000, unlockType: pin, webviewConnectTimeout: 30000}, appium:deviceApiLevel: 33, appium:deviceManufacturer: INFINIX, appium:deviceModel: Infinix X670, appium:deviceName: 083672525V005614, appium:deviceScreenDensity: 480, appium:deviceScreenSize: 1080x2400, appium:deviceUDID: 083672525V005614, appium:enforceXPath1: true, appium:ensureWebviewsHavePages: true, appium:fullReset: false, appium:javascriptEnabled: true, appium:locationContextEnabled: false, appium:networkConnectionEnabled: true, appium:newCommandTimeout: 300, appium:noReset: true, appium:pixelRatio: 3, appium:platformVersion: 13, appium:statBarHeight: 108, appium:takesScreenshot: true, appium:udid: 083672525V005614, appium:uiautomator2ServerLaunchTimeout: 180000, appium:unlockKey: 0000, appium:unlockType: pin, appium:viewportRect: {height: 2292, left: 0, top: 108, width: 1080}, appium:warnings: {}, appium:webStorageEnabled: false, appium:webviewConnectTimeout: 30000, platformName: ANDROID}
+Session ID: 8cda3fc4-b169-4f39-b4fb-e25f8dc351e4
+at org.openqa.selenium.support.ui.WebDriverWait.timeoutException(WebDriverWait.java:87)
+at org.openqa.selenium.support.ui.FluentWait.until(FluentWait.java:231)
+at pages.ViewProfilePage.openSideMenu(ViewProfilePage.java:33)
+at steps.ViewProfileSteps.open_sidebar(ViewProfileSteps.java:12)
+at ✽.user clicks on side bar menu(file:///C:/Users/ma/eclipse-workspace/meezanbankApp/src/test/resources/features/12_Profile.feature:5)
+]]>
+            </full-stacktrace>
+          </exception> <!-- org.openqa.selenium.TimeoutException -->
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- runScenario -->
+        <test-method signature="runScenario(io.cucumber.testng.PickleWrapper,io.cucumber.testng.FeatureWrapper)[pri:0, instance:runners.LoginRunner@6f4a47c7]" started-at="2026-04-23T15:12:43 PKT" name="runScenario" description="Runs Cucumber Scenarios" data-provider="scenarios" finished-at="2026-04-23T15:12:58 PKT" duration-ms="14557" status="PASS">
+          <params>
+            <param index="0">
+              <value>
+                <![CDATA["View Qibla Locator"]]>
+              </value>
+            </param>
+            <param index="1">
+              <value>
+                <![CDATA["Qibla Locator"]]>
+              </value>
+            </param>
+          </params>
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- runScenario -->
+        <test-method signature="runScenario(io.cucumber.testng.PickleWrapper,io.cucumber.testng.FeatureWrapper)[pri:0, instance:runners.LoginRunner@6f4a47c7]" started-at="2026-04-23T15:12:58 PKT" name="runScenario" description="Runs Cucumber Scenarios" data-provider="scenarios" finished-at="2026-04-23T15:13:18 PKT" duration-ms="20164" status="PASS">
+          <params>
+            <param index="0">
+              <value>
+                <![CDATA["User updates limit for transfer types"]]>
+              </value>
+            </param>
+            <param index="1">
+              <value>
+                <![CDATA["Limit Management"]]>
+              </value>
+            </param>
+          </params>
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- runScenario -->
+        <test-method signature="runScenario(io.cucumber.testng.PickleWrapper,io.cucumber.testng.FeatureWrapper)[pri:0, instance:runners.LoginRunner@6f4a47c7]" started-at="2026-04-23T15:13:18 PKT" name="runScenario" description="Runs Cucumber Scenarios" data-provider="scenarios" finished-at="2026-04-23T15:13:35 PKT" duration-ms="16910" status="FAIL">
+          <params>
+            <param index="0">
+              <value>
+                <![CDATA["View Customer Accounts"]]>
+              </value>
+            </param>
+            <param index="1">
+              <value>
+                <![CDATA["Verify Account"]]>
+              </value>
+            </param>
+          </params>
+          <exception class="org.openqa.selenium.TimeoutException">
+            <message>
+              <![CDATA[Expected condition failed: waiting for visibility of element located by By.xpath: //android.widget.TextView[contains(@text,'FRAZ')] (tried for 15 second(s) with 500 milliseconds interval)
+Build info: version: '4.8.3', revision: 'e5e76298c3'
+System info: os.name: 'Windows 11', os.arch: 'amd64', os.version: '10.0', java.version: '21.0.9'
+Driver info: io.appium.java_client.android.AndroidDriver
+Capabilities {appium:adbExecTimeout: 120000, appium:appActivity: com.ofss.digx.mobile.androi..., appium:appPackage: com.ofss.tx.meezan, appium:autoGrantPermissions: true, appium:automationName: UiAutomator2, appium:chromedriverAutodownload: true, appium:chromedriverExecutable: C:\Users\ma\Documents\Aqeel..., appium:databaseEnabled: false, appium:desired: {adbExecTimeout: 120000, appActivity: com.ofss.digx.mobile.androi..., appPackage: com.ofss.tx.meezan, autoGrantPermissions: true, automationName: UiAutomator2, chromedriverAutodownload: true, chromedriverExecutable: C:\Users\ma\Documents\Aqeel..., deviceName: Android Device, enforceXPath1: true, ensureWebviewsHavePages: true, fullReset: false, newCommandTimeout: 300, noReset: true, platformName: android, udid: 083672525V005614, uiautomator2ServerLaunchTimeout: 180000, unlockKey: 0000, unlockType: pin, webviewConnectTimeout: 30000}, appium:deviceApiLevel: 33, appium:deviceManufacturer: INFINIX, appium:deviceModel: Infinix X670, appium:deviceName: 083672525V005614, appium:deviceScreenDensity: 480, appium:deviceScreenSize: 1080x2400, appium:deviceUDID: 083672525V005614, appium:enforceXPath1: true, appium:ensureWebviewsHavePages: true, appium:fullReset: false, appium:javascriptEnabled: true, appium:locationContextEnabled: false, appium:networkConnectionEnabled: true, appium:newCommandTimeout: 300, appium:noReset: true, appium:pixelRatio: 3, appium:platformVersion: 13, appium:statBarHeight: 108, appium:takesScreenshot: true, appium:udid: 083672525V005614, appium:uiautomator2ServerLaunchTimeout: 180000, appium:unlockKey: 0000, appium:unlockType: pin, appium:viewportRect: {height: 2292, left: 0, top: 108, width: 1080}, appium:warnings: {}, appium:webStorageEnabled: false, appium:webviewConnectTimeout: 30000, platformName: ANDROID}
+Session ID: 8cda3fc4-b169-4f39-b4fb-e25f8dc351e4]]>
+            </message>
+            <full-stacktrace>
+              <![CDATA[org.openqa.selenium.TimeoutException: Expected condition failed: waiting for visibility of element located by By.xpath: //android.widget.TextView[contains(@text,'FRAZ')] (tried for 15 second(s) with 500 milliseconds interval)
+Build info: version: '4.8.3', revision: 'e5e76298c3'
+System info: os.name: 'Windows 11', os.arch: 'amd64', os.version: '10.0', java.version: '21.0.9'
+Driver info: io.appium.java_client.android.AndroidDriver
+Capabilities {appium:adbExecTimeout: 120000, appium:appActivity: com.ofss.digx.mobile.androi..., appium:appPackage: com.ofss.tx.meezan, appium:autoGrantPermissions: true, appium:automationName: UiAutomator2, appium:chromedriverAutodownload: true, appium:chromedriverExecutable: C:\Users\ma\Documents\Aqeel..., appium:databaseEnabled: false, appium:desired: {adbExecTimeout: 120000, appActivity: com.ofss.digx.mobile.androi..., appPackage: com.ofss.tx.meezan, autoGrantPermissions: true, automationName: UiAutomator2, chromedriverAutodownload: true, chromedriverExecutable: C:\Users\ma\Documents\Aqeel..., deviceName: Android Device, enforceXPath1: true, ensureWebviewsHavePages: true, fullReset: false, newCommandTimeout: 300, noReset: true, platformName: android, udid: 083672525V005614, uiautomator2ServerLaunchTimeout: 180000, unlockKey: 0000, unlockType: pin, webviewConnectTimeout: 30000}, appium:deviceApiLevel: 33, appium:deviceManufacturer: INFINIX, appium:deviceModel: Infinix X670, appium:deviceName: 083672525V005614, appium:deviceScreenDensity: 480, appium:deviceScreenSize: 1080x2400, appium:deviceUDID: 083672525V005614, appium:enforceXPath1: true, appium:ensureWebviewsHavePages: true, appium:fullReset: false, appium:javascriptEnabled: true, appium:locationContextEnabled: false, appium:networkConnectionEnabled: true, appium:newCommandTimeout: 300, appium:noReset: true, appium:pixelRatio: 3, appium:platformVersion: 13, appium:statBarHeight: 108, appium:takesScreenshot: true, appium:udid: 083672525V005614, appium:uiautomator2ServerLaunchTimeout: 180000, appium:unlockKey: 0000, appium:unlockType: pin, appium:viewportRect: {height: 2292, left: 0, top: 108, width: 1080}, appium:warnings: {}, appium:webStorageEnabled: false, appium:webviewConnectTimeout: 30000, platformName: ANDROID}
+Session ID: 8cda3fc4-b169-4f39-b4fb-e25f8dc351e4
+at org.openqa.selenium.support.ui.WebDriverWait.timeoutException(WebDriverWait.java:87)
+at org.openqa.selenium.support.ui.FluentWait.until(FluentWait.java:231)
+at pages.ViewAccountsPage.getDashboardAccountTitle(ViewAccountsPage.java:38)
+at steps.ViewAccountsSteps.store_account_title(ViewAccountsSteps.java:14)
+at ✽.user stores account title from dashboard(file:///C:/Users/ma/eclipse-workspace/meezanbankApp/src/test/resources/features/15_ViewAccounts.feature:5)
+]]>
+            </full-stacktrace>
+          </exception> <!-- org.openqa.selenium.TimeoutException -->
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- runScenario -->
+        <test-method signature="runScenario(io.cucumber.testng.PickleWrapper,io.cucumber.testng.FeatureWrapper)[pri:0, instance:runners.LoginRunner@6f4a47c7]" started-at="2026-04-23T15:13:35 PKT" name="runScenario" description="Runs Cucumber Scenarios" data-provider="scenarios" finished-at="2026-04-23T15:13:59 PKT" duration-ms="23811" status="FAIL">
+          <params>
+            <param index="0">
+              <value>
+                <![CDATA["Change password using CSV data"]]>
+              </value>
+            </param>
+            <param index="1">
+              <value>
+                <![CDATA["Change Password with CSV"]]>
+              </value>
+            </param>
+          </params>
           <exception class="org.openqa.selenium.WebDriverException">
             <message>
               <![CDATA[An unknown server-side error occurred while processing the command. Original error: 'POST /element' cannot be proxied to UiAutomator2 server because the instrumentation process is not running (probably crashed). Check the server log and/or the logcat output for more details
 Build info: version: '4.8.3', revision: 'e5e76298c3'
 System info: os.name: 'Windows 11', os.arch: 'amd64', os.version: '10.0', java.version: '21.0.9'
 Driver info: io.appium.java_client.android.AndroidDriver
-Command: [7259bc7a-b0bb-4822-94c3-def687859bdb, findElement {using=xpath, value=//android.widget.Image[@text="home-icon-purple"]}]
+Command: [8cda3fc4-b169-4f39-b4fb-e25f8dc351e4, findElement {using=xpath, value=//android.widget.TextView[@text="Your Password has been reset successfully!"]}]
 Capabilities {appium:adbExecTimeout: 120000, appium:appActivity: com.ofss.digx.mobile.androi..., appium:appPackage: com.ofss.tx.meezan, appium:autoGrantPermissions: true, appium:automationName: UiAutomator2, appium:chromedriverAutodownload: true, appium:chromedriverExecutable: C:\Users\ma\Documents\Aqeel..., appium:databaseEnabled: false, appium:desired: {adbExecTimeout: 120000, appActivity: com.ofss.digx.mobile.androi..., appPackage: com.ofss.tx.meezan, autoGrantPermissions: true, automationName: UiAutomator2, chromedriverAutodownload: true, chromedriverExecutable: C:\Users\ma\Documents\Aqeel..., deviceName: Android Device, enforceXPath1: true, ensureWebviewsHavePages: true, fullReset: false, newCommandTimeout: 300, noReset: true, platformName: android, udid: 083672525V005614, uiautomator2ServerLaunchTimeout: 180000, unlockKey: 0000, unlockType: pin, webviewConnectTimeout: 30000}, appium:deviceApiLevel: 33, appium:deviceManufacturer: INFINIX, appium:deviceModel: Infinix X670, appium:deviceName: 083672525V005614, appium:deviceScreenDensity: 480, appium:deviceScreenSize: 1080x2400, appium:deviceUDID: 083672525V005614, appium:enforceXPath1: true, appium:ensureWebviewsHavePages: true, appium:fullReset: false, appium:javascriptEnabled: true, appium:locationContextEnabled: false, appium:networkConnectionEnabled: true, appium:newCommandTimeout: 300, appium:noReset: true, appium:pixelRatio: 3, appium:platformVersion: 13, appium:statBarHeight: 108, appium:takesScreenshot: true, appium:udid: 083672525V005614, appium:uiautomator2ServerLaunchTimeout: 180000, appium:unlockKey: 0000, appium:unlockType: pin, appium:viewportRect: {height: 2292, left: 0, top: 108, width: 1080}, appium:warnings: {}, appium:webStorageEnabled: false, appium:webviewConnectTimeout: 30000, platformName: ANDROID}
-Session ID: 7259bc7a-b0bb-4822-94c3-def687859bdb]]>
+Session ID: 8cda3fc4-b169-4f39-b4fb-e25f8dc351e4]]>
             </message>
             <full-stacktrace>
               <![CDATA[org.openqa.selenium.WebDriverException: An unknown server-side error occurred while processing the command. Original error: 'POST /element' cannot be proxied to UiAutomator2 server because the instrumentation process is not running (probably crashed). Check the server log and/or the logcat output for more details
 Build info: version: '4.8.3', revision: 'e5e76298c3'
 System info: os.name: 'Windows 11', os.arch: 'amd64', os.version: '10.0', java.version: '21.0.9'
 Driver info: io.appium.java_client.android.AndroidDriver
-Command: [7259bc7a-b0bb-4822-94c3-def687859bdb, findElement {using=xpath, value=//android.widget.Image[@text="home-icon-purple"]}]
+Command: [8cda3fc4-b169-4f39-b4fb-e25f8dc351e4, findElement {using=xpath, value=//android.widget.TextView[@text="Your Password has been reset successfully!"]}]
 Capabilities {appium:adbExecTimeout: 120000, appium:appActivity: com.ofss.digx.mobile.androi..., appium:appPackage: com.ofss.tx.meezan, appium:autoGrantPermissions: true, appium:automationName: UiAutomator2, appium:chromedriverAutodownload: true, appium:chromedriverExecutable: C:\Users\ma\Documents\Aqeel..., appium:databaseEnabled: false, appium:desired: {adbExecTimeout: 120000, appActivity: com.ofss.digx.mobile.androi..., appPackage: com.ofss.tx.meezan, autoGrantPermissions: true, automationName: UiAutomator2, chromedriverAutodownload: true, chromedriverExecutable: C:\Users\ma\Documents\Aqeel..., deviceName: Android Device, enforceXPath1: true, ensureWebviewsHavePages: true, fullReset: false, newCommandTimeout: 300, noReset: true, platformName: android, udid: 083672525V005614, uiautomator2ServerLaunchTimeout: 180000, unlockKey: 0000, unlockType: pin, webviewConnectTimeout: 30000}, appium:deviceApiLevel: 33, appium:deviceManufacturer: INFINIX, appium:deviceModel: Infinix X670, appium:deviceName: 083672525V005614, appium:deviceScreenDensity: 480, appium:deviceScreenSize: 1080x2400, appium:deviceUDID: 083672525V005614, appium:enforceXPath1: true, appium:ensureWebviewsHavePages: true, appium:fullReset: false, appium:javascriptEnabled: true, appium:locationContextEnabled: false, appium:networkConnectionEnabled: true, appium:newCommandTimeout: 300, appium:noReset: true, appium:pixelRatio: 3, appium:platformVersion: 13, appium:statBarHeight: 108, appium:takesScreenshot: true, appium:udid: 083672525V005614, appium:uiautomator2ServerLaunchTimeout: 180000, appium:unlockKey: 0000, appium:unlockType: pin, appium:viewportRect: {height: 2292, left: 0, top: 108, width: 1080}, appium:warnings: {}, appium:webStorageEnabled: false, appium:webviewConnectTimeout: 30000, platformName: ANDROID}
-Session ID: 7259bc7a-b0bb-4822-94c3-def687859bdb
+Session ID: 8cda3fc4-b169-4f39-b4fb-e25f8dc351e4
+at java.base/jdk.internal.reflect.DirectConstructorHandleAccessor.newInstance(DirectConstructorHandleAccessor.java:62)
+at java.base/java.lang.reflect.Constructor.newInstanceWithCaller(Constructor.java:502)
+at java.base/java.lang.reflect.Constructor.newInstance(Constructor.java:486)
+at org.openqa.selenium.remote.codec.w3c.W3CHttpResponseCodec.createException(W3CHttpResponseCodec.java:200)
+at org.openqa.selenium.remote.codec.w3c.W3CHttpResponseCodec.decode(W3CHttpResponseCodec.java:133)
+at org.openqa.selenium.remote.codec.w3c.W3CHttpResponseCodec.decode(W3CHttpResponseCodec.java:53)
+at org.openqa.selenium.remote.HttpCommandExecutor.execute(HttpCommandExecutor.java:193)
+at io.appium.java_client.remote.AppiumCommandExecutor.execute(AppiumCommandExecutor.java:250)
+at org.openqa.selenium.remote.RemoteWebDriver.execute(RemoteWebDriver.java:543)
+at org.openqa.selenium.remote.ElementLocation$ElementFinder$2.findElement(ElementLocation.java:162)
+at org.openqa.selenium.remote.ElementLocation.findElement(ElementLocation.java:60)
+at org.openqa.selenium.remote.RemoteWebDriver.findElement(RemoteWebDriver.java:352)
+at org.openqa.selenium.remote.RemoteWebDriver.findElement(RemoteWebDriver.java:344)
+at org.openqa.selenium.support.ui.ExpectedConditions$7.apply(ExpectedConditions.java:197)
+at org.openqa.selenium.support.ui.ExpectedConditions$7.apply(ExpectedConditions.java:193)
+at org.openqa.selenium.support.ui.FluentWait.until(FluentWait.java:208)
+at pages.ChangePasswordPage.verifyFieldsFilled(ChangePasswordPage.java:85)
+at steps.ChangePasswordSteps.password_fields_should_be_filled_successfully(ChangePasswordSteps.java:72)
+at ✽.password fields should be filled successfully(file:///C:/Users/ma/eclipse-workspace/meezanbankApp/src/test/resources/features/16_ChangePassword.feature:14)
+]]>
+            </full-stacktrace>
+          </exception> <!-- org.openqa.selenium.WebDriverException -->
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- runScenario -->
+        <test-method signature="runScenario(io.cucumber.testng.PickleWrapper,io.cucumber.testng.FeatureWrapper)[pri:0, instance:runners.LoginRunner@6f4a47c7]" started-at="2026-04-23T15:13:59 PKT" name="runScenario" description="Runs Cucumber Scenarios" data-provider="scenarios" finished-at="2026-04-23T15:14:00 PKT" duration-ms="1132" status="FAIL">
+          <params>
+            <param index="0">
+              <value>
+                <![CDATA["User logs out and exits app"]]>
+              </value>
+            </param>
+            <param index="1">
+              <value>
+                <![CDATA["Logout Functionality"]]>
+              </value>
+            </param>
+          </params>
+          <exception class="org.openqa.selenium.WebDriverException">
+            <message>
+              <![CDATA[An unknown server-side error occurred while processing the command. Original error: 'POST /element' cannot be proxied to UiAutomator2 server because the instrumentation process is not running (probably crashed). Check the server log and/or the logcat output for more details
+Build info: version: '4.8.3', revision: 'e5e76298c3'
+System info: os.name: 'Windows 11', os.arch: 'amd64', os.version: '10.0', java.version: '21.0.9'
+Driver info: io.appium.java_client.android.AndroidDriver
+Command: [8cda3fc4-b169-4f39-b4fb-e25f8dc351e4, findElement {using=xpath, value=//android.widget.Image[@content-desc="Logout"]}]
+Capabilities {appium:adbExecTimeout: 120000, appium:appActivity: com.ofss.digx.mobile.androi..., appium:appPackage: com.ofss.tx.meezan, appium:autoGrantPermissions: true, appium:automationName: UiAutomator2, appium:chromedriverAutodownload: true, appium:chromedriverExecutable: C:\Users\ma\Documents\Aqeel..., appium:databaseEnabled: false, appium:desired: {adbExecTimeout: 120000, appActivity: com.ofss.digx.mobile.androi..., appPackage: com.ofss.tx.meezan, autoGrantPermissions: true, automationName: UiAutomator2, chromedriverAutodownload: true, chromedriverExecutable: C:\Users\ma\Documents\Aqeel..., deviceName: Android Device, enforceXPath1: true, ensureWebviewsHavePages: true, fullReset: false, newCommandTimeout: 300, noReset: true, platformName: android, udid: 083672525V005614, uiautomator2ServerLaunchTimeout: 180000, unlockKey: 0000, unlockType: pin, webviewConnectTimeout: 30000}, appium:deviceApiLevel: 33, appium:deviceManufacturer: INFINIX, appium:deviceModel: Infinix X670, appium:deviceName: 083672525V005614, appium:deviceScreenDensity: 480, appium:deviceScreenSize: 1080x2400, appium:deviceUDID: 083672525V005614, appium:enforceXPath1: true, appium:ensureWebviewsHavePages: true, appium:fullReset: false, appium:javascriptEnabled: true, appium:locationContextEnabled: false, appium:networkConnectionEnabled: true, appium:newCommandTimeout: 300, appium:noReset: true, appium:pixelRatio: 3, appium:platformVersion: 13, appium:statBarHeight: 108, appium:takesScreenshot: true, appium:udid: 083672525V005614, appium:uiautomator2ServerLaunchTimeout: 180000, appium:unlockKey: 0000, appium:unlockType: pin, appium:viewportRect: {height: 2292, left: 0, top: 108, width: 1080}, appium:warnings: {}, appium:webStorageEnabled: false, appium:webviewConnectTimeout: 30000, platformName: ANDROID}
+Session ID: 8cda3fc4-b169-4f39-b4fb-e25f8dc351e4]]>
+            </message>
+            <full-stacktrace>
+              <![CDATA[org.openqa.selenium.WebDriverException: An unknown server-side error occurred while processing the command. Original error: 'POST /element' cannot be proxied to UiAutomator2 server because the instrumentation process is not running (probably crashed). Check the server log and/or the logcat output for more details
+Build info: version: '4.8.3', revision: 'e5e76298c3'
+System info: os.name: 'Windows 11', os.arch: 'amd64', os.version: '10.0', java.version: '21.0.9'
+Driver info: io.appium.java_client.android.AndroidDriver
+Command: [8cda3fc4-b169-4f39-b4fb-e25f8dc351e4, findElement {using=xpath, value=//android.widget.Image[@content-desc="Logout"]}]
+Capabilities {appium:adbExecTimeout: 120000, appium:appActivity: com.ofss.digx.mobile.androi..., appium:appPackage: com.ofss.tx.meezan, appium:autoGrantPermissions: true, appium:automationName: UiAutomator2, appium:chromedriverAutodownload: true, appium:chromedriverExecutable: C:\Users\ma\Documents\Aqeel..., appium:databaseEnabled: false, appium:desired: {adbExecTimeout: 120000, appActivity: com.ofss.digx.mobile.androi..., appPackage: com.ofss.tx.meezan, autoGrantPermissions: true, automationName: UiAutomator2, chromedriverAutodownload: true, chromedriverExecutable: C:\Users\ma\Documents\Aqeel..., deviceName: Android Device, enforceXPath1: true, ensureWebviewsHavePages: true, fullReset: false, newCommandTimeout: 300, noReset: true, platformName: android, udid: 083672525V005614, uiautomator2ServerLaunchTimeout: 180000, unlockKey: 0000, unlockType: pin, webviewConnectTimeout: 30000}, appium:deviceApiLevel: 33, appium:deviceManufacturer: INFINIX, appium:deviceModel: Infinix X670, appium:deviceName: 083672525V005614, appium:deviceScreenDensity: 480, appium:deviceScreenSize: 1080x2400, appium:deviceUDID: 083672525V005614, appium:enforceXPath1: true, appium:ensureWebviewsHavePages: true, appium:fullReset: false, appium:javascriptEnabled: true, appium:locationContextEnabled: false, appium:networkConnectionEnabled: true, appium:newCommandTimeout: 300, appium:noReset: true, appium:pixelRatio: 3, appium:platformVersion: 13, appium:statBarHeight: 108, appium:takesScreenshot: true, appium:udid: 083672525V005614, appium:uiautomator2ServerLaunchTimeout: 180000, appium:unlockKey: 0000, appium:unlockType: pin, appium:viewportRect: {height: 2292, left: 0, top: 108, width: 1080}, appium:warnings: {}, appium:webStorageEnabled: false, appium:webviewConnectTimeout: 30000, platformName: ANDROID}
+Session ID: 8cda3fc4-b169-4f39-b4fb-e25f8dc351e4
 at java.base/jdk.internal.reflect.DirectConstructorHandleAccessor.newInstance(DirectConstructorHandleAccessor.java:62)
 at java.base/java.lang.reflect.Constructor.newInstanceWithCaller(Constructor.java:502)
 at java.base/java.lang.reflect.Constructor.newInstance(Constructor.java:486)
@@ -72,82 +462,74 @@ at org.openqa.selenium.support.ui.ExpectedConditions$7.apply(ExpectedConditions.
 at org.openqa.selenium.support.ui.ExpectedConditions$22.apply(ExpectedConditions.java:631)
 at org.openqa.selenium.support.ui.ExpectedConditions$22.apply(ExpectedConditions.java:628)
 at org.openqa.selenium.support.ui.FluentWait.until(FluentWait.java:208)
-at pages.DashboardPage.clickHome(DashboardPage.java:33)
-at pages.DashboardPage.goToDashboard(DashboardPage.java:26)
-at steps.CommomSteps.navigateToDashboard(CommomSteps.java:12)
+at pages.LogoutPage.clickLogout(LogoutPage.java:27)
+at steps.LogoutSteps.user_clicks_logout_icon_and_app_exits(LogoutSteps.java:14)
+at ✽.user clicks logout icon and app exits(file:///C:/Users/ma/eclipse-workspace/meezanbankApp/src/test/resources/features/17_Logout.feature:5)
 ]]>
             </full-stacktrace>
           </exception> <!-- org.openqa.selenium.WebDriverException -->
           <reporter-output>
           </reporter-output>
         </test-method> <!-- runScenario -->
-        <test-method is-config="true" signature="tearDownClass()[pri:0, instance:runners.ChangeNotificationLanguageRunner@305b7c14]" started-at="2026-04-22T16:19:04 PKT" name="tearDownClass" finished-at="2026-04-22T16:19:04 PKT" duration-ms="38" status="PASS">
-          <reporter-output>
-          </reporter-output>
-        </test-method> <!-- tearDownClass -->
-      </class> <!-- runners.ChangeNotificationLanguageRunner -->
-      <class name="runners.DashboardRunner">
-        <test-method is-config="true" signature="setUpClass(org.testng.ITestContext)[pri:0, instance:runners.DashboardRunner@c0c2f8d]" started-at="2026-04-22T16:15:10 PKT" name="setUpClass" finished-at="2026-04-22T16:15:10 PKT" duration-ms="17" status="PASS">
+        <test-method signature="runScenario(io.cucumber.testng.PickleWrapper,io.cucumber.testng.FeatureWrapper)[pri:0, instance:runners.LoginRunner@6f4a47c7]" started-at="2026-04-23T15:14:00 PKT" name="runScenario" description="Runs Cucumber Scenarios" data-provider="scenarios" finished-at="2026-04-23T15:14:01 PKT" duration-ms="1061" status="FAIL">
           <params>
             <param index="0">
               <value>
-                <![CDATA[org.testng.TestRunner@3909a854]]>
-              </value>
-            </param>
-          </params>
-          <reporter-output>
-          </reporter-output>
-        </test-method> <!-- setUpClass -->
-        <test-method signature="runScenario(io.cucumber.testng.PickleWrapper,io.cucumber.testng.FeatureWrapper)[pri:0, instance:runners.DashboardRunner@c0c2f8d]" started-at="2026-04-22T16:15:10 PKT" name="runScenario" description="Runs Cucumber Scenarios" data-provider="scenarios" finished-at="2026-04-22T16:15:23 PKT" duration-ms="13070" status="PASS">
-          <params>
-            <param index="0">
-              <value>
-                <![CDATA["Navigate to Dashboard"]]>
+                <![CDATA["Reset password successfully"]]>
               </value>
             </param>
             <param index="1">
               <value>
-                <![CDATA["Dashboard Validation"]]>
+                <![CDATA["Forgot Password"]]>
               </value>
             </param>
           </params>
+          <exception class="org.openqa.selenium.WebDriverException">
+            <message>
+              <![CDATA[An unknown server-side error occurred while processing the command. Original error: 'POST /element' cannot be proxied to UiAutomator2 server because the instrumentation process is not running (probably crashed). Check the server log and/or the logcat output for more details
+Build info: version: '4.8.3', revision: 'e5e76298c3'
+System info: os.name: 'Windows 11', os.arch: 'amd64', os.version: '10.0', java.version: '21.0.9'
+Driver info: io.appium.java_client.android.AndroidDriver
+Command: [8cda3fc4-b169-4f39-b4fb-e25f8dc351e4, findElement {using=xpath, value=//android.widget.TextView[@text="Forgot Password?"]}]
+Capabilities {appium:adbExecTimeout: 120000, appium:appActivity: com.ofss.digx.mobile.androi..., appium:appPackage: com.ofss.tx.meezan, appium:autoGrantPermissions: true, appium:automationName: UiAutomator2, appium:chromedriverAutodownload: true, appium:chromedriverExecutable: C:\Users\ma\Documents\Aqeel..., appium:databaseEnabled: false, appium:desired: {adbExecTimeout: 120000, appActivity: com.ofss.digx.mobile.androi..., appPackage: com.ofss.tx.meezan, autoGrantPermissions: true, automationName: UiAutomator2, chromedriverAutodownload: true, chromedriverExecutable: C:\Users\ma\Documents\Aqeel..., deviceName: Android Device, enforceXPath1: true, ensureWebviewsHavePages: true, fullReset: false, newCommandTimeout: 300, noReset: true, platformName: android, udid: 083672525V005614, uiautomator2ServerLaunchTimeout: 180000, unlockKey: 0000, unlockType: pin, webviewConnectTimeout: 30000}, appium:deviceApiLevel: 33, appium:deviceManufacturer: INFINIX, appium:deviceModel: Infinix X670, appium:deviceName: 083672525V005614, appium:deviceScreenDensity: 480, appium:deviceScreenSize: 1080x2400, appium:deviceUDID: 083672525V005614, appium:enforceXPath1: true, appium:ensureWebviewsHavePages: true, appium:fullReset: false, appium:javascriptEnabled: true, appium:locationContextEnabled: false, appium:networkConnectionEnabled: true, appium:newCommandTimeout: 300, appium:noReset: true, appium:pixelRatio: 3, appium:platformVersion: 13, appium:statBarHeight: 108, appium:takesScreenshot: true, appium:udid: 083672525V005614, appium:uiautomator2ServerLaunchTimeout: 180000, appium:unlockKey: 0000, appium:unlockType: pin, appium:viewportRect: {height: 2292, left: 0, top: 108, width: 1080}, appium:warnings: {}, appium:webStorageEnabled: false, appium:webviewConnectTimeout: 30000, platformName: ANDROID}
+Session ID: 8cda3fc4-b169-4f39-b4fb-e25f8dc351e4]]>
+            </message>
+            <full-stacktrace>
+              <![CDATA[org.openqa.selenium.WebDriverException: An unknown server-side error occurred while processing the command. Original error: 'POST /element' cannot be proxied to UiAutomator2 server because the instrumentation process is not running (probably crashed). Check the server log and/or the logcat output for more details
+Build info: version: '4.8.3', revision: 'e5e76298c3'
+System info: os.name: 'Windows 11', os.arch: 'amd64', os.version: '10.0', java.version: '21.0.9'
+Driver info: io.appium.java_client.android.AndroidDriver
+Command: [8cda3fc4-b169-4f39-b4fb-e25f8dc351e4, findElement {using=xpath, value=//android.widget.TextView[@text="Forgot Password?"]}]
+Capabilities {appium:adbExecTimeout: 120000, appium:appActivity: com.ofss.digx.mobile.androi..., appium:appPackage: com.ofss.tx.meezan, appium:autoGrantPermissions: true, appium:automationName: UiAutomator2, appium:chromedriverAutodownload: true, appium:chromedriverExecutable: C:\Users\ma\Documents\Aqeel..., appium:databaseEnabled: false, appium:desired: {adbExecTimeout: 120000, appActivity: com.ofss.digx.mobile.androi..., appPackage: com.ofss.tx.meezan, autoGrantPermissions: true, automationName: UiAutomator2, chromedriverAutodownload: true, chromedriverExecutable: C:\Users\ma\Documents\Aqeel..., deviceName: Android Device, enforceXPath1: true, ensureWebviewsHavePages: true, fullReset: false, newCommandTimeout: 300, noReset: true, platformName: android, udid: 083672525V005614, uiautomator2ServerLaunchTimeout: 180000, unlockKey: 0000, unlockType: pin, webviewConnectTimeout: 30000}, appium:deviceApiLevel: 33, appium:deviceManufacturer: INFINIX, appium:deviceModel: Infinix X670, appium:deviceName: 083672525V005614, appium:deviceScreenDensity: 480, appium:deviceScreenSize: 1080x2400, appium:deviceUDID: 083672525V005614, appium:enforceXPath1: true, appium:ensureWebviewsHavePages: true, appium:fullReset: false, appium:javascriptEnabled: true, appium:locationContextEnabled: false, appium:networkConnectionEnabled: true, appium:newCommandTimeout: 300, appium:noReset: true, appium:pixelRatio: 3, appium:platformVersion: 13, appium:statBarHeight: 108, appium:takesScreenshot: true, appium:udid: 083672525V005614, appium:uiautomator2ServerLaunchTimeout: 180000, appium:unlockKey: 0000, appium:unlockType: pin, appium:viewportRect: {height: 2292, left: 0, top: 108, width: 1080}, appium:warnings: {}, appium:webStorageEnabled: false, appium:webviewConnectTimeout: 30000, platformName: ANDROID}
+Session ID: 8cda3fc4-b169-4f39-b4fb-e25f8dc351e4
+at java.base/jdk.internal.reflect.DirectConstructorHandleAccessor.newInstance(DirectConstructorHandleAccessor.java:62)
+at java.base/java.lang.reflect.Constructor.newInstanceWithCaller(Constructor.java:502)
+at java.base/java.lang.reflect.Constructor.newInstance(Constructor.java:486)
+at org.openqa.selenium.remote.codec.w3c.W3CHttpResponseCodec.createException(W3CHttpResponseCodec.java:200)
+at org.openqa.selenium.remote.codec.w3c.W3CHttpResponseCodec.decode(W3CHttpResponseCodec.java:133)
+at org.openqa.selenium.remote.codec.w3c.W3CHttpResponseCodec.decode(W3CHttpResponseCodec.java:53)
+at org.openqa.selenium.remote.HttpCommandExecutor.execute(HttpCommandExecutor.java:193)
+at io.appium.java_client.remote.AppiumCommandExecutor.execute(AppiumCommandExecutor.java:250)
+at org.openqa.selenium.remote.RemoteWebDriver.execute(RemoteWebDriver.java:543)
+at org.openqa.selenium.remote.ElementLocation$ElementFinder$2.findElement(ElementLocation.java:162)
+at org.openqa.selenium.remote.ElementLocation.findElement(ElementLocation.java:60)
+at org.openqa.selenium.remote.RemoteWebDriver.findElement(RemoteWebDriver.java:352)
+at org.openqa.selenium.remote.RemoteWebDriver.findElement(RemoteWebDriver.java:344)
+at org.openqa.selenium.support.ui.ExpectedConditions$7.apply(ExpectedConditions.java:197)
+at org.openqa.selenium.support.ui.ExpectedConditions$7.apply(ExpectedConditions.java:193)
+at org.openqa.selenium.support.ui.ExpectedConditions$22.apply(ExpectedConditions.java:631)
+at org.openqa.selenium.support.ui.ExpectedConditions$22.apply(ExpectedConditions.java:628)
+at org.openqa.selenium.support.ui.FluentWait.until(FluentWait.java:208)
+at pages.ForgotPasswordPage.clickForgotPassword(ForgotPasswordPage.java:42)
+at steps.ForgotPasswordSteps.click_forgot_password(ForgotPasswordSteps.java:26)
+at ✽.user clicks on Forgot Password(file:///C:/Users/ma/eclipse-workspace/meezanbankApp/src/test/resources/features/18_ForgotPassword.feature:5)
+]]>
+            </full-stacktrace>
+          </exception> <!-- org.openqa.selenium.WebDriverException -->
           <reporter-output>
           </reporter-output>
         </test-method> <!-- runScenario -->
-        <test-method is-config="true" signature="tearDownClass()[pri:0, instance:runners.DashboardRunner@c0c2f8d]" started-at="2026-04-22T16:15:23 PKT" name="tearDownClass" finished-at="2026-04-22T16:15:23 PKT" duration-ms="33" status="PASS">
-          <reporter-output>
-          </reporter-output>
-        </test-method> <!-- tearDownClass -->
-      </class> <!-- runners.DashboardRunner -->
-      <class name="runners.LoginRunner">
-        <test-method is-config="true" signature="setUpClass(org.testng.ITestContext)[pri:0, instance:runners.LoginRunner@3d34d211]" started-at="2026-04-22T16:13:46 PKT" name="setUpClass" finished-at="2026-04-22T16:13:48 PKT" duration-ms="1032" status="PASS">
-          <params>
-            <param index="0">
-              <value>
-                <![CDATA[org.testng.TestRunner@3909a854]]>
-              </value>
-            </param>
-          </params>
-          <reporter-output>
-          </reporter-output>
-        </test-method> <!-- setUpClass -->
-        <test-method signature="runScenario(io.cucumber.testng.PickleWrapper,io.cucumber.testng.FeatureWrapper)[pri:0, instance:runners.LoginRunner@3d34d211]" started-at="2026-04-22T16:13:48 PKT" name="runScenario" description="Runs Cucumber Scenarios" data-provider="scenarios" finished-at="2026-04-22T16:15:10 PKT" duration-ms="82674" status="PASS">
-          <params>
-            <param index="0">
-              <value>
-                <![CDATA["Login with Valid user"]]>
-              </value>
-            </param>
-            <param index="1">
-              <value>
-                <![CDATA["Meezan Bank Login"]]>
-              </value>
-            </param>
-          </params>
-          <reporter-output>
-          </reporter-output>
-        </test-method> <!-- runScenario -->
-        <test-method is-config="true" signature="tearDownClass()[pri:0, instance:runners.LoginRunner@3d34d211]" started-at="2026-04-22T16:15:10 PKT" name="tearDownClass" finished-at="2026-04-22T16:15:10 PKT" duration-ms="48" status="PASS">
+        <test-method is-config="true" signature="tearDownClass()[pri:0, instance:runners.LoginRunner@6f4a47c7]" started-at="2026-04-23T15:14:01 PKT" name="tearDownClass" finished-at="2026-04-23T15:14:01 PKT" duration-ms="39" status="PASS">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- tearDownClass -->

@@ -24,6 +24,8 @@ public class ViewProfilePage {
     private By myProfileMenu = By.xpath("//android.widget.TextView[@text='My Profile']");
 
     private By viewEditDetails = By.xpath("//android.widget.Button[@text=\"Edit Personal Details\"]");
+    
+    private By clickHomeIconAfterProfileBtn = By.xpath("//android.widget.Image[@resource-id='home-icon']");
 
     // ================= ACTIONS =================
 
@@ -39,5 +41,9 @@ public class ViewProfilePage {
 
     public boolean isMyProfileDisplayed() {
         return wait.until(ExpectedConditions.visibilityOfElementLocated(viewEditDetails)).isDisplayed();
+    }
+    public void clickHomeIconAfterProfile() {
+    	wait.until(ExpectedConditions.elementToBeClickable(clickHomeIconAfterProfileBtn)).click();
+    	
     }
 }

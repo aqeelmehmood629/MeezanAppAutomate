@@ -2,11 +2,7 @@
 <suite name="Smoke Suite" parallel="false">
 	<test name="Smoke Suite">
 		<classes>
-		<class name="runners.LoginRunner"/>
-		<class name="runners.DashboardRunner"/>
-		<class name="runners.ChangeNotificationLanguageRunner"/>
-		<class name="runners.DealsDiscountRunner"/>
-		
+			<class name="runners.LoginRunner"/>
 		</classes>
 	</test>
 </suite>

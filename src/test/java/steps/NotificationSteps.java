@@ -22,8 +22,12 @@ public class NotificationSteps {
         notificationPage.clickNotification();
     }
 
-    @Then("user should be able to view notifications")
+    @And("user should be able to view notifications")
     public void user_should_be_able_to_view_notifications() {
         notificationPage.verifyShownotification();
+    }
+    @Then("user clicks home icon after view notifications")
+    public void clickHomenotifications() {
+    	notificationPage.clickHomeIconNotifications();
     }
 }

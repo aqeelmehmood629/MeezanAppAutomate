@@ -5,4 +5,5 @@ Feature: Submit Feedback
     Given user opens feedback screen
     And user gives rating for feedback
     And user enters feedback text from csv
-    Then user clicks submit feedback button
+    And user clicks submit feedback button
+    Then user clicks home icon after feedback

@@ -4,7 +4,7 @@ import io.cucumber.testng.AbstractTestNGCucumberTests;
 import io.cucumber.testng.CucumberOptions;
 
 @CucumberOptions(
-        features = "src/test/resources/features/DealsDiscounts.feature",
+        features = "src/test/resources/features/06_DealsDiscounts.feature",
         glue = {"steps"},
         plugin = {"pretty", "html:target/ft-report.html"},
         tags = "@DealsDiscounts",

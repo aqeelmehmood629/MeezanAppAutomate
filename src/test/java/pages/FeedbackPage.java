@@ -21,10 +21,10 @@ public class FeedbackPage {
 
     private By submitBtn = By.xpath("//android.widget.Button[@text=\"Submit\"]");
     private By feedbackTextField = By.xpath("//android.widget.EditText[@resource-id=\"commentBox|input\"]");
+    private By feedbackHomeClickBtn = By.xpath("//android.widget.Image[@resource-id='home-icon']");
 
     public void openFeedback() {
     	By feedbackBtn = By.xpath("//android.widget.Button[@text='Feedback']");
-
         driver.findElement(MobileBy.AndroidUIAutomator(
                 "new UiScrollable(new UiSelector().scrollable(true))"
                         + ".scrollIntoView(new UiSelector().text(\"Feedback\"))"
@@ -64,5 +64,10 @@ public class FeedbackPage {
 
     public void clickSubmit() {
         wait.until(ExpectedConditions.elementToBeClickable(submitBtn)).click();
+    }
+    public void feedbackHomeClick() {
+    	
+    	wait.until(ExpectedConditions.elementToBeClickable(feedbackHomeClickBtn)).click();
+    	
     }
 }

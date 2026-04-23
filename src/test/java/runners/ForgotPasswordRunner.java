@@ -6,7 +6,7 @@ import org.testng.annotations.Test;
 
 @Test
 @CucumberOptions(
-        features = "src/test/resources/features/ForgotPassword.feature",
+        features = "src/test/resources/features/18_ForgotPassword.feature",
         glue = "steps",
         tags ="@ForgotPassword",
         plugin = {"pretty", "html:target/ft-report.html"}

@@ -29,6 +29,7 @@ public class ViewAccountsPage {
 
     private By accountTitle =
             By.xpath("//android.view.View[contains(@resource-id,'label')]");
+    private By homeIconAfterViewAccountBtn = By.xpath("//android.widget.Image[@resource-id='home-icon']");
 
     // ===== ACTIONS =====
 
@@ -67,6 +68,10 @@ public class ViewAccountsPage {
         }
 
         return text;
+    }
+    public void homeIconAfterViewAccount() {
+    	wait.until(ExpectedConditions.elementToBeClickable(homeIconAfterViewAccountBtn)).click();
+    	
     }
 }
     

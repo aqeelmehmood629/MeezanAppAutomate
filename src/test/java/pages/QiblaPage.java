@@ -28,6 +28,7 @@ public class QiblaPage {
 
     private By qiblaScreen =
             By.xpath("//android.widget.TextView[@resource-id=\"comp-head\"]");
+    private By clickHomeIconQiblaBtn = By.xpath("//android.widget.Image[@resource-id='home-icon']");
 
     // ================= ACTIONS =================
 
@@ -44,5 +45,9 @@ public class QiblaPage {
     public void verifyQiblaScreen() {
         wait.until(ExpectedConditions.visibilityOfElementLocated(qiblaScreen));
         System.out.println("✅ Qibla screen displayed");
+    }
+    public void clickHomeIconQibla() {
+    	wait.until(ExpectedConditions.visibilityOfElementLocated(clickHomeIconQiblaBtn));
+    	
     }
 }

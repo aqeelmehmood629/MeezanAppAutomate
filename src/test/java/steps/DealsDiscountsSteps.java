@@ -1,6 +1,10 @@
 package steps;
 
+import org.testng.Assert;
+
+import driver.DriverFactory;
 import io.cucumber.java.en.*;
+import pages.ChangeNotificationLanguagePage;
 import pages.DealsDiscountsPage;
 
 
@@ -8,7 +12,7 @@ public class DealsDiscountsSteps {
 
     DealsDiscountsPage dealsPage = new DealsDiscountsPage();
     
-    @Given ("user is on dashboard screen for deals")
+    @Given("user is on dashboard screen for deals")
     public void user_is_on_dashbaord_screendeals() {
     }
 

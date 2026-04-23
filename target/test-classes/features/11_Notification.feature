@@ -5,4 +5,5 @@ Feature: Notification Flow
     Given user is on dashboard screen
     When user clicks on sidebar menu
     And user clicks on notification icon
-    Then user should be able to view notifications
+    And user should be able to view notifications
+    Then user clicks home icon after view notifications

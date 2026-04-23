@@ -28,9 +28,6 @@ public class DealsDiscountsPage {
     
     private By backBtn =
             By.xpath("//android.widget.FrameLayout[@resource-id=\"android:id/content\"]/android.widget.FrameLayout/android.view.ViewGroup/android.view.ViewGroup/android.view.ViewGroup/android.widget.ScrollView/android.view.ViewGroup/android.view.ViewGroup/android.view.ViewGroup/android.view.ViewGroup/android.view.ViewGroup/android.widget.ScrollView/android.view.ViewGroup/android.view.ViewGroup[1]/android.view.ViewGroup/android.view.ViewGroup[2]/com.horcrux.svg.SvgView/com.horcrux.svg.GroupView/com.horcrux.svg.PathView");
-	/*
-	 * private By dealsScreen = By.xpath("//*[contains(@text,'Deals')]");
-	 */
     // ================= ACTIONS =================
 
     public void clickSideMenu() {
@@ -45,7 +42,6 @@ public class DealsDiscountsPage {
 
     public void clickBackBtn() {
     	wait.until(ExpectedConditions.elementToBeClickable(backBtn)).click();
-        System.out.println("✅ Back Button clicked");
-    	
+        System.out.println("✅ Back Button clicked");	
     }
     }

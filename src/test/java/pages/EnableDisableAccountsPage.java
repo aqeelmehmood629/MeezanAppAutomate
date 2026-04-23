@@ -31,6 +31,7 @@ public class EnableDisableAccountsPage {
     private By status = By.xpath("//android.widget.TextView[@text='Account Status: UNLINKED']");
     
     private By deselect = By.xpath("//android.view.View[@resource-id=\"maincontent\"]/android.view.View/android.view.View[1]/android.view.View/android.view.View/android.view.View/android.widget.TextView");
+    private By clickAccountHomeIcon = By.xpath("//android.widget.Image[@resource-id='home-icon']");
 
     public void accountsSideMenu() {
             wait.until(ExpectedConditions.elementToBeClickable(sideMenuAccounts)).click();
@@ -61,5 +62,10 @@ public class EnableDisableAccountsPage {
     public void verifyUnlinkedStatus() {
     	WebElement el = wait.until(ExpectedConditions.visibilityOfElementLocated(status));
     	Assert.assertTrue(el.isDisplayed(), "Account is not UNLINKED");
+    }
+    public void accountclickHome() {
+    	
+    	wait.until(ExpectedConditions.elementToBeClickable(clickAccountHomeIcon)).click();
+    	
     }
 }

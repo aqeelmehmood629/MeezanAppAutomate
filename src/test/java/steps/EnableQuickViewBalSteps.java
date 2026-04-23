@@ -32,5 +32,10 @@ public class EnableQuickViewBalSteps {
 	public void user_toggles_quick_view_balance_for_enabale_view_bal() {
 		page.toggleQuickViewForEnableQucikViewBal();
 	}
+	@Then("user click home button after enable quick view Balance")
+	public void userClickHomeIcon() {
+		page.clickHomeIconViewBal();
+		
+	}
 
 }

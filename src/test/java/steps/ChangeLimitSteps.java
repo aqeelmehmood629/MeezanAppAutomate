@@ -43,10 +43,14 @@ public class ChangeLimitSteps {
         index++; // next row for next scenario
     }
 
-    @Then("limit should be updated successfully")
+    @And("limit should be updated successfully")
     public void verify_limit_update() {
         Assert.assertTrue(page.clickProceed(),
                 "Limit update failed");
+    }
+    @Then("user click home icon after limit updated")
+    public void clickHomeIcon() {
+    	page.clickHomeIconLimit();
     }
     
 }
