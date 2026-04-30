@@ -20,7 +20,6 @@ public class DashboardPage {
     // 🔹 Locator for Show Balance button
     private By showBalanceBtn = By.xpath("//android.widget.TextView[@text='SHOW BALANCE']");
     private By homeIcon = By.xpath("//android.widget.Image[@text=\"home-icon-purple\"]");
-    private By makeAnotherBtn = By.xpath("//android.widget.Button[@text=\"Make Another Payment\"]");
     
     public void goToDashboard() {
         clickHome();
@@ -39,9 +38,23 @@ public class DashboardPage {
         wait.until(ExpectedConditions.elementToBeClickable(showBalanceBtn)).click();
         System.out.println("👁️ Show Balance clicked");
     }
-    
-    public void makeAnotherClick() {
-    	wait.until(ExpectedConditions.elementToBeClickable(makeAnotherBtn)).click();
-        System.out.println("👁️ Make another Payment clicked");
+
+    /**
+     * ✅ Check if dashboard is visible — uses NATIVE context
+     * Safe: switches to native before checking, never throws
+     */
+    public boolean isDashboardVisible() {
+        try {
+            // Dashboard elements are in NATIVE context
+            String currentContext = driver.getContext();
+            if (currentContext == null || !currentContext.equals("NATIVE_APP")) {
+                driver.context("NATIVE_APP");
+            }
+
+            WebDriverWait shortWait = new WebDriverWait(driver, Duration.ofSeconds(5));
+            return shortWait.until(ExpectedConditions.visibilityOfElementLocated(showBalanceBtn)).isDisplayed();
+        } catch (Exception e) {
+            return false;
+        }
     }
 }

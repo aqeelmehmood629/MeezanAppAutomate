@@ -8,6 +8,7 @@ import org.testng.Assert;
 import driver.DriverFactory;
 import pages.IBFTPage;
 import utils.CSVUtils;
+import utils.HybridAppStabilizer;
 
 public class IBFTSteps {
 	
@@ -15,16 +16,25 @@ public class IBFTSteps {
     String account;
     String amount;
 
-    IBFTPage page = new IBFTPage(DriverFactory.getDriver());
+    IBFTPage page;
+
+    private IBFTPage getPage() {
+        if (page == null) {
+            page = new IBFTPage(DriverFactory.getDriver());
+        }
+        return page;
+    }
+
 
     @When("user clicks Send Money for IBFT Transfer")
     public void click_send_money() {
-        page.clickSendMoneyIBFT();
+        HybridAppStabilizer.ensureNative(DriverFactory.getDriver());
+        getPage().clickSendMoneyIBFT();
     }
 
     @And("user clicks Send Money to a new Account for IBFT Transfer")
     public void click_new_account() {
-        page.clickNewAccountIBFT();
+        getPage().clickNewAccountIBFT();
     }
 
     @And("user searches Bank using CSV for IBFT Transfer")
@@ -37,48 +47,48 @@ public class IBFTSteps {
             account = data.get("account");
             amount = data.get("amount");
 
-            page.searchBankIBFT(bankName);
+            getPage().searchBankIBFT(bankName);
     }
 
     @And("user selects Bank for IBFT Transfer")
     public void select_bank() {
-    	page.selectBankIBFT(bankName);
+    	getPage().selectBankIBFT(bankName);
     }
 
     @And("user enters Account Number using CSV for IBFT Transfer")
     public void enter_account() {
-    	page.enterAccountIBFT(account);
+    	getPage().enterAccountIBFT(account);
     }
 
     @And("user clicks Fetch Account Details for IBFT Transfer")
     public void fetch_details() {
-        page.fetchDetails(); // ok
+        getPage().fetchDetails(); // ok
     }
 
     @And("user clicks Next for IBFT Transfer")
     public void click_next() {
-        page.clickNextIBFT();
+        getPage().clickNextIBFT();
     }
 
     @And("user enters Amount using CSV for IBFT Transfer")
     public void enter_amount() {
-    	page.enterAmountIBFT(amount);
+    	getPage().enterAmountIBFT(amount);
     }
 
     @And("user clicks Next after amount for IBFT Transfer")
     public void next_after_amount() {
-        page.clickNextIBFT();
+        getPage().clickNextIBFT();
     }
 
     @And("user clicks Send Now button for IBFT Transfer")
     public void send_now() {
-        page.clickSendNowIBFT();
+        getPage().clickSendNowIBFT();
     }
 
     @Then("user should see Transaction Successful message")
     public void verify_success() {
 
-        Assert.assertTrue(page.isTransactionSuccessful(),
+        Assert.assertTrue(getPage().isTransactionSuccessful(),
                 "Transaction Failed - Success message not displayed");
     }
 
@@ -86,6 +96,6 @@ public class IBFTSteps {
     @When("user performs IBFT transfer using CSV")
     public void perform_ibft_using_csv() {
 
-        page.performIBFT("src/test/resources/IBFT_Data.csv");
+        getPage().performIBFT("src/test/resources/IBFT_Data.csv");
     }
 }

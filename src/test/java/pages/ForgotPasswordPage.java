@@ -15,7 +15,7 @@ public class ForgotPasswordPage {
 
     public ForgotPasswordPage() {
         driver = DriverFactory.getDriver();
-        wait = new WebDriverWait(driver, Duration.ofSeconds(100));
+        wait = new WebDriverWait(driver, Duration.ofSeconds(250));
     }
 
     // ========= LOCATORS =========

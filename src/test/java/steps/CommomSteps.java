@@ -1,15 +1,21 @@
 package steps;
 
 import driver.DriverFactory;
-import io.cucumber.java.After;
+import io.appium.java_client.android.AndroidDriver;
+import io.cucumber.java.en.Given;
 import pages.DashboardPage;
+import utils.LoginHelper;
 
 public class CommomSteps {
 	
-	@After("(@FT or @Sadqa or @Zakat or @FTOwn or @Raast)")
-    public void navigateToDashboard() {
-        DashboardPage dashboardPage = new DashboardPage(DriverFactory.getDriver());
-        dashboardPage.goToDashboard();
+
+    @Given("user is logged in and on dashboard")
+    public void user_logged_in_dashboard() {
+        LoginHelper.loginWithDefaultUser();
     }
 
+    @Given("user is logged in")
+    public void user_is_logged_in() {
+        LoginHelper.loginWithDefaultUser();
+    }
 }

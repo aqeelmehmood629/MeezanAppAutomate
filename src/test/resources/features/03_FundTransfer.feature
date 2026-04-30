@@ -2,8 +2,9 @@ Feature: Fund Transfer
 
 @FT
 Scenario: Transfer funds to Meezan Bank account
-    Given user navigate to send money
-    When user selects account to transfer
+    Given user is logged in
+    And user navigate to send money
+    And user selects account to transfer
     And user hides keyboard
     And user clicks purpose of transfer dropdown
     And user enters purpose of transfer
@@ -11,12 +12,13 @@ Scenario: Transfer funds to Meezan Bank account
     And user enters amount
     And user clicks Next button
     And user clicks Send Now button
-    And transaction should be successful
+    Then transaction should be successful
     
     
 @FTOwn
 Scenario: Transfer funds to Own Account
-    Given user navigate to send money for ftown
+    Given user is logged in
+    And user navigate to send money for ftown
     When user selects own account for ftown
     And user hides keyboard for ftown
     And user opens purpose dropdown for ftown
@@ -28,7 +30,8 @@ Scenario: Transfer funds to Own Account
     
 @Raast   
 Scenario: Perform Raast payment successfully
-    Given user navigates to Raast payment screen for Raast Payment
+    Given user is logged in
+    And user navigates to Raast payment screen for Raast Payment
     And user selects account from csv for Raast Payment
     And user enters amount from csv for Raast Payment
     And user clicks Next button for Raast Payment
@@ -38,6 +41,7 @@ Scenario: Perform Raast payment successfully
     
 @IBFT
 Scenario: User performs IBFT transfer successfully
+    Given user is logged in
     When user clicks Send Money for IBFT Transfer
     And user clicks Send Money to a new Account for IBFT Transfer
     And user searches Bank using CSV for IBFT Transfer

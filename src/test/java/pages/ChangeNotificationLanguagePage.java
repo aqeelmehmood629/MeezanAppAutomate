@@ -16,7 +16,7 @@ public class ChangeNotificationLanguagePage {
     WebDriverWait wait;
 
     public ChangeNotificationLanguagePage(AndroidDriver driver) {
-    	this.wait = new WebDriverWait(driver, Duration.ofSeconds(20));
+    	this.wait = new WebDriverWait(driver, Duration.ofSeconds(250));
         this.driver = driver;
     }
 

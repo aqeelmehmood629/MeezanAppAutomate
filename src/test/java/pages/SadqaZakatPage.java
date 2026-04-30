@@ -16,7 +16,7 @@ public class SadqaZakatPage {
 
     public SadqaZakatPage(AndroidDriver driver) {
         this.driver = driver;
-        this.wait = new WebDriverWait(driver, Duration.ofSeconds(400));
+        this.wait = new WebDriverWait(driver, Duration.ofSeconds(250));
         this.wait1 = new WebDriverWait(driver, Duration.ofSeconds(40));
     }
 

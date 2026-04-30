@@ -3,6 +3,7 @@ package steps;
 import driver.DriverFactory;
 import io.appium.java_client.android.AndroidDriver;
 import io.cucumber.java.en.*;
+import pages.DashboardPage;
 import pages.LoginPage;
 import utils.HybridAppStabilizer;
 import utils.CSVUtils;
@@ -11,65 +12,110 @@ import java.util.Map;
 
 public class LoginSteps {
 
-	private AndroidDriver driver;
-	private LoginPage loginPage;
+    private AndroidDriver driver;
+    private LoginPage loginPage;
+    private DashboardPage dashboardpage;
+    
+    private void init() {
+        if (driver == null) {
+            driver = DriverFactory.getDriver();
+        }
+        if (loginPage == null && driver != null) {
+            loginPage = new LoginPage(driver);
+        }
+        if (dashboardpage == null && driver != null) {
+            dashboardpage = new DashboardPage(driver);
+        }
+    }
 
-	@Given("the Meezan Bank app is launched")
-	public void the_meezan_bank_app_is_launched() {
 
-		driver = DriverFactory.getDriver();
+    @Given("the Meezan Bank app is launched")
+    public void appLaunch() {
+        init();
+        
+        // ✅ Check if already logged in first
+        if (dashboardpage.isDashboardVisible()) {
+            System.out.println("✅ App already logged in — skipping stabilization");
+            return;
+        }
+        
+        HybridAppStabilizer.stabilizeApp(driver);
 
-		if (driver == null || driver.getSessionId() == null) {
-			throw new RuntimeException("Driver not initialized!");
-		}
+        if (driver.getSessionId() == null) {
+            throw new RuntimeException("Driver not initialized!");
+        }
 
-		// 🔥 Switch to WebView
-		HybridAppStabilizer.switchToWebView(driver);
+        System.out.println("App launched");
+    }
 
-		loginPage = new LoginPage(driver);
+    @When("user enters credentials from {string}")
+    public void enterCredentialsFromCSV(String row) {
+    	init();
+    	if (dashboardpage.isDashboardVisible()) {
+            System.out.println("Already logged in, skipping login");
+            return;
+        }
 
-		System.out.println("App launched & WebView ready");
-	}
+        int index = Integer.parseInt(row);
 
-	// ✅ CSV with row index (future multiple users)
-	@When("user enters credentials from {string}")
-	public void enterCredentialsFromCSV(String row) {
+        Map<String, String> data = CSVUtils.getLoginData(index);
 
-		int index = Integer.parseInt(row);
+        // ✅ Ensure WebView context for login form
+        HybridAppStabilizer.ensureWebView(driver);
 
-		Map<String, String> data = CSVUtils.getLoginData(index);
+        loginPage.enterUsername(data.get("username"));
+        loginPage.enterPassword(data.get("password"));
 
-		String username = data.get("username");
-		String password = data.get("password");
+        System.out.println("Using CSV Data → " + data.get("username"));
+    }
 
-		loginPage.enterUsername(username);
-		loginPage.enterPassword(password);
+    @When("user enters credentials from csv")
+    public void enterCredentialsFromCSVDefault() {
+    	init();
+    	
+    	if (dashboardpage.isDashboardVisible()) {
+            System.out.println("Already logged in, skipping login");
+            return;
+        }
 
-		System.out.println("Using CSV Data → " + username + " / " + password);
-	}
+        // ✅ Ensure WebView context for login form
+        HybridAppStabilizer.ensureWebView(driver);
 
-	// ✅ Default (current single user)
-	@When("user enters credentials from csv")
-	public void enterCredentialsFromCSVDefault() {
+        Map<String, String> data = CSVUtils.getLoginData(0);
 
-		Map<String, String> data = CSVUtils.getLoginData(0);
+        loginPage.enterUsername(data.get("username"));
+        loginPage.enterPassword(data.get("password"));
 
-		String username = data.get("username");
-		String password = data.get("password");
+        System.out.println("Using CSV Default User → " + data.get("username"));
+    }
 
-		loginPage.enterUsername(username);
-		loginPage.enterPassword(password);
+    @And("user taps on login button")
+    public void tapLogin() {
+    	init();
+    	
+    	if (dashboardpage.isDashboardVisible()) {
+            System.out.println("Already logged in, skipping login tap");
+            return;
+        }
+    	
+        loginPage.clickLogin();
+    }
 
-		System.out.println("Using CSV Default User → " + username);
-	}
+    @Then("user should be logged in successfully")
+    public void verifyLogin() {
+    	init();
 
-	@And("user taps on login button")
-	public void tapLogin() {
-		loginPage.clickLogin();
-	}
+        // ✅ Wait for dashboard to appear after login
+        boolean dashboardReady = HybridAppStabilizer.waitForDashboard(driver);
 
-	@Then("user should be logged in successfully")
-	public void verifyLogin() {
-		System.out.println("Login step executed (add dashboard validation here)");
-	}
+        if (!dashboardReady) {
+            // Fallback check
+            if (!dashboardpage.isDashboardVisible()) {
+                throw new AssertionError("Login failed - Dashboard not visible");
+            }
+        }
+
+        System.out.println("✅ Login successful");
+    }
 }
+

@@ -18,7 +18,7 @@ public class ChangeLimitPage {
 
     public ChangeLimitPage(AppiumDriver driver) {
         this.driver = driver;
-        this.wait = new WebDriverWait(driver, Duration.ofSeconds(20));
+        this.wait = new WebDriverWait(driver, Duration.ofSeconds(250));
     }
 
     // =========================

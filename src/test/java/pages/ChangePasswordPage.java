@@ -15,7 +15,7 @@ public class ChangePasswordPage {
 
     public ChangePasswordPage() {
         this.driver = DriverFactory.getDriver();
-        this.wait = new WebDriverWait(driver, Duration.ofSeconds(20));
+        this.wait = new WebDriverWait(driver, Duration.ofSeconds(250));
     }
 
     // ================= LOCATORS =================

@@ -1,30 +1,56 @@
 package steps;
 
+import java.util.List;
+
+import org.openqa.selenium.By;
+import org.openqa.selenium.WebElement;
+
 import driver.DriverFactory;
 import io.appium.java_client.android.AndroidDriver;
 import io.cucumber.java.en.*;
 import pages.DashboardPage;
+import utils.LoginHelper;
 
 public class DashboardSteps {
 
-    AndroidDriver driver = DriverFactory.getDriver();
-    DashboardPage dashboard = new DashboardPage(driver);
+    private AndroidDriver driver;
+    private DashboardPage dashboard;
 
-    // 🔹 User is logged in and on dashboard
-    @Given("user is logged in and on dashboard")
-    public void userOnDashboard() {
-        System.out.println("✅ User is on dashboard");
+    private void init() {
+        if (driver == null) {
+            driver = DriverFactory.getDriver();
+        }
+
+        if (dashboard == null) {
+            dashboard = new DashboardPage(driver);
+        }
     }
 
-    // 🔹 Click Show Balance
-    @When("user clicks on Show Balance")
+
+
+
+    @And("user clicks on Show Balance")
     public void userClicksShowBalance() {
+        init();
         dashboard.clickShowBalance();
     }
 
-    // 🔹 Step to confirm action (optional)
     @Then("user should see updated balance")
     public void userShouldSeeUpdatedBalance() {
         System.out.println("👁️ Show Balance clicked successfully");
+    }
+    public void ensureDashboard() {
+    	init();
+
+        List<WebElement> homeIcons = driver.findElements(
+            By.xpath("//android.widget.Image[@text='home-icon-purple']")
+        );
+
+        if (homeIcons.isEmpty()) {
+            System.out.println("Not on dashboard → navigating...");
+            dashboard.goToDashboard();
+        } else {
+            System.out.println("Already on dashboard");
+        }
     }
 }

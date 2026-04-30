@@ -15,7 +15,7 @@ public class LogoutPage {
     WebDriverWait wait;
     public LogoutPage(AppiumDriver driver) {
         this.driver = driver;
-        this.wait = new WebDriverWait(driver, Duration.ofSeconds(280));
+        this.wait = new WebDriverWait(driver, Duration.ofSeconds(250));
         ((AndroidDriver) driver).getCurrentPackage();
     }
 

@@ -2,6 +2,7 @@
 Feature: Limit Management
 
 Scenario Outline: User updates limit for transfer types
+    Given user is logged in
     When user clicks Limit Management
     And user selects "<LimitType>"
     And user selects amount using CSV

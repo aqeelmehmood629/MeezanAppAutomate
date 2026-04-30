@@ -15,9 +15,9 @@ public class FundsTransferPage {
     private AndroidDriver driver;
     private WebDriverWait wait,wait1;
 
-    public FundsTransferPage() {
-        this.driver = DriverFactory.getDriver();
-        this.wait = new WebDriverWait(driver, Duration.ofSeconds(200));
+    public FundsTransferPage(AndroidDriver driver) {
+        this.driver = driver;
+        this.wait = new WebDriverWait(driver, Duration.ofSeconds(250));
         this.wait1 = new WebDriverWait(driver, Duration.ofSeconds(5));
     }
 

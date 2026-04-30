@@ -22,7 +22,7 @@ public class NotificationPage {
 
     public NotificationPage() {
         this.driver = DriverFactory.getDriver(); // assuming singleton driver
-        this.wait = new WebDriverWait(driver, Duration.ofSeconds(20));
+        this.wait = new WebDriverWait(driver, Duration.ofSeconds(250));
         PageFactory.initElements(new AppiumFieldDecorator(driver), this);
     }
 

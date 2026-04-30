@@ -1,5 +1,0 @@
-base\BaseTest.class
-steps\LoginSteps.class
-driver\DriverFactory.class
-pages\LoginPage.class
-runners\MeezanTestRunner.class

@@ -15,7 +15,7 @@ public class LoginPage {
 
 	public LoginPage(AndroidDriver driver) {
 		this.driver = driver;
-		this.wait = new WebDriverWait(driver, Duration.ofSeconds(280));
+		this.wait = new WebDriverWait(driver, Duration.ofSeconds(300));
 	}
 
 	// ✅ WEBVIEW locators
@@ -25,12 +25,28 @@ public class LoginPage {
 
 	public void enterUsername(String username) {
 		WebElement user = wait.until(ExpectedConditions.visibilityOfElementLocated(usernameField));
-		user.sendKeys(username);
+		user.click();
+
+    try {
+        user.clear();
+    } catch (Exception e) {
+        System.out.println("Unable to clear username field");
+    }
+
+    user.sendKeys(username);
 	}
 
 	public void enterPassword(String password) {
 		WebElement pass = wait.until(ExpectedConditions.visibilityOfElementLocated(passwordField));
-		pass.sendKeys(password);
+		pass.click();
+
+    try {
+        pass.clear();
+    } catch (Exception e) {
+        System.out.println("Unable to clear password field");
+    }
+
+    pass.sendKeys(password);
 	}
 
 	public void clickLogin() {

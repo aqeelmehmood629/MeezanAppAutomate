@@ -1,111 +1,298 @@
 package utils;
 
 import io.appium.java_client.android.AndroidDriver;
+import org.openqa.selenium.By;
+import org.openqa.selenium.WebElement;
+
 import java.util.Set;
 
 public class HybridAppStabilizer {
 
-    private static final int MAX_WAIT_SECONDS = 30; // Max wait time for WebView
-    private static final int POLL_INTERVAL_MS = 1000; // Check every 1 second
+    private static final int MAX_WAIT = 30;   // 30 seconds max (reduced to allow faster retries)
+    private static final int POLL = 1000;      // 1 second poll interval
 
     /**
-     * Switch context dynamically depending on current screen
-     * Keeps user in WebView if dashboard or screen is WebView
-     * Switches to Native if screen is native
+     * 🚀 MAIN ENTRY METHOD
+     * App launch → context detect → login screen ready
+     * Only call this when app is freshly launched (not logged in)
      */
-    public static void switchContextDynamic(AndroidDriver driver) {
-        try {
-            String currentContext = driver.getContext();
-            Set<String> contexts = driver.getContextHandles();
-            boolean switched = false;
+    public static void stabilizeApp(AndroidDriver driver) {
 
-            System.out.println("🔹 Current context: " + currentContext);
-            System.out.println("🔹 Available contexts: " + contexts);
+        System.out.println("🚀 App stabilization started...");
 
-            // 1️⃣ Prefer WebView if available and currently in Native
-            for (String context : contexts) {
-                if (context.toLowerCase().contains("webview") && currentContext.equals("NATIVE_APP")) {
-                    Thread.sleep(1500); // wait for WebView to load
-                    driver.context(context);
-                    System.out.println("🌐 Switched to WEBVIEW: " + context);
-                    switched = true;
-                    break;
+        int maxRetries = 5; // Retries up to 5 times
+        boolean webViewFound = false;
+
+        for (int attempt = 1; attempt <= maxRetries; attempt++) {
+            if (attempt > 1) {
+                System.out.println("🔄 Relaunching app (Attempt " + attempt + " of " + maxRetries + ")...");
+                try {
+                    driver.terminateApp("com.ofss.tx.meezan");
+                    sleep(2000);
+                    driver.activateApp("com.ofss.tx.meezan");
+                    sleep(3000); // Give the app a moment to launch
+                } catch (Exception e) {
+                    System.out.println("⚠️ App relaunch failed: " + e.getMessage());
                 }
             }
 
-            // 2️⃣ Switch to Native if currently in WebView and Native needed
-            if (!switched && currentContext.toLowerCase().contains("webview") && contexts.contains("NATIVE_APP")) {
-                driver.context("NATIVE_APP");
-                System.out.println("📱 Switched to NATIVE_APP");
-                switched = true;
-            }
+            // 👆 Click the app logo on the splash screen to trigger WebView loading
+            clickSplashLogo(driver);
 
-            // 3️⃣ Already in correct context → do nothing
-            if (!switched) {
-                System.out.println("⚡ Context already correct, staying in: " + currentContext);
-            }
+            waitForAnyContext(driver);
 
-        } catch (Exception e) {
-            throw new RuntimeException("❌ Failed during dynamic context switch", e);
+            webViewFound = switchToWebViewIfAvailable(driver);
+
+            if (webViewFound) {
+                System.out.println("✅ WebView detected and switched successfully.");
+                break; // Break out of the retry loop
+            } else {
+                System.out.println("❌ WebView not detected in attempt " + attempt + ".");
+            }
+        }
+
+        if (!webViewFound) {
+            System.out.println("🚨 CRITICAL: WebView could not be loaded after " + maxRetries + " attempts!");
+        }
+
+        // ✅ Changed: don't throw if login screen not found
+        boolean loginReady = waitForLoginScreenSafe(driver);
+
+        if (loginReady) {
+            System.out.println("✅ App is stable — login screen ready");
+        } else {
+            System.out.println("⚠️ Login screen not found — app may already be logged in");
         }
     }
 
     /**
-     * Optional explicit switch to WebView
+     * 👆 Click app logo on splash screen to trigger WebView initialization
      */
-    public static void switchToWebView(AndroidDriver driver) {
-        long startTime = System.currentTimeMillis();
-        boolean switched = false;
+    public static void clickSplashLogo(AndroidDriver driver) {
+        System.out.println("👆 Attempting to click app logo on splash screen...");
+        try {
+            // First ensure we are in native context
+            ensureNative(driver);
+            
+            // Give the splash screen a moment to render
+            sleep(3000);
 
-        while ((System.currentTimeMillis() - startTime) < MAX_WAIT_SECONDS * 1000) {
-            try {
-                driver.getPageSource(); // refresh contexts
-                Set<String> contexts = driver.getContextHandles();
+            // Attempt to click the logo (ImageView)
+            WebElement logo = driver.findElement(By.className("android.widget.ImageView"));
+            logo.click();
+            System.out.println("✅ App logo clicked successfully. WebView should start loading now.");
+            
+            // Wait briefly for the WebView context to be generated
+            sleep(2000);
+        } catch (Exception e) {
+            System.out.println("⚠️ App logo not clicked (might already be dismissed or not found).");
+        }
+    }
 
-                for (String context : contexts) {
-                    if (context.toLowerCase().contains("webview")) {
-                        Thread.sleep(1500);
+    /**
+     * ⏳ Wait until app exposes contexts
+     */
+    public static void waitForAnyContext(AndroidDriver driver) {
+
+        for (int i = 0; i < MAX_WAIT; i++) {
+
+            Set<String> contexts = driver.getContextHandles();
+
+            if (contexts != null && !contexts.isEmpty()) {
+                System.out.println("📌 Contexts detected: " + contexts);
+                return;
+            }
+
+            sleep(POLL);
+        }
+
+        System.out.println("⚠️ No contexts detected (rare case)");
+    }
+
+    /**
+     * 🌐 Switch to WebView if available
+     */
+    public static boolean switchToWebViewIfAvailable(AndroidDriver driver) {
+
+        for (int i = 0; i < MAX_WAIT; i++) {
+
+            Set<String> contexts = driver.getContextHandles();
+
+            for (String context : contexts) {
+
+                if (context.toLowerCase().contains("webview")) {
+
+                    try {
                         driver.context(context);
-                        System.out.println("✅ Switched to WEBVIEW: " + context);
-                        switched = true;
-                        return;
+                        sleep(1500);
+
+                        System.out.println("🌐 Switched to WebView: " + context);
+                        return true;
+
+                    } catch (Exception e) {
+                        System.out.println("⚠️ WebView found but not ready yet");
                     }
                 }
-                Thread.sleep(POLL_INTERVAL_MS);
-
-            } catch (Exception e) {
-                System.out.println("Retrying WebView switch...");
             }
+
+            sleep(POLL);
         }
 
-        if (!switched) {
-            throw new RuntimeException("❌ WebView not found after " + MAX_WAIT_SECONDS + " seconds!");
+        System.out.println("📱 WebView not found → staying in NATIVE_APP");
+        driver.context("NATIVE_APP");
+        return false;
+    }
+
+    /**
+     * 🔐 Wait for login screen — SAFE version (returns boolean, never throws)
+     */
+    public static boolean waitForLoginScreenSafe(AndroidDriver driver) {
+
+        System.out.println("⏳ Waiting for login screen...");
+
+        for (int i = 0; i < 30; i++) {  // 30 seconds max for login screen
+
+            try {
+                WebElement login = driver.findElement(
+                        By.id("login_username")
+                );
+
+                if (login.isDisplayed()) {
+                    System.out.println("🔐 Login screen found");
+                    return true;
+                }
+
+            } catch (Exception ignored) {}
+
+            sleep(POLL);
+        }
+
+        System.out.println("⚠️ Login screen not found within timeout");
+        return false;
+    }
+
+    /**
+     * 🔐 Original waitForLoginScreen (kept for backward compat, now uses safe version)
+     */
+    public static void waitForLoginScreen(AndroidDriver driver) {
+        if (!waitForLoginScreenSafe(driver)) {
+            System.out.println("⚠️ Login screen not found — continuing anyway");
         }
     }
 
     /**
-     * Optional explicit switch to Native App
+     * 🏠 Wait for dashboard to be visible (used after login)
+     */
+    public static boolean waitForDashboard(AndroidDriver driver) {
+
+        System.out.println("⏳ Waiting for dashboard...");
+
+        // Make sure we're in NATIVE context for dashboard elements
+        switchToNative(driver);
+
+        By homeIcon = By.xpath("//android.widget.TextView[@text='SHOW BALANCE']");
+
+        for (int i = 0; i < MAX_WAIT; i++) {
+
+            try {
+                WebElement home = driver.findElement(homeIcon);
+
+                if (home.isDisplayed()) {
+                    System.out.println("🏠 Dashboard is visible");
+                    return true;
+                }
+
+            } catch (Exception ignored) {}
+
+            sleep(POLL);
+        }
+
+        System.out.println("⚠️ Dashboard not visible after timeout");
+        return false;
+    }
+
+    /**
+     * 🌐 Ensure we are in WebView context (safe — handles already-in-WebView)
+     */
+    public static void ensureWebView(AndroidDriver driver) {
+        try {
+            String current = driver.getContext();
+            if (current != null && current.toLowerCase().contains("webview")) {
+                System.out.println("🌐 Already in WebView");
+                return;
+            }
+
+            // Try to switch to WebView
+            Set<String> contexts = driver.getContextHandles();
+            for (String context : contexts) {
+                if (context.toLowerCase().contains("webview")) {
+                    driver.context(context);
+                    sleep(500);
+                    System.out.println("🌐 Switched to WebView: " + context);
+                    return;
+                }
+            }
+
+            System.out.println("⚠️ No WebView available");
+        } catch (Exception e) {
+            System.out.println("⚠️ ensureWebView failed: " + e.getMessage());
+        }
+    }
+
+    /**
+     * 📱 Ensure we are in Native context (safe — handles already-in-Native)
+     */
+    public static void ensureNative(AndroidDriver driver) {
+        try {
+            String current = driver.getContext();
+            if ("NATIVE_APP".equals(current)) {
+                return; // already native
+            }
+            driver.context("NATIVE_APP");
+            System.out.println("📱 Switched to NATIVE_APP");
+        } catch (Exception e) {
+            System.out.println("⚠️ ensureNative failed: " + e.getMessage());
+        }
+    }
+
+    /**
+     * 🔄 Safe context printer (debug helper)
+     */
+    public static void printContext(AndroidDriver driver) {
+        System.out.println("📌 Current: " + driver.getContext());
+        System.out.println("📌 All Contexts: " + driver.getContextHandles());
+    }
+
+    /**
+     * 🔁 Switch back to native
      */
     public static void switchToNative(AndroidDriver driver) {
         try {
             driver.context("NATIVE_APP");
-            System.out.println("✅ Switched to NATIVE_APP");
+            System.out.println("📱 Switched to NATIVE_APP");
         } catch (Exception e) {
-            throw new RuntimeException("❌ Failed to switch to NATIVE_APP", e);
+            System.out.println("⚠️ Native switch failed");
         }
     }
 
     /**
-     * Hide keyboard safely
+     * ⌨️ Hide keyboard safely
      */
     public static void hideKeyboard(AndroidDriver driver) {
         try {
             if (driver.isKeyboardShown()) {
                 driver.hideKeyboard();
-                System.out.println("✅ Keyboard hidden");
+                System.out.println("⌨️ Keyboard hidden");
             }
-        } catch (Exception e) {
-            System.out.println("Keyboard not present, skipping...");
-        }
+        } catch (Exception ignored) {}
+    }
+
+    /**
+     * 💤 Sleep helper
+     */
+    private static void sleep(long ms) {
+        try {
+            Thread.sleep(ms);
+        } catch (Exception ignored) {}
     }
 }

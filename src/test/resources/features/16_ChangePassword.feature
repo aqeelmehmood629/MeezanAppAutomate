@@ -2,7 +2,8 @@ Feature: Change Password with CSV
 
   @ChangePassword
   Scenario: Change password using CSV data
-    Given user is on dashboard screen for change password
+    Given user is logged in
+    And user is on dashboard screen for change password
     When user clicks on side menu for change password
     And user clicks on Settings for change password
     And user clicks on Change Password

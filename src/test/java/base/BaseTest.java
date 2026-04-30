@@ -2,8 +2,11 @@ package base;
 
 import driver.DriverFactory;
 import io.appium.java_client.android.AndroidDriver;
-import io.cucumber.java.AfterAll;
 
+/**
+ * Base test class — kept for backward compatibility.
+ * Driver lifecycle is now managed by Hooks.java + DriverFactory.
+ */
 public class BaseTest {
 
 	protected static AndroidDriver driver;
@@ -15,16 +18,10 @@ public class BaseTest {
 		}
 	}
 
-	@AfterAll
-	public static void quitDriver() {
-
-		if (driver != null) {
-			driver.quit();
-			driver = null;
-		}
-	}
-
 	public static AndroidDriver getDriver() {
-		return driver;
+		return DriverFactory.getDriver();
 	}
+
+	// ✅ Driver quit is now handled by Hooks.@AfterAll
+	// No need for @AfterAll here to avoid double-quit
 }

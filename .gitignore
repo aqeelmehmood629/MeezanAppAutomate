@@ -1,0 +1,29 @@
+# Maven
+target/
+
+# Reports
+reports/
+test-output/
+cucumber-reports/
+
+# Eclipse
+.settings/
+.classpath
+.project
+
+# IntelliJ
+.idea/
+*.iml
+
+# OS files
+.DS_Store
+Thumbs.db
+
+# Driver executables (if any are stored in the repo)
+*.exe
+*.dll
+*.so
+*.dylib
+
+# Local logs
+*.log

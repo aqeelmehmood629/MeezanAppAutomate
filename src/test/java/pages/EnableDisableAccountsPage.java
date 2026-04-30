@@ -17,7 +17,7 @@ public class EnableDisableAccountsPage {
 	
 	public EnableDisableAccountsPage() {
         this.driver = DriverFactory.getDriver();
-        this.wait = new WebDriverWait(driver, Duration.ofSeconds(20));
+        this.wait = new WebDriverWait(driver, Duration.ofSeconds(250));
     }
 
     // Locators

@@ -1,5 +1,8 @@
 Feature: Notification Language Change
-  
+
+  Background:
+  Given user is logged in
+     
   @ChangeNotificationLanguage
   Scenario: User changes notification language
     Given user clicks on Side Menu for change notification language

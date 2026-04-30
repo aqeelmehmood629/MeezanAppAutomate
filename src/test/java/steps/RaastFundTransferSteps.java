@@ -9,10 +9,17 @@ import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
 import pages.FundsTransferPage;
 import utils.CSVUtils;
+import utils.HybridAppStabilizer;
 
 public class RaastFundTransferSteps {
 
-	    FundsTransferPage page = new FundsTransferPage();
+    FundsTransferPage page;
+
+    private void initPage() {
+        if (page == null) {
+            page = new FundsTransferPage(DriverFactory.getDriver());
+        }
+    }
 
 	    private List<Map<String, String>> csvData;
 	    private Map<String, String> currentData;
@@ -22,8 +29,8 @@ public class RaastFundTransferSteps {
 
 	    @Given("user navigates to Raast payment screen for Raast Payment")
 	    public void navigate_to_raast() {
-
-	        DriverFactory.getDriver().context("NATIVE_APP");
+	        initPage();
+	        HybridAppStabilizer.ensureNative(DriverFactory.getDriver());
 
 	        if (csvData == null) {
 	            csvData = CSVUtils.getAllData("src/test/resources/FundTransferData.csv");
@@ -34,13 +41,14 @@ public class RaastFundTransferSteps {
 	                .findFirst()
 	                .orElseThrow(() -> new RuntimeException("No Raast data found"));
 
-	        page.openRaastPayment(); // or page.clickRaastPayment() if separate button exists
+	        page.openRaastPayment();
 	    }
 
 	    // ================= ACCOUNT =================
 
 	    @And("user selects account from csv for Raast Payment")
 	    public void select_account() {
+	        initPage();
 	        page.selectAccount(currentData.get("account"));
 	    }
 
@@ -48,16 +56,19 @@ public class RaastFundTransferSteps {
 
 	    @And("user enters amount from csv for Raast Payment")
 	    public void enter_amount() {
+	        initPage();
 	        page.enterAmount(currentData.get("amount"));
 	    }
 
 	    @And("user clicks Next button for Raast Payment")
 	    public void click_next() {
+	        initPage();
 	        page.clickNext();
 	    }
 
 	    @And("user clicks Send Now button for Raast Payment")
 	    public void click_send_now() {
+	        initPage();
 	        page.raastSendNowBtn();
 	    }
 
@@ -65,7 +76,7 @@ public class RaastFundTransferSteps {
 
 	    @Then("transaction should be successful for Raast Payment")
 	    public void verify() {
-
+	        initPage();
 	        if (!page.isTransactionSuccessful()) {
 	            throw new AssertionError("❌ Raast transaction failed");
 	        }

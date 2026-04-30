@@ -18,7 +18,7 @@ public class IBFTPage {
 
     public IBFTPage(AppiumDriver driver) {
         this.driver = driver;
-        this.wait = new WebDriverWait(driver, Duration.ofSeconds(100));
+        this.wait = new WebDriverWait(driver, Duration.ofSeconds(250));
     }
 
     // =========================

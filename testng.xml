@@ -2,7 +2,7 @@
 <suite name="Smoke Suite" parallel="false">
 	<test name="Smoke Suite">
 		<classes>
-			<class name="runners.LoginRunner"/>
+			<class name="runners.MainTestRunner"/>
 		</classes>
 	</test>
 </suite>

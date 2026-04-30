@@ -4,13 +4,20 @@ import driver.DriverFactory;
 import io.cucumber.java.en.*;
 import pages.FundsTransferPage;
 import utils.CSVUtils;
+import utils.HybridAppStabilizer;
 
 import java.util.List;
 import java.util.Map;
 
 public class FundTransferOwnSteps {
 
-    FundsTransferPage page = new FundsTransferPage();
+    FundsTransferPage page;
+
+    private void initPage() {
+        if (page == null) {
+            page = new FundsTransferPage(DriverFactory.getDriver());
+        }
+    }
 
     private List<Map<String, String>> csvData;
     private Map<String, String> currentData;
@@ -35,8 +42,8 @@ public class FundTransferOwnSteps {
 
     @Given("user navigate to send money for ftown")
     public void navigate_to_send_money() {
-
-        DriverFactory.getDriver().context("NATIVE_APP");
+        initPage();
+        HybridAppStabilizer.ensureNative(DriverFactory.getDriver());
 
         page.waitForDashboardToLoad();
         page.clickSendMoney();
@@ -44,27 +51,26 @@ public class FundTransferOwnSteps {
 
     @When("user selects own account for ftown")
     public void select_own_account() {
-
+        initPage();
         getFTOwnRow();   // 🔥 load CSV row here
 
         page.selectOwnAccount();
     }
     @And("user hides keyboard for ftown")
     public void hide_keybaord() {
-
-        driver.DriverFactory.getDriver().hideKeyboard();
+        HybridAppStabilizer.hideKeyboard(DriverFactory.getDriver());
     }
     
 
     @And("user opens purpose dropdown for ftown")
     public void open_dropdown() {
-
+        initPage();
         page.openFTOwnPurposeDropdown();
     }
 
     @And("user selects purpose of transfer for ftown")
     public void select_purpose() {
-
+        initPage();
         String purpose = currentData.get("purpose");
 
         page.selectPurpose("FTOwn", purpose);
@@ -74,7 +80,7 @@ public class FundTransferOwnSteps {
 
     @And("user enters amount for ftown")
     public void enter_amount() {
-
+        initPage();
         String amount = currentData.get("amount");
 
         page.enterAmount(amount);
@@ -84,19 +90,19 @@ public class FundTransferOwnSteps {
 
     @And("user clicks Next button for ftown")
     public void click_next() {
-
+        initPage();
         page.clickNext();
     }
 
     @And("user clicks Send Now button for ftown")
     public void click_send_now() {
-
+        initPage();
         page.clickSendNow();
     }
 
     @Then("transaction should be successful for ftown")
     public void verify_transaction() {
-
+        initPage();
         if (!page.isTransactionSuccessful()) {
             throw new AssertionError("❌ FTOwn transaction failed");
         }

@@ -1,8 +1,11 @@
 package steps;
 
+import io.appium.java_client.android.AndroidDriver;
 import io.cucumber.java.en.*;
+import pages.DashboardPage;
 import pages.FundsTransferPage;
 import utils.CSVUtils;
+import utils.HybridAppStabilizer;
 import driver.DriverFactory;
 
 import java.util.List;
@@ -10,88 +13,102 @@ import java.util.Map;
 
 public class FundsTransferSteps {
 
-    FundsTransferPage sendMoneyPage = new FundsTransferPage();
-    private List<Map<String, String>> csvData;
-    private int currentIndex = 0;
+	    private FundsTransferPage sendMoneyPage;
+	    private List<Map<String, String>> csvData;
+	    private int currentIndex = 0;
+	    private AndroidDriver driver;
 
-    @Given("user navigate to send money")
-    public void user_navigate_to_send_money() {
-        DriverFactory.getDriver().context("NATIVE_APP");
-        sendMoneyPage.waitForDashboardToLoad();
-        sendMoneyPage.clickSendMoney();
-    }
+	    private void init() {
+	        if (driver == null) {
+	            driver = DriverFactory.getDriver();
+	        }
 
-    @When("user selects account to transfer")
-    public void user_selects_account_to_transfer() {
-        csvData = CSVUtils.getAllData("src/test/resources/FundTransferData.csv");
-        String account = csvData.get(currentIndex).get("account");
-        sendMoneyPage.selectAccount(account);
-    }
+	        if (sendMoneyPage == null) {
+	            sendMoneyPage = new FundsTransferPage(driver);
+	        }
+	    }
 
-    @And("user hides keyboard")
-    public void user_hides_keyboard() {
-        try {
-            DriverFactory.getDriver().hideKeyboard();
-        } catch (Exception ignored) {}
-    }
+	    private void loadData() {
+	        if (csvData == null) {
+	            csvData = CSVUtils.getAllData("src/test/resources/FundTransferData.csv");
+	        }
+	    }
 
-    @And("user clicks purpose of transfer dropdown")
-    public void user_clicks_purpose_of_transfer_dropdown() {
-        sendMoneyPage.clickPurposeDropdown();
-    }
+	    @And("user navigate to send money")
+	    public void navigate() {
+	        init();
 
-    @And("user enters purpose of transfer")
-    public void user_enters_purpose_of_transfer() {
-        String purpose = csvData.get(currentIndex).get("purpose");
-        sendMoneyPage.enterPurposeOfTransfer(purpose);
-    }
+	        // ✅ Use safe context switching
+	        HybridAppStabilizer.ensureNative(driver);
 
-    @And("user selects purpose of transfer dynamically")
-    public void user_selects_purpose_of_transfer_dynamically() {
-        String purpose = csvData.get(currentIndex).get("purpose");
-        sendMoneyPage.selectPurposeDynamically(purpose);
-    }
+	        sendMoneyPage.waitForDashboardToLoad();
+	        sendMoneyPage.clickSendMoney();
+	    }
 
-    @And("user enters amount")
-    public void user_enters_amount() {
-        String amount = csvData.get(currentIndex).get("amount");
-        sendMoneyPage.enterAmount(amount);
-    }
+	    @And("user selects account to transfer")
+	    public void selectAccount() {
+	        init();
+	        loadData();
 
-    @And("user clicks Next button")
-    public void user_clicks_next_button() {
-        sendMoneyPage.clickNext();
-    }
+	        String account = csvData.get(currentIndex).get("account");
+	        sendMoneyPage.selectAccount(account);
+	    }
+	    @And("user hides keyboard")
+	    public void user_hides_keyboard() {
+	        init();
+	        HybridAppStabilizer.hideKeyboard(driver);
+	    }
 
-    @And("user clicks Send Now button")
-    public void user_clicks_send_now_button() {
-        sendMoneyPage.clickSendNow();
-    }
+	    @And("user clicks purpose of transfer dropdown")
+	    public void user_clicks_purpose_of_transfer_dropdown() {
+	        init();
+	        sendMoneyPage.clickPurposeDropdown();
+	    }
 
-    @And("transaction should be successful")
-    public void transaction_should_be_successful() {
-        if (!sendMoneyPage.isTransactionSuccessful()) {
-            throw new AssertionError("❌ Transfer Failed for row: " + currentIndex);
-        }
+	    @And("user enters purpose of transfer")
+	    public void user_enters_purpose_of_transfer() {
+	        init();
+	        loadData();
+	        String purpose = csvData.get(currentIndex).get("purpose");
+	        sendMoneyPage.enterPurposeOfTransfer(purpose);
+	    }
 
-        System.out.println("✅ Transfer successful for row: " + currentIndex);
-        // Prepare for next CSV row if any
-        currentIndex++;
-        if (currentIndex < csvData.size()) {
-            // Navigate back and click Send Money again
-         //   sendMoneyPage.navigateBackToDashboard();
-          //  sendMoneyPage.clickSendMoney();
-            // Note: next scenario iteration will pick next row
-        }
-    }
-    @And("user click home screen after ft")
-    public void click_home_screen() {
-    	sendMoneyPage.clickHomeBtn();
-    	
-    }
-    @Then("user click show Balance after ft")
-    public void click_show_Bal() {
-    	sendMoneyPage.clickShowBalance();
-    }
+	    @And("user selects purpose of transfer dynamically")
+	    public void user_selects_purpose_of_transfer_dynamically() {
+	        init();
+	        loadData();
+	        String purpose = csvData.get(currentIndex).get("purpose");
+	        sendMoneyPage.selectPurposeDynamically(purpose);
+	    }
 
-}
+	    @And("user enters amount")
+	    public void user_enters_amount() {
+	        init();
+	        loadData();
+	        String amount = csvData.get(currentIndex).get("amount");
+	        sendMoneyPage.enterAmount(amount);
+	    }
+
+	    @And("user clicks Next button")
+	    public void user_clicks_next_button() {
+	        init();
+	        sendMoneyPage.clickNext();
+	    }
+
+	    @And("user clicks Send Now button")
+	    public void user_clicks_send_now_button() {
+	        init();
+	        sendMoneyPage.clickSendNow();
+	    }
+
+	    @Then("transaction should be successful")
+	    public void verifyTransfer() {
+	        init();
+
+	        if (!sendMoneyPage.isTransactionSuccessful()) {
+	            throw new AssertionError("Transfer Failed");
+	        }
+
+	        System.out.println("✅ Transfer successful");
+	    }
+	}

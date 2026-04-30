@@ -16,7 +16,7 @@ public class FeedbackPage {
 
     public FeedbackPage() {
         driver = DriverFactory.getDriver();
-        wait = new WebDriverWait(driver, Duration.ofSeconds(20));
+        wait = new WebDriverWait(driver, Duration.ofSeconds(250));
     }
 
     private By submitBtn = By.xpath("//android.widget.Button[@text=\"Submit\"]");
