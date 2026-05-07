@@ -1,6 +1,7 @@
-@MyAccounts
-Feature: Verify Account
 
+Feature: Verify Account
+ 
+  @MyAccounts
   Scenario: View Customer Accounts
     Given user is logged in
     And user stores account title from dashboard

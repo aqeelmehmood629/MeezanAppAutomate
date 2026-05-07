@@ -1,6 +1,7 @@
-@MyProfile
+
 Feature: Open Profile
 
+  @Profile
   Scenario: User navigates to Profile
     Given user is logged in
     And user clicks on side bar menu

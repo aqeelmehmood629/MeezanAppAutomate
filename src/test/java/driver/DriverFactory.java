@@ -29,7 +29,7 @@ public class DriverFactory {
 			caps.setCapability("platformName", "Android");
 			caps.setCapability("automationName", "UiAutomator2");
 			caps.setCapability("deviceName", "Android Device");
-			caps.setCapability("udid", "082653732Q003887");
+			caps.setCapability("udid", "083672525V005614");
 
 			// App details
 			caps.setCapability("appPackage", "com.ofss.tx.meezan");
@@ -51,11 +51,14 @@ public class DriverFactory {
 			caps.setCapability("newCommandTimeout", 300);
 			caps.setCapability("enforceXPath1", true);
 			caps.setCapability("unlockType", "pin");
-			caps.setCapability("unlockKey", "1234");
+			caps.setCapability("unlockKey", "0000");
 			caps.setCapability("autoWebview", false);
 			caps.setCapability("webviewDevtoolsPort", "9222");
 
 			driver = new AndroidDriver(new URL("http://127.0.0.1:4723"), caps);
+			
+			// ✅ Reset global login state for new session
+			utils.LoginHelper.setLoggedIn(false);
 
 			System.out.println("✅ Driver Initialized (new session)");
 			System.out.println("Session ID: " + driver.getSessionId());

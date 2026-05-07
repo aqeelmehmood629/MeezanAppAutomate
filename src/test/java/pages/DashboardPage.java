@@ -19,7 +19,7 @@ public class DashboardPage {
 
     // 🔹 Locator for Show Balance button
     private By showBalanceBtn = By.xpath("//android.widget.TextView[@text='SHOW BALANCE']");
-    private By homeIcon = By.xpath("//android.widget.Image[@text=\"home-icon-purple\"]");
+    private By homeIcon = By.xpath("//android.widget.Image[contains(@text,'home-icon')]");
     
     public void goToDashboard() {
         clickHome();

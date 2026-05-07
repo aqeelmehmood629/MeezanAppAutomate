@@ -19,6 +19,7 @@ public class LogoutSteps {
     public void user_clicks_logout_icon_and_app_exits() {
         init();
         logoutPage.clickLogout();
+        utils.LoginHelper.setLoggedIn(false); // Reset global login state
         Assert.assertFalse(logoutPage.isUsernameDisplayed());
     }
 }

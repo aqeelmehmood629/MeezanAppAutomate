@@ -34,8 +34,9 @@ public class LoginSteps {
         init();
         
         // ✅ Check if already logged in first
-        if (dashboardpage.isDashboardVisible()) {
+        if (utils.LoginHelper.isLoggedIn() || dashboardpage.isDashboardVisible()) {
             System.out.println("✅ App already logged in — skipping stabilization");
+            utils.LoginHelper.setLoggedIn(true);
             return;
         }
         
@@ -51,8 +52,9 @@ public class LoginSteps {
     @When("user enters credentials from {string}")
     public void enterCredentialsFromCSV(String row) {
     	init();
-    	if (dashboardpage.isDashboardVisible()) {
+    	if (utils.LoginHelper.isLoggedIn() || dashboardpage.isDashboardVisible()) {
             System.out.println("Already logged in, skipping login");
+            utils.LoginHelper.setLoggedIn(true);
             return;
         }
 
@@ -73,8 +75,9 @@ public class LoginSteps {
     public void enterCredentialsFromCSVDefault() {
     	init();
     	
-    	if (dashboardpage.isDashboardVisible()) {
+    	if (utils.LoginHelper.isLoggedIn() || dashboardpage.isDashboardVisible()) {
             System.out.println("Already logged in, skipping login");
+            utils.LoginHelper.setLoggedIn(true);
             return;
         }
 
@@ -93,8 +96,9 @@ public class LoginSteps {
     public void tapLogin() {
     	init();
     	
-    	if (dashboardpage.isDashboardVisible()) {
+    	if (utils.LoginHelper.isLoggedIn() || dashboardpage.isDashboardVisible()) {
             System.out.println("Already logged in, skipping login tap");
+            utils.LoginHelper.setLoggedIn(true);
             return;
         }
     	
@@ -110,11 +114,12 @@ public class LoginSteps {
 
         if (!dashboardReady) {
             // Fallback check
-            if (!dashboardpage.isDashboardVisible()) {
+            if (!utils.LoginHelper.isLoggedIn() && !dashboardpage.isDashboardVisible()) {
                 throw new AssertionError("Login failed - Dashboard not visible");
             }
         }
 
+        utils.LoginHelper.setLoggedIn(true);
         System.out.println("✅ Login successful");
     }
 }

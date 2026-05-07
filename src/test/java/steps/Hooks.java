@@ -8,6 +8,9 @@ import com.aventstack.extentreports.*;
 import utils.ExtentManager;
 import utils.ReportManager;
 import utils.ScreenshotUtil;
+import pages.DashboardPage;
+import utils.LoginHelper;
+import utils.HybridAppStabilizer;
 
 public class Hooks {
 
@@ -32,6 +35,9 @@ public class Hooks {
 		System.out.println("═══════════════════════════════════════════");
 		System.out.println("▶️ STARTING SCENARIO: " + scenario.getName());
 		System.out.println("═══════════════════════════════════════════");
+		
+		// ✅ Ensure we start on Dashboard before the test case runs
+		ensureDashboardState(scenario, "before");
 	}
 
 	/**
@@ -69,6 +75,9 @@ public class Hooks {
 			ReportManager.getTest().pass("✅ Test Passed");
 		}
 
+		// ✅ Ensure we navigate back to Dashboard after the test case finishes
+		ensureDashboardState(scenario, "after");
+
 		System.out.println("═══════════════════════════════════════════");
 		System.out.println("⏹️ FINISHED SCENARIO: " + scenario.getName()
 				+ " → " + scenario.getStatus());
@@ -96,4 +105,37 @@ public class Hooks {
 	}
 
 	// Driver quit is handled in @AfterAll for independence
+
+	/**
+	 * ✅ Dynamic Navigation Logic:
+	 * Automatically navigates to the Dashboard before/after tests 
+	 * (excluding Login, Dashboard, and Logout tests).
+	 */
+	private void ensureDashboardState(Scenario scenario, String phase) {
+		boolean isExcluded = scenario.getSourceTagNames().contains("@Login") || 
+							 scenario.getSourceTagNames().contains("@Dashboard") ||
+							 scenario.getSourceTagNames().contains("@FT") || 
+							 scenario.getSourceTagNames().contains("@Logout") ||
+							 scenario.getSourceTagNames().contains("@Feedback") ||
+							 scenario.getSourceTagNames().contains("@AccountEnableDisable");
+		
+		if (!isExcluded && LoginHelper.isLoggedIn()) {
+			System.out.println("🔄 Checking app state (" + phase + " test)...");
+			try {
+				DashboardPage dashboard = new DashboardPage(DriverFactory.getDriver());
+				
+				// isDashboardVisible() automatically switches to NATIVE context
+				if (!dashboard.isDashboardVisible()) {
+					System.out.println("🏠 Navigating to Dashboard...");
+					HybridAppStabilizer.ensureNative(DriverFactory.getDriver());
+					dashboard.clickHome();
+					Thread.sleep(2000); // Wait for transition
+				} else {
+					System.out.println("✅ App is already on Dashboard.");
+				}
+			} catch (Exception e) {
+				System.out.println("⚠️ Could not navigate to Dashboard: " + e.getMessage());
+			}
+		}
+	}
 }

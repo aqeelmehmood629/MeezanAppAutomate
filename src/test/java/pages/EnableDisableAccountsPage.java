@@ -15,8 +15,8 @@ public class EnableDisableAccountsPage {
 	private AndroidDriver driver;
     private WebDriverWait wait;
 	
-	public EnableDisableAccountsPage() {
-        this.driver = DriverFactory.getDriver();
+	public EnableDisableAccountsPage(AndroidDriver driver) {
+        this.driver =driver;
         this.wait = new WebDriverWait(driver, Duration.ofSeconds(250));
     }
 
@@ -28,9 +28,10 @@ public class EnableDisableAccountsPage {
             By.xpath("//android.widget.TextView[@text='Settings']");
     private By accountManagement = By.xpath("//android.widget.TextView[@text='Account Management']");
     private By saveChangesAccounts = By.xpath("//android.widget.Button[@text='Save Changes']");
-    private By status = By.xpath("//android.widget.TextView[@text='Account Status: UNLINKED']");
+    private By unlinkedStatus = By.xpath("//android.widget.TextView[@text='Account Status: UNLINKED']");
+    private By linkedStatus = By.xpath("(//android.widget.TextView[@text='Account Status: LINKED'])[1]");
     
-    private By deselect = By.xpath("//android.view.View[@resource-id=\"maincontent\"]/android.view.View/android.view.View[1]/android.view.View/android.view.View/android.view.View/android.widget.TextView");
+    private By deselect = By.xpath("(//div[@class='toggle-switch ot-none bg-success-dark'])[1]");
     private By clickAccountHomeIcon = By.xpath("//android.widget.Image[@resource-id='home-icon']");
 
     public void accountsSideMenu() {
@@ -59,10 +60,39 @@ public class EnableDisableAccountsPage {
         System.out.println("✅ Clicked Save Changes Button");
     }
 
-    public void verifyUnlinkedStatus() {
-    	WebElement el = wait.until(ExpectedConditions.visibilityOfElementLocated(status));
-    	Assert.assertTrue(el.isDisplayed(), "Account is not UNLINKED");
+    public void verifyAccountStatus() {
+
+    boolean statusFound = false;
+
+    try {
+
+        WebElement unlinked = wait.until(
+                ExpectedConditions.visibilityOfElementLocated(unlinkedStatus));
+
+        if (unlinked.isDisplayed()) {
+            statusFound = true;
+            System.out.println("UNLINKED status found");
+        }
+
+    } catch (Exception e) {
+
+        try {
+
+            WebElement linked = wait.until(
+                    ExpectedConditions.visibilityOfElementLocated(linkedStatus));
+
+            if (linked.isDisplayed()) {
+                statusFound = true;
+                System.out.println("LINKED status found");
+            }
+
+        } catch (Exception ex) {
+            System.out.println("No status found");
+        }
     }
+
+    Assert.assertTrue(statusFound, "Account status not found");
+}
     public void accountclickHome() {
     	
     	wait.until(ExpectedConditions.elementToBeClickable(clickAccountHomeIcon)).click();

@@ -43,8 +43,7 @@ public class DashboardSteps {
     	init();
 
         List<WebElement> homeIcons = driver.findElements(
-            By.xpath("//android.widget.Image[@text='home-icon-purple']")
-        );
+            By.xpath("//android.widget.Image[contains(@text,'home-icon')]"));
 
         if (homeIcons.isEmpty()) {
             System.out.println("Not on dashboard → navigating...");

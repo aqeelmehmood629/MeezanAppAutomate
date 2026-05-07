@@ -1,6 +1,7 @@
-@Feedback
-Feature: Submit Feedback
 
+Feature: Submit Feedback
+  
+  @Feedback
   Scenario: User submits feedback successfully
     Given user is logged in
     And user opens feedback screen

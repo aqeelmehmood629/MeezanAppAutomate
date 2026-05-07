@@ -1,6 +1,7 @@
-@Limit
+
 Feature: Limit Management
 
+@Limit
 Scenario Outline: User updates limit for transfer types
     Given user is logged in
     When user clicks Limit Management

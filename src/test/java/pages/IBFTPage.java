@@ -2,6 +2,8 @@ package pages;
 
 import io.appium.java_client.AppiumDriver;
 import org.openqa.selenium.By;
+import io.appium.java_client.android.nativekey.AndroidKey;
+import io.appium.java_client.android.nativekey.KeyEvent;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 import utils.CSVUtils;
@@ -10,15 +12,18 @@ import java.time.Duration;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import utils.HybridAppStabilizer;
+import org.openqa.selenium.WebElement;
+import io.appium.java_client.android.AndroidDriver;
 
 public class IBFTPage {
 
-    AppiumDriver driver;
+    AndroidDriver driver;
     WebDriverWait wait;
 
-    public IBFTPage(AppiumDriver driver) {
+    public IBFTPage(AndroidDriver driver) {
         this.driver = driver;
-        this.wait = new WebDriverWait(driver, Duration.ofSeconds(250));
+        this.wait = new WebDriverWait(driver, Duration.ofSeconds(20));
     }
 
     // =========================
@@ -48,38 +53,55 @@ public class IBFTPage {
     }
 
     public void searchBankIBFT(String bankName) {
-    	    wait.until(ExpectedConditions.visibilityOfElementLocated(searchBank)).click();
+        HybridAppStabilizer.ensureNative(driver);
 
-    	    // Step 1: Type full value
-    	    driver.findElement(searchBank).clear();
-    	    driver.findElement(searchBank).sendKeys(bankName);
+        WebElement search = wait.until(
+                ExpectedConditions.visibilityOfElementLocated(searchBank));
 
-    	    // Small wait (UI stabilization)
-    	    try { Thread.sleep(500); } catch (Exception e) {}
+        search.click();
+        search.clear();
 
-    	    // Step 2: Clear field
-    	    driver.findElement(searchBank).clear();
+        // 1. Enter full bank name (Controlled way)
+        search.sendKeys(bankName);
+        
+        try {
+            Thread.sleep(800); // Small pause before backspace
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
 
-    	    // Step 3: Remove last character and type again
-    	    String modified = bankName.substring(0, bankName.length() - 1);
-    	    driver.findElement(searchBank).sendKeys(modified);
+        // 2. Remove one character from the end to trigger list refresh (Using Native Key Event)
+        driver.pressKey(new KeyEvent(AndroidKey.DEL));
 
-    	    // Wait for results
-    	    By bankResult = By.xpath("//android.widget.TextView[contains(@text,'" + modified + "')]");
-    	    wait.until(ExpectedConditions.visibilityOfElementLocated(bankResult));
-    	}
+        try {
+            Thread.sleep(1000); // Wait for list to populate after backspace
+        } catch (Exception e) {}
 
-    // 🔥 FIXED: Dynamic bank selection (NO hardcoded value)
+        // 3. Wait until the correct bank appears in the list (Case-insensitive XPath)
+        String lowerBankName = bankName.toLowerCase();
+        By bankResult = By.xpath(
+                "//android.widget.TextView[contains(translate(@text, 'ABCDEFGHIJKLMNOPQRSTUVWXYZ', 'abcdefghijklmnopqrstuvwxyz'), '" + lowerBankName + "')]"
+        );
+
+        wait.until(ExpectedConditions.visibilityOfElementLocated(bankResult));
+        System.out.println("✅ Bank list refreshed and '" + bankName + "' is visible.");
+    }
+
+    // 🔥 FIXED: Dynamic bank selection with Case-Insensitive XPath
     public void selectBankIBFT(String bankName) {
-
-        By bank = By.xpath("//android.widget.TextView[contains(@text,'" + bankName + "')]");
+        String lowerBankName = bankName.toLowerCase();
+        By bank = By.xpath("//android.widget.TextView[contains(translate(@text, 'ABCDEFGHIJKLMNOPQRSTUVWXYZ', 'abcdefghijklmnopqrstuvwxyz'), '" + lowerBankName + "')]");
         wait.until(ExpectedConditions.elementToBeClickable(bank)).click();
     }
 
     public void enterAccountIBFT(String account) {
-        wait.until(ExpectedConditions.visibilityOfElementLocated(accountField))
-                .sendKeys(account);
+        WebElement element = wait.until(ExpectedConditions.elementToBeClickable(accountField));
+        element.click();
+        element.clear();
+        element.sendKeys(account);
+        HybridAppStabilizer.hideKeyboard(driver);
     }
+    
     public void fetchDetails() {
     	wait.until(ExpectedConditions.elementToBeClickable(fetchAccountDetails)).click();
     }
@@ -89,8 +111,11 @@ public class IBFTPage {
     }
 
     public void enterAmountIBFT(String amount) {
-        wait.until(ExpectedConditions.visibilityOfElementLocated(amountField))
-                .sendKeys(amount);
+        WebElement element = wait.until(ExpectedConditions.elementToBeClickable(amountField));
+        element.click();
+        element.clear();
+        element.sendKeys(amount);
+        HybridAppStabilizer.hideKeyboard(driver);
     }
 
     public void clickSendNowIBFT() {

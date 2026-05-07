@@ -9,7 +9,8 @@ import org.testng.annotations.Test;
 @CucumberOptions(
     features = "src/test/resources/features/",
     glue = "steps",
-    plugin = {
+    tags = "@MyAccounts",
+      plugin = {
         "pretty",
         "html:target/cucumber-reports/cucumber-pretty.html",
         "json:target/cucumber-reports/CucumberTestReport.json",
