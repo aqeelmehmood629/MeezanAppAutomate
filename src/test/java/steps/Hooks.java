@@ -116,6 +116,7 @@ public class Hooks {
 							 scenario.getSourceTagNames().contains("@Dashboard") ||
 							 scenario.getSourceTagNames().contains("@FT") || 
 							 scenario.getSourceTagNames().contains("@Logout") ||
+							 scenario.getSourceTagNames().contains("@ChangePassword") ||
 							 scenario.getSourceTagNames().contains("@Feedback") ||
 							 scenario.getSourceTagNames().contains("@AccountEnableDisable");
 		

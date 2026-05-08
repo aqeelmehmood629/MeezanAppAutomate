@@ -1,6 +1,7 @@
-@ForgotPassword
+
 Feature: Forgot Password
 
+  @ForgotPassword
   Scenario: Reset password successfully
     Given user clicks on Forgot Password
     And user enters cnic from csv for password reset

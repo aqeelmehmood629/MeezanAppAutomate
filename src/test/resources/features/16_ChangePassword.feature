@@ -12,5 +12,5 @@ Feature: Change Password with CSV
     And user enters new password for change password
     And user re-enters new password for change password
     And user clicks on submit button for change password
-    And password fields should be filled successfully
-    Then user clicks home icon after reset Password
+    Then password fields should be filled successfully
+    

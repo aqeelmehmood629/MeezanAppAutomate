@@ -82,14 +82,9 @@ public class ChangePasswordSteps {
     	page.clickChangePasswordSubmit();
     }
 
-    @And("password fields should be filled successfully")
+    @Then("password fields should be filled successfully")
     public void password_fields_should_be_filled_successfully() {
         init();
         page.verifyFieldsFilled();
-    }
-    @Then("user clicks home icon after reset Password")
-    public void homeIconpassword() {
-        init();
-    	page.clickHomeIconPassword();
     }
 }

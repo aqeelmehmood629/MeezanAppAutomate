@@ -5,6 +5,7 @@ import io.appium.java_client.android.AndroidDriver;
 import io.cucumber.java.en.And;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
+import utils.HybridAppStabilizer;
 
 import pages.QuickViewBalPage;
 
@@ -25,6 +26,12 @@ public class QuickViewBalsteps {
     @When("user clicks on View Balance for viewbal")
     public void user_clicks_on_view_balance() {
         init();
+        HybridAppStabilizer.stabilizeApp(driver);
+       try {
+        Thread.sleep(3000);
+    } catch (InterruptedException e) {
+        e.printStackTrace();
+    }
         viewBalancePage.clickViewBalance();
     }
 

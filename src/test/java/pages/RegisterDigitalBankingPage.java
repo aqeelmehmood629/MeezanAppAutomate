@@ -17,11 +17,11 @@ public class RegisterDigitalBankingPage {
 
     public RegisterDigitalBankingPage(AndroidDriver driver) {
         this.driver = driver;
-        this.wait = new WebDriverWait(driver, Duration.ofSeconds(300));
+        this.wait = new WebDriverWait(driver, Duration.ofSeconds(50));
     }
 
     // Locators
-    private By registerBtn = By.xpath("//span[contains(@class,'oj-tabbar-item-label') and contains(text(),'Register')]");
+    private By registerBtn = By.xpath("//a[@role='tab']//span[normalize-space()='Register']");
   //  private By registerDigitalBanking = By.xpath("//*[contains(normalize-space(.),'Register for Digital Banking')]");
 
     private By nicInput = By.xpath("//input[@placeholder='XXXXX-XXXXXXX-X']");

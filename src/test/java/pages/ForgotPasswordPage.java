@@ -13,8 +13,8 @@ public class ForgotPasswordPage {
     private AndroidDriver driver;
     private WebDriverWait wait;
 
-    public ForgotPasswordPage() {
-        driver = DriverFactory.getDriver();
+    public ForgotPasswordPage(AndroidDriver driver) {
+        this.driver = driver;
         wait = new WebDriverWait(driver, Duration.ofSeconds(250));
     }
 
