@@ -1,3 +1,4 @@
+@NeedsLogin @Smoke
 Feature: Sadqa & Zakat Donations
 
   @Sadqa

@@ -1,6 +1,6 @@
 Feature: Quick View Balance Toggle
 
-  @EnableQuickViewBalance
+  @EnableQuickViewBalance @NeedsLogin @Smoke
   Scenario: Enable quick view balance
     Given user is logged in
     And user clicks on Side Menu for Enable View Bal

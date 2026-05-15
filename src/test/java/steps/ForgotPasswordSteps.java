@@ -32,6 +32,7 @@ public class ForgotPasswordSteps {
     public void click_forgot_password() {
         init();
         HybridAppStabilizer.stabilizeApp(driver);
+        HybridAppStabilizer.ensureNative(driver);
         
         try {
             Thread.sleep(3000);
@@ -40,13 +41,13 @@ public class ForgotPasswordSteps {
         }
 
         if (csvData == null) {
-            // Use an absolute path based on the project directory to avoid relative path resolution issues
-            String filePath = System.getProperty("user.dir") + File.separator + "src" + File.separator + 
-                              "test" + File.separator + "resources" + File.separator + "ForgotPasswordData.csv";
+            String filePath = "src/test/resources/ForgotPasswordData.csv";
             
-            // If you actually meant to use the default TestData.csv, change the line below to:
-            // csvData = CSVUtils.getAllData();
-            csvData = CSVUtils.getAllData(filePath);
+            try {
+                csvData = CSVUtils.getAllData(filePath);
+            } catch (Exception e) {
+                throw new RuntimeException("Failed to load Forgot Password test data from " + filePath + ". Please ensure the file exists and is readable.", e);
+            }
             
             // Safety check to ensure the file isn't empty before trying to access index 0
             if (csvData == null || csvData.isEmpty()) {

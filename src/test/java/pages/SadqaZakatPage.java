@@ -29,49 +29,38 @@ public class SadqaZakatPage {
     By payZakatBtn = By.xpath("//android.widget.Button[contains(@text,'Pay Zakat Now')]");
     By paySadqaBtn = By.xpath("//android.widget.Button[contains(@text,'Pay Sadqa Now')]");
     By donationSuccessMsg = By.xpath("//android.widget.TextView[@text='Transaction Successful']");
+
     public void clickZakatSadqaBtn() {
         wait.until(ExpectedConditions.elementToBeClickable(zakatsadqaBtn)).click();
     }
-	  public void clickSadqaTab() {
-	  wait.until(ExpectedConditions.elementToBeClickable(sadqaTab)).click(); }
-	 
-	  public void searchFoundation(String foundation) {
+    public void clickSadqaTab() {
+        wait.until(ExpectedConditions.elementToBeClickable(sadqaTab)).click();
+    }
 
-		    WebElement element = wait.until(
-		            ExpectedConditions.visibilityOfElementLocated(searchBox)
-		    );
+    public void searchFoundation(String foundation) {
+        WebElement element = wait.until(ExpectedConditions.visibilityOfElementLocated(searchBox));
+        element.click();
+        
+        try { Thread.sleep(500); } catch (Exception e) {} // Wait for keyboard and focus
 
-		    element.click();
-		    element.clear();
+        // Clear field once at the start
+        element.clear();
+        foundation = foundation.trim();
 
-		    foundation = foundation.trim();
+        // Type character by character using native keyboard Actions 
+        // This ensures text is appended natively without clearing the previous characters
+        org.openqa.selenium.interactions.Actions actions = new org.openqa.selenium.interactions.Actions(driver);
+        for (char c : foundation.toCharArray()) {
+            actions.sendKeys(String.valueOf(c)).perform();
+            try { Thread.sleep(200); } catch (Exception e) {} // Small delay for UI to register
+        }
 
-		    // Step 1: type full value (ONLY ONCE from CSV)
-		    element.sendKeys(foundation);
+        try { Thread.sleep(1500); } catch (Exception e) {} // Wait for API to fetch results
 
-		    // small wait for UI sync
-		    try {
-		        Thread.sleep(500);
-		    } catch (InterruptedException e) {
-		        e.printStackTrace();
-		    }
-
-		    // Step 2: create modified value (-1 logic)
-		    String modified = foundation.substring(0, foundation.length() - 1);
-
-		    // IMPORTANT: clear before re-entering (prevents append issue)
-		    element.clear();
-
-		    // Step 3: type modified value
-		    element.sendKeys(modified);
-
-		    // optional keyboard handling
-		    try {
-		        driver.hideKeyboard();
-		    } catch (Exception e) {
-		        // ignore if not present
-		    }
-		}
+        try {
+            driver.hideKeyboard();
+        } catch (Exception e) {}
+    }
     public void selectFoundation(String foundation) {
         By locator = By.xpath("//android.widget.TextView[contains(@text,'" + foundation.trim() + "')]");
 

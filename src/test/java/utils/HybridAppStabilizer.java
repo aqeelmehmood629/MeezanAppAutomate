@@ -109,9 +109,6 @@ public class HybridAppStabilizer {
         System.out.println("⚠️ No contexts detected (rare case)");
     }
 
-    /**
-     * 🌐 Switch to WebView if available
-     */
     public static boolean switchToWebViewIfAvailable(AndroidDriver driver) {
 
         for (int i = 0; i < MAX_WAIT; i++) {
@@ -121,17 +118,12 @@ public class HybridAppStabilizer {
             for (String context : contexts) {
 
                 if (context.toLowerCase().contains("webview")) {
-
-                    try {
-                        driver.context(context);
-                        sleep(1500);
-
-                        System.out.println("🌐 Switched to WebView: " + context);
-                        return true;
-
-                    } catch (Exception e) {
-                        System.out.println("⚠️ WebView found but not ready yet");
-                    }
+                    System.out.println("🌐 WebView detected: " + context + ". Switching immediately...");
+                    
+                    // Switch to WebView immediately without extra readiness checks
+                    driver.context(context);
+                    System.out.println("✅ Switched to WebView successfully.");
+                    return true;
                 }
             }
 
@@ -150,7 +142,7 @@ public class HybridAppStabilizer {
 
         System.out.println("⏳ Waiting for login screen...");
 
-        for (int i = 0; i < 30; i++) {  // 30 seconds max for login screen
+        for (int i = 0; i < 300; i++) {  // 300 seconds max for login screen
 
             try {
                 WebElement login = driver.findElement(

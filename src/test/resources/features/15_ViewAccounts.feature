@@ -1,7 +1,7 @@
 
 Feature: Verify Account
  
-  @MyAccounts
+  @MyAccounts @NeedsLogin @Smoke
   Scenario: View Customer Accounts
     Given user is logged in for view Accounts
     When user stores account title from dashboard

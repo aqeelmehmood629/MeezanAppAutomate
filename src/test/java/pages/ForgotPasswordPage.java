@@ -20,7 +20,7 @@ public class ForgotPasswordPage {
 
     // ========= LOCATORS =========
 
-    private By forgotPasswordBtn = By.xpath("//android.widget.TextView[@text=\"Forgot Password?\"]");
+    private By forgotPasswordBtn = By.xpath("//android.widget.TextView[@text='Forgot Password?']");
     private By cnicField = By.xpath("//android.widget.EditText[@resource-id=\"partyId|input\"]");
     private By accountField = By.xpath("//android.widget.EditText[@resource-id=\'accountNumber|input']");
     private By nextBtn = By.xpath("//android.widget.Button[@text=\"Next\"]");

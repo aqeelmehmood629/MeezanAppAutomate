@@ -4,6 +4,7 @@ import driver.DriverFactory;
 import io.appium.java_client.android.AndroidDriver;
 import pages.DashboardPage;
 import pages.LoginPage;
+import pages.LogoutPage;
 
 import java.util.Map;
 
@@ -76,6 +77,43 @@ public class LoginHelper {
         } else {
             System.out.println("⚠️ Dashboard not visible after login — continuing anyway");
             isLoggedInSession = true; // Assume success if it didn't crash
+        }
+    }
+
+    /**
+     * ✅ Smart logout: detects current app state and acts accordingly.
+     * Ensures the session is logged out before running pre-login scenarios.
+     */
+    public static void ensureLoggedOut(AndroidDriver driver) {
+        // Step 1: Check if already logged out
+        if (!isLoggedInSession) {
+            System.out.println("✅ Global session flag indicates already logged out → skipping logout");
+            return;
+        }
+
+        System.out.println("🔓 Logged in session detected but scenario requires no login. Performing logout...");
+
+        try {
+            HybridAppStabilizer.ensureNative(driver);
+
+            DashboardPage dashboard = new DashboardPage(driver);
+            if (!dashboard.isDashboardVisible()) {
+                System.out.println("🏠 Navigating to Dashboard to perform logout...");
+                dashboard.clickHome();
+                Thread.sleep(2000);
+            }
+
+            LogoutPage logoutPage = new LogoutPage(driver);
+            logoutPage.clickLogout();
+
+            System.out.println("👋 Logout clicked. Session reset.");
+            Thread.sleep(3000); // Wait for transition to login screen
+
+            isLoggedInSession = false;
+
+        } catch (Exception e) {
+            System.out.println("⚠️ Error during logout: " + e.getMessage());
+            isLoggedInSession = false; // Force login next time to be safe
         }
     }
 

@@ -1,7 +1,7 @@
 
 Feature: Manage Registered Devices
   
-  @RemoveRegisteredDevice
+  @RemoveRegisteredDevice @NeedsLogin @Smoke
   Scenario: User removes a registered device
     Given user is logged in
     When user clicks on Side Menu for remove device

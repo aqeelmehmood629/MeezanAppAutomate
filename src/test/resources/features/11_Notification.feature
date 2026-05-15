@@ -1,6 +1,6 @@
 Feature: Notification Flow
 
-  @Notification
+  @Notification @NeedsLogin @Smoke
   Scenario: View Notifications
     Given user is logged in
     And user is on dashboard screen

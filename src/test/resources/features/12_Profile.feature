@@ -1,7 +1,7 @@
 
 Feature: Open Profile
 
-  @Profile
+  @Profile @NeedsLogin @Smoke
   Scenario: User navigates to Profile
     Given user is logged in
     And user clicks on side bar menu

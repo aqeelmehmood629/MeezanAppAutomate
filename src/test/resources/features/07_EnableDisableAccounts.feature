@@ -1,6 +1,6 @@
 Feature: Account Management
   
-  @AccountEnableDisable
+  @AccountEnableDisable @NeedsLogin @Smoke
   Scenario: User deselects account
     Given user is logged in
     And user opens side menu for Account Management

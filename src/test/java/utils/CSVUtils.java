@@ -16,7 +16,14 @@ public class CSVUtils {
     // ✅ Generic method to read CSV dynamically
     public static List<Map<String, String>> getAllData(String filePath) {
         List<Map<String, String>> dataList = new ArrayList<>();
-        try (BufferedReader br = new BufferedReader(new FileReader(filePath))) {
+        File file = new File(filePath);
+        
+        if (!file.exists()) {
+            throw new RuntimeException("❌ CSV file not found at path: " + file.getAbsolutePath() + 
+                "\nPlease ensure the file is placed correctly in your project structure (e.g., src/test/resources/).");
+        }
+
+        try (BufferedReader br = new BufferedReader(new FileReader(file))) {
             String headerLine = br.readLine();
             if (headerLine == null) return dataList;
 

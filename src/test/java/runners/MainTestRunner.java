@@ -9,12 +9,13 @@ import org.testng.annotations.Test;
 @CucumberOptions(
     features = "src/test/resources/features/",
     glue = "steps",
-    tags = "@ForgotPassword",
+    tags = "@Smoke",
       plugin = {
         "pretty",
         "html:target/cucumber-reports/cucumber-pretty.html",
         "json:target/cucumber-reports/CucumberTestReport.json",
-        "rerun:target/cucumber-reports/rerun.txt"
+        "rerun:target/cucumber-reports/rerun.txt",
+        "utils.CucumberListener"   // ✅ Step-level Extent Report logging
     },
     monochrome = true
 )

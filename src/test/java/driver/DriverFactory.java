@@ -10,18 +10,26 @@ public class DriverFactory {
 	private static AndroidDriver driver;
 
 	/**
-	 * ✅ Initialize driver ONLY if not already alive.
-	 * Reuses existing session to keep app state across scenarios.
+	 * ✅ Initialize driver ONLY if not already alive AND fully responsive.
+	 * If UiAutomator2 instrumentation has crashed, forces a fresh session.
 	 */
 	public static synchronized AndroidDriver initializeDriver() {
 
-		// ✅ Reuse existing driver if it's still alive
-		if (driver != null && isDriverAlive()) {
+		// ✅ Deep check: reuse ONLY if UiAutomator2 instrumentation is responsive
+		if (driver != null && isDriverResponsive()) {
 			System.out.println("♻️ Reusing existing driver session: " + driver.getSessionId());
 			return driver;
 		}
 
-		// ❌ Driver is null or dead → create new one
+		// ❌ Driver is null, HTTP session dead, or UiAutomator2 crashed → force new session
+		if (driver != null) {
+			System.out.println("⚠️ Session unresponsive (UiAutomator2 crash detected). Forcing new session...");
+			try { driver.quit(); } catch (Exception ignored) {}
+			driver = null;
+			utils.LoginHelper.setLoggedIn(false);
+		}
+
+		// Create new driver session
 		try {
 			DesiredCapabilities caps = new DesiredCapabilities();
 
@@ -38,7 +46,7 @@ public class DriverFactory {
 
 			// WebView handling
 			caps.setCapability("chromedriverExecutable",
-					"C:\\Users\\ma\\Documents\\Aqeel QA\\ChromeDriver\\chromedriver-win64 (3)\\chromedriver-win64\\chromedriver.exe");
+					"C:\\Users\\ma\\Documents\\Aqeel QA\\Automation\\chromedriver-win64 (1)\\chromedriver-win64\\chromedriver.exe");
 			caps.setCapability("ensureWebviewsHavePages", true);
 			caps.setCapability("webviewConnectTimeout", 30000);
 
@@ -56,7 +64,7 @@ public class DriverFactory {
 			caps.setCapability("webviewDevtoolsPort", "9222");
 
 			driver = new AndroidDriver(new URL("http://127.0.0.1:4723"), caps);
-			
+
 			// ✅ Reset global login state for new session
 			utils.LoginHelper.setLoggedIn(false);
 
@@ -72,19 +80,29 @@ public class DriverFactory {
 	}
 
 	/**
-	 * ✅ Check if current driver session is still alive
+	 * ✅ DEEP responsiveness check — detects UiAutomator2 instrumentation crashes.
+	 *
+	 * The old getContext() only verified the HTTP session was alive.
+	 * currentActivity() sends a real command to the Android instrumentation layer,
+	 * so it will throw if UiAutomator2 has crashed — which is the real failure mode.
 	 */
-	public static boolean isDriverAlive() {
+	public static boolean isDriverResponsive() {
 		try {
 			if (driver == null) return false;
-			driver.getSessionId(); // will throw if session is dead
-			driver.getContext();   // verify it can communicate
+			driver.getSessionId();    // HTTP session check
+			driver.currentActivity(); // ← Real UiAutomator2 instrumentation check (KEY FIX)
 			return true;
 		} catch (Exception e) {
-			System.out.println("⚠️ Driver session is dead: " + e.getMessage());
-			driver = null;
+			System.out.println("⚠️ Driver unresponsive (UiAutomator2 may have crashed): " + e.getMessage());
 			return false;
 		}
+	}
+
+	/**
+	 * ✅ Backward-compatible alias
+	 */
+	public static boolean isDriverAlive() {
+		return isDriverResponsive();
 	}
 
 	public static AndroidDriver getDriver() {

@@ -1,6 +1,6 @@
 Feature: Meezan Bank Login
 
-  @Login
+  @Login @NeedsLogin @Smoke
   Scenario Outline: Login with Valid user
   Given the Meezan Bank app is launched
   When user enters credentials from csv
