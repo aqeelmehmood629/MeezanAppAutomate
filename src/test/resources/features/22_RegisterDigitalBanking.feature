@@ -1,6 +1,6 @@
 Feature: User Registration Flow
 
-  @RegisterDigitalBanking @NoNeedLogin @Smoke
+  @RegisterDigitalBanking @NoNeedLogin
   Scenario: Register user in Digital Banking
     Given User clicks on Register
     When User clicks on Register for digital banking

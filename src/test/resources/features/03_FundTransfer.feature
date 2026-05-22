@@ -1,4 +1,4 @@
-@NeedsLogin @Smoke 
+@NeedsLogin
 Feature: Fund Transfer
 
 @FT @Smoke
@@ -16,7 +16,7 @@ Scenario: Transfer funds to Meezan Bank account
     Then transaction should be successful
     
     
-@FTOwn
+@FTOwn @Smoke
 Scenario: Transfer funds to Own Account
     Given user is logged in
     And user navigate to send money for ftown
@@ -40,7 +40,7 @@ Scenario: Perform Raast payment successfully
     Then transaction should be successful for Raast Payment
     
     
-@IBFT @Smoke
+@IBFT
 Scenario: User performs IBFT transfer successfully
     Given user is logged in
     When user clicks Send Money for IBFT Transfer

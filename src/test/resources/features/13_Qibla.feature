@@ -1,6 +1,6 @@
 Feature: Qibla Locator
 
-  @Qibla @NeedsLogin @Smoke
+  @Qibla @NeedsLogin
   Scenario: View Qibla Locator
     Given user is logged in
     And user is on dashboard screen for qibla

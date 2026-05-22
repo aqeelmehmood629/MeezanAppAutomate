@@ -1,6 +1,6 @@
 Feature: Change Password with CSV
 
-  @ChangePassword @NeedsLogin @Smoke
+  @ChangePassword @NeedsLogin
   Scenario: Change password using CSV data
     Given user is logged in
     And user is on dashboard screen for change password

@@ -19,6 +19,7 @@ public class DashboardPage {
 
     // 🔹 Locator for Show Balance button
     private By showBalanceBtn = By.xpath("//android.widget.TextView[@text='SHOW BALANCE']");
+    private By showBalanceBtn2 = By.xpath("//android.widget.TextView[contains(@text,'PKR')]");
     private By homeIcon = By.xpath("//android.widget.Image[contains(@text,'home-icon')]");
     
     public void goToDashboard() {
@@ -35,8 +36,15 @@ public class DashboardPage {
 
     // 🔹 Click Show Balance
     public void clickShowBalance() {
-        wait.until(ExpectedConditions.elementToBeClickable(showBalanceBtn)).click();
-        System.out.println("👁️ Show Balance clicked");
+    	try {
+            wait1.until(ExpectedConditions.elementToBeClickable(showBalanceBtn)).click();
+            System.out.println("👁️ Show Balance clicked using first locator");
+
+        } catch (Exception e) {
+
+            wait1.until(ExpectedConditions.elementToBeClickable(showBalanceBtn2)).click();
+            System.out.println("👁️ Show Balance clicked using second locator");
+        }
     }
 
     /**

@@ -182,15 +182,28 @@ public class HybridAppStabilizer {
         // Make sure we're in NATIVE context for dashboard elements
         switchToNative(driver);
 
-        By homeIcon = By.xpath("//android.widget.TextView[@text='SHOW BALANCE']");
+        By homeIcon1 = By.xpath("//android.widget.TextView[@text='SHOW BALANCE']");
+        By homeIcon2 = By.xpath("//android.widget.TextView[contains(@text,'PKR')]");
+        
 
         for (int i = 0; i < MAX_WAIT; i++) {
 
             try {
-                WebElement home = driver.findElement(homeIcon);
+                WebElement home = driver.findElement(homeIcon1);
 
                 if (home.isDisplayed()) {
                     System.out.println("🏠 Dashboard is visible");
+                    return true;
+                }
+
+            } catch (Exception ignored) {}
+            try {
+
+                // Second locator check
+                WebElement home2 = driver.findElement(homeIcon2);
+
+                if (home2.isDisplayed()) {
+                    System.out.println("🏠 Dashboard is visible using second locator");
                     return true;
                 }
 
