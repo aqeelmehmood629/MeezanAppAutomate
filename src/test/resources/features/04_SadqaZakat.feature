@@ -1,7 +1,7 @@
-@NeedsLogin
+@NeedsLogin @NeedsDashboard
 Feature: Sadqa & Zakat Donations
 
-  @Sadqa @Smoke
+  @Sadqa
   Scenario: Perform Sadqa donation
     Given user is logged in and on dashboard for "Sadqa"
     When user clicks on Zakat Sadqa button
@@ -13,7 +13,7 @@ Feature: Sadqa & Zakat Donations
     And user clicks on Pay Now button for "Sadqa"
     Then donation should be successful
 
-  @Zakat @Smoke
+  @Zakat
   Scenario: Perform Zakat donation
     Given user is logged in and on dashboard for "Zakat"
     When user clicks on Zakat Sadqa button

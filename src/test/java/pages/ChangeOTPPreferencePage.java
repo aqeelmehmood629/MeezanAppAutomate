@@ -3,20 +3,12 @@ package pages;
 import io.appium.java_client.android.AndroidDriver;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
-import org.openqa.selenium.support.ui.ExpectedConditions;
-import org.openqa.selenium.support.ui.WebDriverWait;
 import org.openqa.selenium.JavascriptExecutor;
 
-import java.time.Duration;
-
-public class ChangeOTPPreferencePage {
-
-    private AndroidDriver driver;
-    private WebDriverWait wait;
+public class ChangeOTPPreferencePage extends BasePage {
 
     public ChangeOTPPreferencePage(AndroidDriver driver) {
-        this.driver = driver;
-        this.wait = new WebDriverWait(driver, Duration.ofSeconds(20));
+        super(driver);
     }
 
     // Locator 1
@@ -38,26 +30,21 @@ public class ChangeOTPPreferencePage {
     private By successPopupMessage = By.xpath("//span[contains(text(),'Your OTP Preference has been succesfully changed')]");
 
     public void clickSideMenu() {
-        WebElement element = wait.until(ExpectedConditions.elementToBeClickable(sideMenu));
-        element.click();
+        safeClick(sideMenu);
         System.out.println("Clicked Side Menu");
     }
 
     public void clickSettings() {
-        WebElement element = wait.until(ExpectedConditions.elementToBeClickable(settingsButton));
-        element.click();
+        safeClick(settingsButton);
         System.out.println("Clicked Settings");
     }
 
     public void clickChangeOTPPreference() {
-        WebElement element = wait.until(ExpectedConditions.elementToBeClickable(changeOTPPreference));
-        element.click();
+        safeClick(changeOTPPreference);
         System.out.println("Clicked Change OTP Preference");
     }
 
     public void selectsOptions() {
-
-    WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(20));
 
     WebElement sms = driver.findElement(By.xpath("//input[@id='SMS|rb']"));
     WebElement email = driver.findElement(By.xpath("//input[@id='Email|rb']"));
@@ -77,24 +64,22 @@ public class ChangeOTPPreferencePage {
     }
 
     public void clickSaveChanges() {
-        WebElement element = wait.until(ExpectedConditions.elementToBeClickable(saveChangesButton));
-        element.click();
+        safeClick(saveChangesButton);
         System.out.println("Clicked Save Changes");
     }
 
     public void verifyOTPPreferenceUpdated() {
-        WebElement element = wait.until(
-            ExpectedConditions.visibilityOfElementLocated(successPopupMessage));
+        safeWait(successPopupMessage);
+        WebElement element = driver.findElement(successPopupMessage);
 
     if (element.isDisplayed()) {
 
         System.out.println("OTP Preference updated successfully");
 
         // Click Done button
-        WebElement doneBtn = wait.until(
-                ExpectedConditions.elementToBeClickable(
-                        By.xpath("//span[text()='Done']"))
-        );
+        By doneBtnLoc = By.xpath("//span[text()='Done']");
+        safeWait(doneBtnLoc);
+        WebElement doneBtn = driver.findElement(doneBtnLoc);
 
         ((JavascriptExecutor) driver)
                 .executeScript("arguments[0].click();", doneBtn);

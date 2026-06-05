@@ -1,7 +1,7 @@
 
 Feature: Limit Management
 
-@Limit @NeedsLogin
+@Limit @NeedsLogin @NeedsDashboard
 Scenario Outline: User updates limit for transfer types
     Given user is logged in
     When user clicks Limit Management

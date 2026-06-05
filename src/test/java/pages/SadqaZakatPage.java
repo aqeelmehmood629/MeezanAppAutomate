@@ -2,22 +2,12 @@ package pages;
 
 import io.appium.java_client.android.AndroidDriver;
 import org.openqa.selenium.By;
-import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebElement;
-import org.openqa.selenium.support.ui.ExpectedConditions;
-import org.openqa.selenium.support.ui.WebDriverWait;
 
-import java.time.Duration;
-
-public class SadqaZakatPage {
-
-    AndroidDriver driver;
-    WebDriverWait wait,wait1;
+public class SadqaZakatPage extends BasePage {
 
     public SadqaZakatPage(AndroidDriver driver) {
-        this.driver = driver;
-        this.wait = new WebDriverWait(driver, Duration.ofSeconds(250));
-        this.wait1 = new WebDriverWait(driver, Duration.ofSeconds(40));
+        super(driver);
     }
 
     // 🔹 Locators
@@ -31,14 +21,14 @@ public class SadqaZakatPage {
     By donationSuccessMsg = By.xpath("//android.widget.TextView[@text='Transaction Successful']");
 
     public void clickZakatSadqaBtn() {
-        wait.until(ExpectedConditions.elementToBeClickable(zakatsadqaBtn)).click();
+        safeClick(zakatsadqaBtn, 250);
     }
     public void clickSadqaTab() {
-        wait.until(ExpectedConditions.elementToBeClickable(sadqaTab)).click();
+        safeClick(sadqaTab, 250);
     }
 
     public void searchFoundation(String foundation) {
-        WebElement element = wait.until(ExpectedConditions.visibilityOfElementLocated(searchBox));
+        WebElement element = safeWait(searchBox, 250);
         element.click();
         
         try { Thread.sleep(500); } catch (Exception e) {} // Wait for keyboard and focus
@@ -64,26 +54,26 @@ public class SadqaZakatPage {
     public void selectFoundation(String foundation) {
         By locator = By.xpath("//android.widget.TextView[contains(@text,'" + foundation.trim() + "')]");
 
-        wait.until(ExpectedConditions.visibilityOfElementLocated(locator));
-        wait.until(ExpectedConditions.elementToBeClickable(locator)).click();
+        safeWait(locator, 250);
+        safeClick(locator, 250);
     }
     public void enterAmount(String amount) {
-        wait.until(ExpectedConditions.visibilityOfElementLocated(amountField)).sendKeys(amount);
+        safeSendKeys(amountField, amount, 250);
     }
 
     public void clickNext() {
-        wait.until(ExpectedConditions.elementToBeClickable(nextBtn)).click();
+        safeClick(nextBtn, 250);
     }
 
     public void clickSadqaNow() {
-        wait.until(ExpectedConditions.elementToBeClickable(paySadqaBtn)).click();
+        safeClick(paySadqaBtn, 250);
     }
     
     public void clickZakatNow() {
-        wait.until(ExpectedConditions.elementToBeClickable(payZakatBtn)).click();
+        safeClick(payZakatBtn, 250);
     }
 
     public void waitForDonationSuccess() {
-        wait.until(ExpectedConditions.visibilityOfElementLocated(donationSuccessMsg));
+        safeWait(donationSuccessMsg, 250);
     }
 }

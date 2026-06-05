@@ -1,7 +1,7 @@
 
 Feature: Submit Feedback
   
-  @Feedback @NeedsLogin @Smoke
+  @Feedback @NeedsLogin @NeedsDashboard
   Scenario: User submits feedback successfully
     Given user is logged in
     And user opens feedback screen

@@ -4,20 +4,12 @@ import io.appium.java_client.android.AndroidDriver;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.interactions.Actions;
-import org.openqa.selenium.support.ui.ExpectedConditions;
-import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.Assert;
 
-import java.time.Duration;
-
-public class RegisterDigitalBankingPage {
-
-    private AndroidDriver driver;
-    private WebDriverWait wait;
+public class RegisterDigitalBankingPage extends BasePage {
 
     public RegisterDigitalBankingPage(AndroidDriver driver) {
-        this.driver = driver;
-        this.wait = new WebDriverWait(driver, Duration.ofSeconds(50));
+        super(driver);
     }
 
     // Locators
@@ -41,28 +33,26 @@ public class RegisterDigitalBankingPage {
 
     // Actions
     public void clickRegister() {
-        wait.until(ExpectedConditions.elementToBeClickable(registerBtn)).click();
+        safeClick(registerBtn, TIMEOUT_LONG);
     }
 
     public void clickRegisterDigitalBanking() {
-        WebDriverWait wait1 = new WebDriverWait(driver, Duration.ofSeconds(5));
-
     By registerDigitalBanking =
             By.xpath("//span[contains(@class,'options') and contains(normalize-space(.),'Register for Digital Banking')]");
 
-    wait1.until(ExpectedConditions.elementToBeClickable(registerDigitalBanking)).click();
+    safeClick(registerDigitalBanking, TIMEOUT_SHORT);
     }
 
     public void enterNic(String nic) {
-        wait.until(ExpectedConditions.visibilityOfElementLocated(nicInput)).sendKeys(nic);
+        safeSendKeys(nicInput, nic, TIMEOUT_LONG);
     }
 
     public void enterAccount(String acc) {
-        wait.until(ExpectedConditions.visibilityOfElementLocated(accountInput)).sendKeys(acc);
+        safeSendKeys(accountInput, acc, TIMEOUT_LONG);
     }
 
     public void clickNext() {
-        wait.until(ExpectedConditions.elementToBeClickable(nextBtn)).click();
+        safeClick(nextBtn, TIMEOUT_LONG);
     }
 
       public void enterOTP(String otp) {
@@ -80,9 +70,7 @@ public class RegisterDigitalBankingPage {
 
         for (int i = 0; i < 6; i++) {
 
-            WebElement el = wait.until(
-                    ExpectedConditions.visibilityOfElementLocated(fields[i])
-            );
+            WebElement el = safeWait(fields[i], TIMEOUT_LONG);
 
             el.click();
 
@@ -101,14 +89,12 @@ public class RegisterDigitalBankingPage {
     }
 
     public void setUsername(String username) {
-        WebElement el = wait.until(ExpectedConditions.visibilityOfElementLocated(usernameInput));
-        el.clear();
-        el.sendKeys(username);
+        safeSendKeys(usernameInput, username, TIMEOUT_LONG);
     }
 
     public void verifySuccess() {
         Assert.assertTrue(
-                wait.until(ExpectedConditions.visibilityOfElementLocated(successMsg)).isDisplayed(),
+                safeWait(successMsg, TIMEOUT_LONG).isDisplayed(),
                 "Registration failed"
         );
     }

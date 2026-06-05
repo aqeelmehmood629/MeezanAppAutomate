@@ -2,21 +2,12 @@ package pages;
 
 import io.appium.java_client.android.AndroidDriver;
 
-import java.time.Duration;
-
 import org.openqa.selenium.By;
-import org.openqa.selenium.WebElement;
-import org.openqa.selenium.support.ui.ExpectedConditions;
-import org.openqa.selenium.support.ui.WebDriverWait;
 
-public class EnableQuickViewBalPage {
-
-	AndroidDriver driver;
-    WebDriverWait wait;
+public class EnableQuickViewBalPage extends BasePage {
 
     public EnableQuickViewBalPage(AndroidDriver driver) {
-    	this.wait = new WebDriverWait(driver, Duration.ofSeconds(250));
-        this.driver = driver;
+    	super(driver);
     }
 
     // Locators (update with real resource-ids if available)
@@ -31,29 +22,28 @@ public class EnableQuickViewBalPage {
     // Actions
     public void clickSideMenuForEnableQucikViewBal() {
     	
-        	wait.until(ExpectedConditions.elementToBeClickable(sideMenu)).click();
+        	safeClick(sideMenu, 250);
         }
     
 
     public void clickSettingsForEnableQucikViewBal() {
-    	wait.until(ExpectedConditions.elementToBeClickable(settings)).click();
+    	safeClick(settings, 250);
     }
 
     public void clickQuickViewBalanceForEnableQucikViewBal() {
-    	wait.until(ExpectedConditions.elementToBeClickable(quickViewBalance)).click();
+    	safeClick(quickViewBalance, 250);
     }
 
     public void toggleQuickViewForEnableQucikViewBal() {
-    	wait.until(ExpectedConditions.elementToBeClickable(toggleBtn)).click();
+    	safeClick(toggleBtn, 250);
     }
     By header = By.xpath("//android.widget.TextView[@text='Quick View Balance']");
 
     public void waitForQuickViewScreen() {
-        new WebDriverWait(driver, Duration.ofSeconds(10))
-            .until(ExpectedConditions.visibilityOfElementLocated(header));
+        safeWait(header, TIMEOUT_SHORT);
     }
     public void clickHomeIconViewBal() {
-    	wait.until(ExpectedConditions.elementToBeClickable(clickHomeIconViewBalBtn)).click();
+    	safeClick(clickHomeIconViewBalBtn, 250);
     	
     }
 }

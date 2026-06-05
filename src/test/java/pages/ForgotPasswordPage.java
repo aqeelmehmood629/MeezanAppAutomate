@@ -4,18 +4,11 @@ import driver.DriverFactory;
 import io.appium.java_client.android.AndroidDriver;
 import org.openqa.selenium.*;
 import org.openqa.selenium.interactions.Actions;
-import org.openqa.selenium.support.ui.*;
 
-import java.time.Duration;
-
-public class ForgotPasswordPage {
-
-    private AndroidDriver driver;
-    private WebDriverWait wait;
+public class ForgotPasswordPage extends BasePage {
 
     public ForgotPasswordPage(AndroidDriver driver) {
-        this.driver = driver;
-        wait = new WebDriverWait(driver, Duration.ofSeconds(250));
+        super(driver);
     }
 
     // ========= LOCATORS =========
@@ -39,23 +32,19 @@ public class ForgotPasswordPage {
     // ========= ACTIONS =========
 
     public void clickForgotPassword() {
-        wait.until(ExpectedConditions.elementToBeClickable(forgotPasswordBtn)).click();
+        safeClick(forgotPasswordBtn, 250);
     }
 
     public void enterCNIC(String cnic) {
-        WebElement el = wait.until(ExpectedConditions.visibilityOfElementLocated(cnicField));
-        el.clear();
-        el.sendKeys(cnic);
+        safeSendKeys(cnicField, cnic, 250);
     }
 
     public void enterAccountNumber(String acc) {
-        WebElement el = wait.until(ExpectedConditions.visibilityOfElementLocated(accountField));
-        el.clear();
-        el.sendKeys(acc);
+        safeSendKeys(accountField, acc, 250);
     }
 
     public void clickNext() {
-        wait.until(ExpectedConditions.elementToBeClickable(nextBtn)).click();
+        safeClick(nextBtn, 250);
     }
     public void enterOTP(String otp) {
 
@@ -72,9 +61,8 @@ public class ForgotPasswordPage {
 
         for (int i = 0; i < 6; i++) {
 
-            WebElement el = wait.until(
-                    ExpectedConditions.visibilityOfElementLocated(fields[i])
-            );
+            safeWait(fields[i], 250);
+            WebElement el = driver.findElement(fields[i]);
 
             el.click();
 
@@ -99,23 +87,21 @@ public class ForgotPasswordPage {
     }
 
     public void clickProcess() {
-        wait.until(ExpectedConditions.elementToBeClickable(processBtn)).click();
+        safeClick(processBtn, 250);
     }
 
     public void enterNewPassword(String pass) {
-        WebElement el = wait.until(ExpectedConditions.visibilityOfElementLocated(newPasswordField));
-        el.sendKeys(pass);
+        safeSendKeys(newPasswordField, pass, 250);
     }
 
     public void reEnterPassword(String pass) {
-        WebElement el = wait.until(ExpectedConditions.visibilityOfElementLocated(confirmPasswordField));
-        el.sendKeys(pass);
+        safeSendKeys(confirmPasswordField, pass, 250);
     }
 
     public void clickResetPassword() {
-        wait.until(ExpectedConditions.elementToBeClickable(resetBtn)).click();
+        safeClick(resetBtn, 250);
     }
     public void verifySuccessMsg() {
-        wait.until(ExpectedConditions.elementToBeClickable(verifySuccessMsgBtn)).click();
+        safeClick(verifySuccessMsgBtn, 250);
     }
 }

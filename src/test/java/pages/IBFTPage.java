@@ -1,29 +1,19 @@
 package pages;
 
-import io.appium.java_client.AppiumDriver;
 import org.openqa.selenium.By;
 import io.appium.java_client.android.nativekey.AndroidKey;
 import io.appium.java_client.android.nativekey.KeyEvent;
-import org.openqa.selenium.support.ui.ExpectedConditions;
-import org.openqa.selenium.support.ui.WebDriverWait;
 import utils.CSVUtils;
 
-import java.time.Duration;
-import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-import utils.HybridAppStabilizer;
 import org.openqa.selenium.WebElement;
 import io.appium.java_client.android.AndroidDriver;
 
-public class IBFTPage {
-
-    AndroidDriver driver;
-    WebDriverWait wait;
+public class IBFTPage extends BasePage {
 
     public IBFTPage(AndroidDriver driver) {
-        this.driver = driver;
-        this.wait = new WebDriverWait(driver, Duration.ofSeconds(20));
+        super(driver);
     }
 
     // =========================
@@ -45,18 +35,17 @@ public class IBFTPage {
     // =========================
 
     public void clickSendMoneyIBFT() {
-        wait.until(ExpectedConditions.elementToBeClickable(sendMoney)).click();
+        safeClick(sendMoney);
     }
 
     public void clickNewAccountIBFT() {
-        wait.until(ExpectedConditions.elementToBeClickable(newAccount)).click();
+        safeClick(newAccount);
     }
 
     public void searchBankIBFT(String bankName) {
-        HybridAppStabilizer.ensureNative(driver);
+        ensureNativeContext();
 
-        WebElement search = wait.until(
-                ExpectedConditions.visibilityOfElementLocated(searchBank));
+        WebElement search = safeWait(searchBank);
 
         search.click();
         search.clear();
@@ -83,7 +72,7 @@ public class IBFTPage {
                 "//android.widget.TextView[contains(translate(@text, 'ABCDEFGHIJKLMNOPQRSTUVWXYZ', 'abcdefghijklmnopqrstuvwxyz'), '" + lowerBankName + "')]"
         );
 
-        wait.until(ExpectedConditions.visibilityOfElementLocated(bankResult));
+        safeWait(bankResult);
         System.out.println("✅ Bank list refreshed and '" + bankName + "' is visible.");
     }
 
@@ -91,35 +80,29 @@ public class IBFTPage {
     public void selectBankIBFT(String bankName) {
         String lowerBankName = bankName.toLowerCase();
         By bank = By.xpath("//android.widget.TextView[contains(translate(@text, 'ABCDEFGHIJKLMNOPQRSTUVWXYZ', 'abcdefghijklmnopqrstuvwxyz'), '" + lowerBankName + "')]");
-        wait.until(ExpectedConditions.elementToBeClickable(bank)).click();
+        safeClick(bank);
     }
 
     public void enterAccountIBFT(String account) {
-        WebElement element = wait.until(ExpectedConditions.elementToBeClickable(accountField));
-        element.click();
-        element.clear();
-        element.sendKeys(account);
-        HybridAppStabilizer.hideKeyboard(driver);
+        safeSendKeys(accountField, account);
+        hideKeyboard();
     }
     
     public void fetchDetails() {
-    	wait.until(ExpectedConditions.elementToBeClickable(fetchAccountDetails)).click();
+    	safeClick(fetchAccountDetails);
     }
 
     public void clickNextIBFT() {
-        wait.until(ExpectedConditions.elementToBeClickable(next)).click();
+        safeClick(next);
     }
 
     public void enterAmountIBFT(String amount) {
-        WebElement element = wait.until(ExpectedConditions.elementToBeClickable(amountField));
-        element.click();
-        element.clear();
-        element.sendKeys(amount);
-        HybridAppStabilizer.hideKeyboard(driver);
+        safeSendKeys(amountField, amount);
+        hideKeyboard();
     }
 
     public void clickSendNowIBFT() {
-        wait.until(ExpectedConditions.elementToBeClickable(sendNow)).click();
+        safeClick(sendNow);
     }
 
     // =========================
@@ -154,7 +137,7 @@ public class IBFTPage {
 
     public boolean isTransactionSuccessful() {
         try {
-            wait.until(ExpectedConditions.visibilityOfElementLocated(successMsg));
+            safeWait(successMsg);
             return true;
         } catch (Exception e) {
             return false;

@@ -2,21 +2,16 @@ package pages;
 
 import driver.DriverFactory;
 import io.appium.java_client.MobileBy;
-import io.appium.java_client.android.AndroidDriver;
 import org.openqa.selenium.*;
 import org.openqa.selenium.support.ui.*;
 
 import java.time.Duration;
 import java.util.List;
 
-public class FeedbackPage {
-
-    private AndroidDriver driver;
-    private WebDriverWait wait;
+public class FeedbackPage extends BasePage {
 
     public FeedbackPage() {
-        driver = DriverFactory.getDriver();
-        wait = new WebDriverWait(driver, Duration.ofSeconds(250));
+        super(DriverFactory.getDriver());
     }
 
     private By submitBtn = By.xpath("//android.widget.Button[@text=\"Submit\"]");
@@ -30,7 +25,7 @@ public class FeedbackPage {
                         + ".scrollIntoView(new UiSelector().text(\"Feedback\"))"
         ));
 
-        wait.until(ExpectedConditions.elementToBeClickable(feedbackBtn)).click();
+        safeClick(feedbackBtn, 250);
 
         System.out.println("✅ Feedback button clicked after scroll");
     }
@@ -41,7 +36,7 @@ public class FeedbackPage {
 
         By stars = By.xpath("//android.widget.Image[@content-desc='mzn-image']");
 
-        List<WebElement> starList = wait.until(
+        List<WebElement> starList = new WebDriverWait(driver, Duration.ofSeconds(250)).until(
                 ExpectedConditions.visibilityOfAllElementsLocatedBy(stars)
         );
 
@@ -55,19 +50,16 @@ public class FeedbackPage {
     }
 
     public void enterFeedbackText(String text) {
-        WebElement el = wait.until(ExpectedConditions.visibilityOfElementLocated(feedbackTextField));
-        el.click();
-        el.clear();
-        el.sendKeys(text);
+        safeSendKeys(feedbackTextField, text, 250);
         System.out.println("📝 Feedback entered: " + text);
     }
 
     public void clickSubmit() {
-        wait.until(ExpectedConditions.elementToBeClickable(submitBtn)).click();
+        safeClick(submitBtn, 250);
     }
     public void feedbackHomeClick() {
     	
-    	wait.until(ExpectedConditions.elementToBeClickable(feedbackHomeClickBtn)).click();
+    	safeClick(feedbackHomeClickBtn, 250);
     	
     }
 }

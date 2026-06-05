@@ -208,6 +208,7 @@ public class HybridAppStabilizer {
                 }
 
             } catch (Exception ignored) {}
+            
 
             sleep(POLL);
         }

@@ -7,18 +7,14 @@ import org.openqa.selenium.*;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 import driver.DriverFactory;
+import utils.HybridAppStabilizer;
 
 import java.time.Duration;
 
-public class FundsTransferPage {
-
-    private AndroidDriver driver;
-    private WebDriverWait wait,wait1;
+public class FundsTransferPage extends BasePage {
 
     public FundsTransferPage(AndroidDriver driver) {
-        this.driver = driver;
-        this.wait = new WebDriverWait(driver, Duration.ofSeconds(250));
-        this.wait1 = new WebDriverWait(driver, Duration.ofSeconds(5));
+        super(driver);
     }
 
     // ================= LOCATORS =================
@@ -53,12 +49,12 @@ public class FundsTransferPage {
 
     // ================= DASHBOARD =================
     public void waitForDashboardToLoad() {
-        wait.until(ExpectedConditions.visibilityOfElementLocated(sendMoneyBtn));
+        safeWait(sendMoneyBtn, 250);
     }
 
     public boolean isSendMoneyButtonVisible() {
         try {
-            return wait.until(ExpectedConditions.visibilityOfElementLocated(sendMoneyBtn)).isDisplayed();
+            return safeWait(sendMoneyBtn, 250).isDisplayed();
         } catch (Exception e) {
             System.out.println("❌ Send Money not visible");
             return false;
@@ -66,13 +62,13 @@ public class FundsTransferPage {
     }
 
     public void clickSendMoney() {
-        wait.until(ExpectedConditions.elementToBeClickable(sendMoneyBtn)).click();
+        safeClick(sendMoneyBtn, 250);
         waitForPageLoad();
         System.out.println("✅ Clicked Send Money");
     }
     public void selectOwnAccount() {
 
-        wait.until(ExpectedConditions.elementToBeClickable(ownAccount)).click();
+        safeClick(ownAccount, 250);
         waitForPageLoad();
 
         System.out.println("✅ Own Account Selected");
@@ -80,44 +76,37 @@ public class FundsTransferPage {
 
     // ================= ACCOUNT & AMOUNT =================
     public void selectAccount(String account) {
-        wait.until(ExpectedConditions.elementToBeClickable(accountOption(account))).click();
+        safeClick(accountOption(account), 250);
         waitForPageLoad();
         System.out.println("✅ Account Selected: " + account);
     }
 
     public void enterAmount(String amount) {
-        WebElement el = wait.until(ExpectedConditions.visibilityOfElementLocated(amountField));
-        el.clear();
-        el.sendKeys(amount);
+        safeSendKeys(amountField, amount, 250);
         System.out.println("✅ Amount Entered: " + amount);
     }
 
     // ================= PURPOSE DROPDOWN =================
     public void clickPurposeDropdown() {
-        driver.context("NATIVE_APP");
-        WebElement dropdown = wait1.until(ExpectedConditions.elementToBeClickable(purposeDropdown));
-        dropdown.click();
+        ensureNativeContext();
+        safeClick(purposeDropdown, TIMEOUT_SHORT);
     }
 
     public void enterPurposeOfTransfer(String purpose) {
-        WebElement search = wait.until(ExpectedConditions.visibilityOfElementLocated(searchBox));
-        search.click();
-        search.clear();
-        search.sendKeys(purpose);
+        safeSendKeys(searchBox, purpose, 250);
         System.out.println("✅ Purpose typed: " + purpose);
     }
 
     public void selectPurposeDynamically(String purpose) {
         try {
-            driver.context("NATIVE_APP");
+            ensureNativeContext();
 
             driver.findElement(MobileBy.AndroidUIAutomator(
                     "new UiScrollable(new UiSelector().scrollable(true))" +
                     ".scrollIntoView(new UiSelector().text(\"" + purpose + "\"))"
             ));
 
-            WebElement purposeOptionEl = wait1.until(ExpectedConditions.elementToBeClickable(purposeOption(purpose)));
-            purposeOptionEl.click();
+            safeClick(purposeOption(purpose), TIMEOUT_SHORT);
             System.out.println("✅ Purpose Selected Dynamically: " + purpose);
 
         } catch (Exception e) {
@@ -127,16 +116,16 @@ public class FundsTransferPage {
 
     // ================= NEXT & SEND =================
     public void clickNext() {
-        wait.until(ExpectedConditions.elementToBeClickable(nextBtn)).click();
+        safeClick(nextBtn, 250);
     }
 
     public void clickSendNow() {
-        wait.until(ExpectedConditions.elementToBeClickable(sendNowBtn)).click();
+        safeClick(sendNowBtn, 250);
     }
 
     public boolean isTransactionSuccessful() {
         try {
-            wait.until(ExpectedConditions.visibilityOfElementLocated(successMsg));
+            safeWait(successMsg, 250);
             return true;
         } catch (Exception e) {
             return false;
@@ -160,24 +149,18 @@ public class FundsTransferPage {
         }
     }
     public void waitForPurposeScreen() {
-        wait.until(ExpectedConditions.visibilityOfElementLocated(purposeDropdown));
+        safeWait(purposeDropdown, 250);
     }
     public void selectPurpose(String type, String value) {
 
         if (type.equalsIgnoreCase("FT")) {
 
             // 🔹 FT: SEARCH + SELECT
-            WebElement search = wait.until(
-                    ExpectedConditions.visibilityOfElementLocated(searchBox)
-            );
-
-            search.click();
-            search.clear();
-            search.sendKeys(value);
+            safeSendKeys(searchBox, value, 250);
 
             By option = By.xpath("//android.widget.TextView[@text='" + value + "']");
 
-            wait.until(ExpectedConditions.elementToBeClickable(option)).click();
+            safeClick(option, 250);
 
             System.out.println("✅ FT purpose selected: " + value);
 
@@ -187,42 +170,37 @@ public class FundsTransferPage {
 
             By dropdown = By.xpath("//android.widget.EditText[contains(@resource-id,'bottomButton')]");
 
-            wait.until(ExpectedConditions.elementToBeClickable(dropdown)).click();
+            safeClick(dropdown, 250);
 
             By option = By.xpath("//android.widget.TextView[@text='" + value + "']");
 
-            wait.until(ExpectedConditions.elementToBeClickable(option)).click();
+            safeClick(option, 250);
 
             System.out.println("✅ FTOwn purpose selected: " + value);
         }
     }
     public void openFTOwnPurposeDropdown() {
 
-        driver.context("NATIVE_APP");
+        ensureNativeContext();
 
-        WebElement dropdown = wait.until(
-                ExpectedConditions.elementToBeClickable(
-                        By.xpath("//android.widget.EditText[contains(@resource-id,'bottomButton')]")
-                )
-        );
+        safeClick(By.xpath("//android.widget.EditText[contains(@resource-id,'bottomButton')]"), 250);
 
-        dropdown.click();
         System.out.println("✅ FTOwn purpose dropdown opened");
     }
     public void openRaastPayment() {
-        wait.until(ExpectedConditions.elementToBeClickable(raastPymentBtn)).click();
+        safeClick(raastPymentBtn, 250);
         waitForPageLoad();
         System.out.println("✅ Raast Payment Screen Opened");
     }
     
     public void raastSendNowBtn() {
-        wait.until(ExpectedConditions.elementToBeClickable(raastSendnowBtn)).click();
+        safeClick(raastSendnowBtn, 250);
         waitForPageLoad();
         System.out.println("✅ Raast Send now Button Clicked");
 }
 
     public void raastclickpurposeDropdown() {
-        wait1.until(ExpectedConditions.elementToBeClickable(raastclickpurposeDropdownBtn)).click();
+        safeClick(raastclickpurposeDropdownBtn, TIMEOUT_SHORT);
         waitForPageLoad();
         System.out.println("✅ Raast Payment click purpose dropdown");
 }
@@ -244,7 +222,7 @@ public class FundsTransferPage {
     }
     public void clickShowBalance() {
     	
-    	wait.until(ExpectedConditions.elementToBeClickable(showBal)).click();
+    	safeClick(showBal, 250);
     	System.out.println("✅ Show Balance Clicked");
         
     	

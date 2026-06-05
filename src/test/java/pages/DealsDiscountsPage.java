@@ -1,21 +1,12 @@
 package pages;
 
-import io.appium.java_client.android.AndroidDriver;
 import org.openqa.selenium.By;
-import org.openqa.selenium.support.ui.ExpectedConditions;
-import org.openqa.selenium.support.ui.WebDriverWait;
 import driver.DriverFactory;
 
-import java.time.Duration;
-
-public class DealsDiscountsPage {
-
-    private AndroidDriver driver;
-    private WebDriverWait wait;
+public class DealsDiscountsPage extends BasePage {
 
     public DealsDiscountsPage() {
-        this.driver = DriverFactory.getDriver();
-        this.wait = new WebDriverWait(driver, Duration.ofSeconds(250));
+        super(DriverFactory.getDriver());
     }
 
     // ================= LOCATORS =================
@@ -31,17 +22,17 @@ public class DealsDiscountsPage {
     // ================= ACTIONS =================
 
     public void clickSideMenu() {
-        wait.until(ExpectedConditions.elementToBeClickable(sideMenu)).click();
+        safeClick(sideMenu, 250);
         System.out.println("✅ Side menu clicked");
     }
 
     public void clickDeals() {
-        wait.until(ExpectedConditions.elementToBeClickable(dealsOption)).click();
+        safeClick(dealsOption, 250);
         System.out.println("✅ Deals clicked");
     }
 
     public void clickBackBtn() {
-    	wait.until(ExpectedConditions.elementToBeClickable(backBtn)).click();
+    	safeClick(backBtn, 250);
         System.out.println("✅ Back Button clicked");	
     }
-    }
+}

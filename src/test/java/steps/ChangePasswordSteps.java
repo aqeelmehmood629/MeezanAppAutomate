@@ -13,7 +13,7 @@ public class ChangePasswordSteps {
 
     private void init() {
         if (page == null) {
-            page = new ChangePasswordPage();
+            page = new ChangePasswordPage(driver.DriverFactory.getDriver());
         }
     }
 

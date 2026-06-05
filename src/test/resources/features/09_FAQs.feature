@@ -1,6 +1,6 @@
 Feature: FAQs Feature
   
-  @FAQs @NeedsLogin @Smoke
+  @FAQs @NeedsLogin @NeedsDashboard
   Scenario: View FAQs
     Given user is logged in
     And user is on dashboard screen for faqs

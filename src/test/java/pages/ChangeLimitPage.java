@@ -1,24 +1,16 @@
 package pages;
 
-import io.appium.java_client.AppiumDriver;
+import io.appium.java_client.android.AndroidDriver;
 import utils.CSVUtils;
 
 import org.openqa.selenium.By;
-import org.openqa.selenium.support.ui.ExpectedConditions;
-import org.openqa.selenium.support.ui.WebDriverWait;
-
-import java.time.Duration;
 import java.util.List;
 import java.util.Map;
 
-public class ChangeLimitPage {
+public class ChangeLimitPage extends BasePage {
 
-    AppiumDriver driver;
-    WebDriverWait wait;
-
-    public ChangeLimitPage(AppiumDriver driver) {
-        this.driver = driver;
-        this.wait = new WebDriverWait(driver, Duration.ofSeconds(20));
+    public ChangeLimitPage(AndroidDriver driver) {
+        super(driver);
     }
 
     // =========================
@@ -38,7 +30,7 @@ public class ChangeLimitPage {
     public void clickLimitManagement() {
 
         By limitBtn = By.xpath("//android.widget.Button[@text='Limit Management']");
-        wait.until(ExpectedConditions.elementToBeClickable(limitBtn)).click();
+        safeClick(limitBtn);
     }
 
     public void selectLimitType(String type) {
@@ -46,15 +38,15 @@ public class ChangeLimitPage {
         switch (type.toLowerCase()) {
 
             case "meezantomeezan":
-                wait.until(ExpectedConditions.elementToBeClickable(meezanBymeezan)).click();
+                safeClick(meezanBymeezan);
                 break;
 
             case "meezanto1link":
-                wait.until(ExpectedConditions.elementToBeClickable(meezanBy1Link)).click();
+                safeClick(meezanBy1Link);
                 break;
 
             case "meezantoraast":
-                wait.until(ExpectedConditions.elementToBeClickable(meezanByRaast)).click();
+                safeClick(meezanByRaast);
                 break;
 
             default:
@@ -71,11 +63,11 @@ public class ChangeLimitPage {
     }
 
     public void selectAmount(String amount) {
-        wait.until(ExpectedConditions.elementToBeClickable(getAmountLocator(amount))).click();
+        safeClick(getAmountLocator(amount));
     }
 
     public void clickApply() {
-        wait.until(ExpectedConditions.elementToBeClickable(applyBtn)).click();
+        safeClick(applyBtn);
     }
     public void updateLimitsFromCSV(String csvPath) {
 
@@ -99,7 +91,7 @@ public class ChangeLimitPage {
 
             // Try Increase first
             try {
-                wait.until(ExpectedConditions.elementToBeClickable(increaseBtn)).click();
+                safeClick(increaseBtn);
                 return true;
             } catch (Exception e) {
                 System.out.println("Increase button not found, trying decrease...");
@@ -107,7 +99,7 @@ public class ChangeLimitPage {
 
             // Try Decrease if Increase fails
             try {
-                wait.until(ExpectedConditions.elementToBeClickable(decreaseBtn)).click();
+                safeClick(decreaseBtn);
                 return true;
             } catch (Exception e) {
                 System.out.println("Decrease button also not found");
@@ -120,7 +112,7 @@ public class ChangeLimitPage {
         }
     }
     public void clickHomeIconLimit() {
-    	wait.until(ExpectedConditions.elementToBeClickable((clickHomeIconLimitBtn))).click();
+    	safeClick(clickHomeIconLimitBtn);
     	
     }
     

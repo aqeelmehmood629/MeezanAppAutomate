@@ -1,23 +1,14 @@
 package pages;
 
-import java.time.Duration;
-
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
-import org.openqa.selenium.support.ui.ExpectedConditions;
-import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.Assert;
-import driver.DriverFactory;
 import io.appium.java_client.android.AndroidDriver;
 
-public class EnableDisableAccountsPage {
-	
-	private AndroidDriver driver;
-    private WebDriverWait wait;
+public class EnableDisableAccountsPage extends BasePage {
 	
 	public EnableDisableAccountsPage(AndroidDriver driver) {
-        this.driver =driver;
-        this.wait = new WebDriverWait(driver, Duration.ofSeconds(250));
+        super(driver);
     }
 
     // Locators
@@ -35,28 +26,28 @@ public class EnableDisableAccountsPage {
     private By clickAccountHomeIcon = By.xpath("//android.widget.Image[@resource-id='home-icon']");
 
     public void accountsSideMenu() {
-            wait.until(ExpectedConditions.elementToBeClickable(sideMenuAccounts)).click();
+            safeClick(sideMenuAccounts);
             System.out.println("✅ Side menu clicked");
         }
     
 
     public void clickSettings() {
-    	wait.until(ExpectedConditions.elementToBeClickable(settingsOptionAccounts)).click();
+    	safeClick(settingsOptionAccounts);
         System.out.println("✅ Setting menu clicked");
     }
 
     public void clickAccountManagement() {
-    	wait.until(ExpectedConditions.elementToBeClickable(accountManagement)).click();
+    	safeClick(accountManagement);
         System.out.println("✅ clicked Account Management Button");
     }
 
     public void deselectAccountManagement() {
-    	wait.until(ExpectedConditions.elementToBeClickable(deselect)).click();
+    	safeClick(deselect);
         System.out.println("✅ Disable Account");
     }
 
     public void clickSaveChanges() {
-    	wait.until(ExpectedConditions.elementToBeClickable(saveChangesAccounts)).click();
+    	safeClick(saveChangesAccounts);
         System.out.println("✅ Clicked Save Changes Button");
     }
 
@@ -66,8 +57,7 @@ public class EnableDisableAccountsPage {
 
     try {
 
-        WebElement unlinked = wait.until(
-                ExpectedConditions.visibilityOfElementLocated(unlinkedStatus));
+        WebElement unlinked = safeWait(unlinkedStatus, 250);
 
         if (unlinked.isDisplayed()) {
             statusFound = true;
@@ -78,8 +68,7 @@ public class EnableDisableAccountsPage {
 
         try {
 
-            WebElement linked = wait.until(
-                    ExpectedConditions.visibilityOfElementLocated(linkedStatus));
+            WebElement linked = safeWait(linkedStatus, 250);
 
             if (linked.isDisplayed()) {
                 statusFound = true;
@@ -95,7 +84,7 @@ public class EnableDisableAccountsPage {
 }
     public void accountclickHome() {
     	
-    	wait.until(ExpectedConditions.elementToBeClickable(clickAccountHomeIcon)).click();
+    	safeClick(clickAccountHomeIcon);
     	
     }
 }

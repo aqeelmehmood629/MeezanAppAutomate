@@ -1,7 +1,7 @@
-@NeedsLogin
+@NeedsLogin @NeedsDashboard
 Feature: Fund Transfer
 
-@FT @Smoke
+@FT
 Scenario: Transfer funds to Meezan Bank account
     Given user is logged in
     And user navigate to send money
@@ -16,7 +16,7 @@ Scenario: Transfer funds to Meezan Bank account
     Then transaction should be successful
     
     
-@FTOwn @Smoke
+@FTOwn
 Scenario: Transfer funds to Own Account
     Given user is logged in
     And user navigate to send money for ftown
@@ -29,7 +29,7 @@ Scenario: Transfer funds to Own Account
     And user clicks Send Now button for ftown
     Then transaction should be successful for ftown
     
-@Raast @Smoke
+@Raast
 Scenario: Perform Raast payment successfully
     Given user is logged in
     And user navigates to Raast payment screen for Raast Payment

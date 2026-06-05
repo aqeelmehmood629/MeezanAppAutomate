@@ -5,44 +5,48 @@ import io.appium.java_client.android.AndroidDriver;
 import org.openqa.selenium.By;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
+import utils.PopupHandler;
+
 import java.time.Duration;
 
-public class DashboardPage {
+/**
+ * 🏠 DashboardPage — extends BasePage for popup-aware safe interactions.
+ */
+public class DashboardPage extends BasePage {
 
-    private AndroidDriver driver;
-    private WebDriverWait wait,wait1;
+    private WebDriverWait longWait;
+    private WebDriverWait shortWait;
+
     public DashboardPage(AndroidDriver driver) {
-        this.driver = driver;
-        this.wait = new WebDriverWait(driver, Duration.ofSeconds(300));
-        this.wait1 = new WebDriverWait(driver, Duration.ofSeconds(30));
+        super(driver, 30); // BasePage wait = 30s
+        this.longWait = new WebDriverWait(driver, Duration.ofSeconds(300));
+        this.shortWait = new WebDriverWait(driver, Duration.ofSeconds(5));
     }
 
-    // 🔹 Locator for Show Balance button
+    // 🔹 Locators
     private By showBalanceBtn = By.xpath("//android.widget.TextView[@text='SHOW BALANCE']");
     private By showBalanceBtn2 = By.xpath("//android.widget.TextView[contains(@text,'PKR')]");
     private By homeIcon = By.xpath("//android.widget.Image[contains(@text,'home-icon')]");
-    
+
     public void goToDashboard() {
         clickHome();
         clickShowBalance();
         System.out.println("✅ Home → Show Balance flow completed");
     }
 
-    // 🔹 Click Home
+    // 🔹 Click Home — now popup-aware via safeClick
     public void clickHome() {
-        wait.until(ExpectedConditions.elementToBeClickable(homeIcon)).click();
+        safeClick(homeIcon, 300);
         System.out.println("🏠 Home icon clicked");
     }
 
     // 🔹 Click Show Balance
     public void clickShowBalance() {
-    	try {
-            wait1.until(ExpectedConditions.elementToBeClickable(showBalanceBtn)).click();
+        try {
+            safeClick(showBalanceBtn, 30);
             System.out.println("👁️ Show Balance clicked using first locator");
-
         } catch (Exception e) {
-
-            wait1.until(ExpectedConditions.elementToBeClickable(showBalanceBtn2)).click();
+            safeClick(showBalanceBtn2, 30);
             System.out.println("👁️ Show Balance clicked using second locator");
         }
     }
@@ -59,7 +63,9 @@ public class DashboardPage {
                 driver.context("NATIVE_APP");
             }
 
-            WebDriverWait shortWait = new WebDriverWait(driver, Duration.ofSeconds(5));
+            // Check for popup first — if present, dashboard may be hidden behind it
+            PopupHandler.handlePopupIfPresent(driver);
+
             return shortWait.until(ExpectedConditions.visibilityOfElementLocated(showBalanceBtn)).isDisplayed();
         } catch (Exception e) {
             return false;

@@ -1,22 +1,14 @@
 package pages;
 
-import io.appium.java_client.AppiumDriver;
 import io.appium.java_client.android.AndroidDriver;
 
-import java.time.Duration;
-
 import org.openqa.selenium.By;
-import org.openqa.selenium.support.ui.ExpectedConditions;
-import org.openqa.selenium.support.ui.WebDriverWait;
 
-public class LogoutPage {
+public class LogoutPage extends BasePage {
 
-    AppiumDriver driver;
-    WebDriverWait wait;
-    public LogoutPage(AppiumDriver driver) {
-        this.driver = driver;
-        this.wait = new WebDriverWait(driver, Duration.ofSeconds(250));
-        ((AndroidDriver) driver).getCurrentPackage();
+    public LogoutPage(AndroidDriver driver) {
+        super(driver);
+        driver.getCurrentPackage();
     }
 
     // Logout icon locator (update as per app)
@@ -24,7 +16,7 @@ public class LogoutPage {
     By usernameText = By.id("login_username");
 
     public void clickLogout() {
-    	wait.until(ExpectedConditions.elementToBeClickable(logoutIcon)).click();
+    	safeClick(logoutIcon, 250);
     }
     
     public boolean isUsernameDisplayed() {

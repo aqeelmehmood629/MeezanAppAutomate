@@ -56,7 +56,7 @@ public class DriverFactory {
 			caps.setCapability("autoGrantPermissions", true);
 			caps.setCapability("adbExecTimeout", 120000);
 			caps.setCapability("uiautomator2ServerLaunchTimeout", 180000);
-			caps.setCapability("newCommandTimeout", 300);
+			caps.setCapability("newCommandTimeout", 600);
 			caps.setCapability("enforceXPath1", true);
 			caps.setCapability("unlockType", "pin");
 			caps.setCapability("unlockKey", "0000");
@@ -121,5 +121,41 @@ public class DriverFactory {
 			e.printStackTrace();
 			driver = null;
 		}
+	}
+
+	/**
+	 * 🔄 RECOVER driver after a mid-scenario UiAutomator2 crash.
+	 *
+	 * Flow:
+	 *   1. Force quit the dead/unresponsive session
+	 *   2. Reset login state (new session = not logged in)
+	 *   3. Create a fresh driver session via initializeDriver()
+	 *
+	 * Called by BasePage safe methods when interaction failures
+	 * are NOT caused by a popup (i.e., driver itself is dead).
+	 */
+	public static synchronized AndroidDriver recoverDriver() {
+		System.out.println("═══════════════════════════════════════════");
+		System.out.println("🔄 DRIVER RECOVERY: UiAutomator2 crash detected");
+		System.out.println("═══════════════════════════════════════════");
+
+		// Force quit dead session
+		if (driver != null) {
+			try { driver.quit(); } catch (Exception ignored) {}
+			driver = null;
+		}
+
+		// Reset login state — new session means not logged in
+		utils.LoginHelper.setLoggedIn(false);
+
+		// Create fresh session
+		return initializeDriver();
+	}
+
+	/**
+	 * ✅ Alias for isDriverResponsive() — more descriptive name.
+	 */
+	public static boolean isDriverHealthy() {
+		return isDriverResponsive();
 	}
 }

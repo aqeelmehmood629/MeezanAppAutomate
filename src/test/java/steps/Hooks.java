@@ -8,10 +8,24 @@ import com.aventstack.extentreports.*;
 import utils.ExtentManager;
 import utils.ReportManager;
 import utils.ScreenshotUtil;
+import utils.PopupHandler;
+import utils.ScreenDetector;
+import utils.ScreenDetector.AppScreen;
 import pages.DashboardPage;
 import utils.LoginHelper;
 import utils.HybridAppStabilizer;
 
+/**
+ * 🎯 Hooks — Cucumber lifecycle management.
+ *
+ * Navigation is TAG-DRIVEN (no hardcoded exclusion lists):
+ *   @NeedsLogin       → ensures user is logged in
+ *   @NoNeedLogin      → ensures user is logged out
+ *   @NeedsDashboard   → ensures app is on Dashboard (uses ScreenDetector)
+ *
+ * New modules automatically work without modifying this file.
+ * Just add the appropriate tags to your feature files.
+ */
 public class Hooks {
 
 	private static ExtentReports extent = ExtentManager.getExtentReports();
@@ -19,11 +33,12 @@ public class Hooks {
 	/**
 	 * ✅ @Before: Runs before EVERY scenario
 	 *
-	 * Execution order:
-	 * 1. Initialize or RECOVER driver (detects UiAutomator2 crash and creates new session)
+	 * Flow:
+	 * 1. Initialize or recover driver (detects UiAutomator2 crash)
 	 * 2. Create Extent report test entry
-	 * 3. If scenario has @NeedsLogin tag → perform login
-	 * 4. Navigate to dashboard if needed (for non-excluded scenarios)
+	 * 3. Clear any lingering popup from previous scenario
+	 * 4. If @NeedsLogin → perform login
+	 * 5. If @NeedsDashboard → smart navigate (only if not already there)
 	 */
 	@Before
 	public void setup(Scenario scenario) {
@@ -40,18 +55,21 @@ public class Hooks {
 		System.out.println("Tags: " + scenario.getSourceTagNames());
 		System.out.println("═══════════════════════════════════════════");
 
-		// ✅ Step 3: Tag-based login control
-		// Add @NeedsLogin to any scenario that requires the user to be logged in.
-		// No feature files are modified — tags are checked here at runtime.
+		// ✅ Step 3: Clear any lingering popup from a previous scenario
+		try {
+			PopupHandler.handlePopupIfPresent(driver, "Before Scenario");
+		} catch (Exception ignored) {}
+
+		// ✅ Step 4: Tag-based login control
 		if (scenario.getSourceTagNames().contains("@NeedsLogin")) {
-			System.out.println("🔐 @NeedsLogin tag detected → ensuring login...");
+			System.out.println("🔐 @NeedsLogin → ensuring login...");
 			try {
 				LoginHelper.ensureLoggedIn(driver);
 			} catch (Exception e) {
 				System.out.println("⚠️ Login attempt failed: " + e.getMessage());
 			}
 		} else if (scenario.getSourceTagNames().contains("@NoNeedLogin")) {
-			System.out.println("🔓 @NoNeedLogin tag detected → ensuring logged out state...");
+			System.out.println("🔓 @NoNeedLogin → ensuring logged out...");
 			try {
 				LoginHelper.ensureLoggedOut(driver);
 			} catch (Exception e) {
@@ -59,16 +77,18 @@ public class Hooks {
 			}
 		}
 
-		// ✅ Step 4: Navigate to dashboard before test (for applicable scenarios)
-		ensureDashboardState(scenario, "before");
+		// ✅ Step 5: Smart navigation — only for @NeedsDashboard scenarios
+		smartNavigate(scenario, driver, "before");
 	}
 
 	/**
 	 * ✅ @After: Runs after EVERY scenario
 	 *
-	 * Logs scenario-level PASS/FAIL summary to Extent Report.
-	 * Step-level logging + inline screenshots are handled by CucumberListener.
-	 * All blocks wrapped in try-catch so @After NEVER propagates to next scenario.
+	 * Flow:
+	 * 1. Log scenario result to Extent
+	 * 2. If failed → popup recovery
+	 * 3. Final popup check
+	 * 4. If @NeedsDashboard → smart navigate back to Dashboard
 	 */
 	@After
 	public void tearDown(Scenario scenario) {
@@ -77,10 +97,16 @@ public class Hooks {
 
 		try { Thread.sleep(1000); } catch (Exception ignored) {}
 
-		// ✅ Scenario-level summary (step details already logged by CucumberListener)
+		// ✅ Log scenario result
 		if (scenario.isFailed()) {
 			try {
 				ReportManager.getTest().fail("❌ Scenario FAILED: " + scenarioName);
+			} catch (Exception ignored) {}
+
+			// 🛡️ POPUP RECOVERY: dismiss any error popup left by the failed scenario
+			try {
+				AndroidDriver driver = DriverFactory.getDriver();
+				PopupHandler.handlePopupIfPresent(driver, "After Failed Scenario");
 			} catch (Exception ignored) {}
 		} else {
 			try {
@@ -88,11 +114,18 @@ public class Hooks {
 			} catch (Exception ignored) {}
 		}
 
-		// ✅ Navigate back to dashboard — wrapped so it NEVER kills the next scenario
+		// 🛡️ Final popup check (always — even on pass)
 		try {
-			ensureDashboardState(scenario, "after");
+			AndroidDriver driver = DriverFactory.getDriver();
+			PopupHandler.handlePopupIfPresent(driver, "After Scenario Cleanup");
+		} catch (Exception ignored) {}
+
+		// ✅ Smart navigate back to Dashboard for next scenario
+		try {
+			AndroidDriver driver = DriverFactory.getDriver();
+			smartNavigate(scenario, driver, "after");
 		} catch (Exception e) {
-			System.out.println("⚠️ Post-test dashboard navigation failed (non-fatal): " + e.getMessage());
+			System.out.println("⚠️ Post-test navigation failed (non-fatal): " + e.getMessage());
 		}
 
 		System.out.println("═══════════════════════════════════════════");
@@ -123,47 +156,83 @@ public class Hooks {
 	}
 
 	/**
-	 * ✅ Dynamic Navigation: navigates to Dashboard before/after test.
-	 * Only runs when driver is responsive AND scenario is not excluded.
-	 * Skipped for scenarios that manage their own navigation (Login, Logout, etc).
+	 * 🎯 Smart Navigation — TAG-DRIVEN, SCREEN-AWARE.
+	 *
+	 * Runs only when ALL of these are true:
+	 *   1. Scenario has @NeedsDashboard tag
+	 *   2. User is logged in (LoginHelper.isLoggedIn())
+	 *   3. Driver is responsive
+	 *
+	 * Uses ScreenDetector to check the current screen first:
+	 *   → DASHBOARD  → skips navigation entirely (already there)
+	 *   → LOGIN      → skips (wrong state — ensureLoggedIn should handle this)
+	 *   → UNKNOWN    → navigates to Dashboard via Home icon
+	 *
+	 * After navigation, verifies Dashboard was actually reached.
+	 * All blocks are wrapped in try-catch — never kills the next scenario.
+	 *
+	 * NO hardcoded scenario/tag exclusion list.
+	 * New modules need ZERO changes here — just add @NeedsDashboard to their feature.
 	 */
-	private void ensureDashboardState(Scenario scenario, String phase) {
-		// Scenarios that manage their own navigation — skip dashboard enforcement
-		boolean isExcluded = scenario.getSourceTagNames().contains("@Login")
-				|| scenario.getSourceTagNames().contains("@Dashboard")
-				|| scenario.getSourceTagNames().contains("@FT")
-				|| scenario.getSourceTagNames().contains("@Logout")
-				|| scenario.getSourceTagNames().contains("@ChangePassword")
-				|| scenario.getSourceTagNames().contains("@Feedback")
-				|| scenario.getSourceTagNames().contains("@AccountEnableDisable")
-				|| scenario.getSourceTagNames().contains("@ForgotPassword")
-				|| scenario.getSourceTagNames().contains("@noNavigation")
-				|| scenario.getSourceTagNames().contains("@NoNeedLogin");
+	private void smartNavigate(Scenario scenario, AndroidDriver driver, String phase) {
 
-		if (isExcluded) return;
-		if (!LoginHelper.isLoggedIn()) return;
+		// ── Guard 1: Only for @NeedsDashboard scenarios ──────────────────────
+		if (!scenario.getSourceTagNames().contains("@NeedsDashboard")) {
+			// Scenario doesn't require Dashboard — skip silently
+			return;
+		}
 
-		// Only attempt navigation if driver is alive
+		// ── Guard 2: Must be logged in ────────────────────────────────────────
+		if (!LoginHelper.isLoggedIn()) {
+			System.out.println("ℹ️ Skipping dashboard navigation (" + phase + ") — not logged in.");
+			return;
+		}
+
+		// ── Guard 3: Driver must be alive ─────────────────────────────────────
 		if (!DriverFactory.isDriverResponsive()) {
 			System.out.println("⚠️ Skipping dashboard navigation (" + phase + ") — driver unresponsive.");
 			return;
 		}
 
-		System.out.println("🔄 Checking app state (" + phase + " test)...");
-		try {
-			AndroidDriver driver = DriverFactory.getDriver();
-			DashboardPage dashboard = new DashboardPage(driver);
+		// ── Detect current screen ─────────────────────────────────────────────
+		System.out.println("🔍 Detecting current screen (" + phase + " scenario: " + scenario.getName() + ")...");
+		AppScreen currentScreen = ScreenDetector.detectCurrentScreen(driver);
 
-			if (!dashboard.isDashboardVisible()) {
-				System.out.println("🏠 Navigating to Dashboard...");
-				HybridAppStabilizer.ensureNative(driver);
-				dashboard.clickHome();
-				Thread.sleep(2000);
+		switch (currentScreen) {
+			case DASHBOARD:
+				System.out.println("✅ Already on Dashboard — skipping navigation (" + phase + ")");
+				return;
+
+			case LOGIN:
+				System.out.println("⚠️ App is on Login screen (" + phase + ") — skipping Home navigation. "
+						+ "ensureLoggedIn() should handle this state.");
+				return;
+
+			case UNKNOWN:
+			default:
+				System.out.println("📍 Screen is UNKNOWN (" + phase + ") — navigating to Dashboard...");
+				break;
+		}
+
+		// ── Navigate to Dashboard ─────────────────────────────────────────────
+		try {
+			HybridAppStabilizer.ensureNative(driver);
+			DashboardPage dashboard = new DashboardPage(driver);
+			dashboard.clickHome();
+			Thread.sleep(2000);
+
+			// ── Verify Dashboard was actually reached ──────────────────────────
+			AppScreen verifiedScreen = ScreenDetector.detectCurrentScreen(driver);
+			if (verifiedScreen == AppScreen.DASHBOARD) {
+				System.out.println("✅ Dashboard confirmed after navigation (" + phase + ")");
 			} else {
-				System.out.println("✅ App is already on Dashboard.");
+				System.out.println("⚠️ Dashboard not confirmed after navigation (" + phase
+						+ ") — current screen: " + verifiedScreen
+						+ ". Next scenario may handle navigation independently.");
 			}
+
 		} catch (Exception e) {
-			System.out.println("⚠️ Could not navigate to Dashboard: " + e.getMessage());
+			System.out.println("⚠️ Dashboard navigation failed (" + phase + "): " + e.getMessage());
 		}
 	}
 }

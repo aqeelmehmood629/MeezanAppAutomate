@@ -1,21 +1,12 @@
 package pages;
 
-import io.appium.java_client.android.AndroidDriver;
 import org.openqa.selenium.By;
-import org.openqa.selenium.support.ui.ExpectedConditions;
-import org.openqa.selenium.support.ui.WebDriverWait;
 import driver.DriverFactory;
 
-import java.time.Duration;
-
-public class QiblaPage {
-
-    private AndroidDriver driver;
-    private WebDriverWait wait;
+public class QiblaPage extends BasePage {
 
     public QiblaPage() {
-        this.driver = DriverFactory.getDriver();
-        this.wait = new WebDriverWait(driver, Duration.ofSeconds(250));
+        super(DriverFactory.getDriver(), 250);
     }
 
     // ================= LOCATORS =================
@@ -33,21 +24,21 @@ public class QiblaPage {
     // ================= ACTIONS =================
 
     public void clickSideMenu() {
-        wait.until(ExpectedConditions.elementToBeClickable(sideMenu)).click();
+        safeClick(sideMenu, 250);
         System.out.println("✅ Side menu clicked");
     }
 
     public void clickQibla() {
-        wait.until(ExpectedConditions.elementToBeClickable(qiblaOption)).click();
+        safeClick(qiblaOption, 250);
         System.out.println("✅ Qibla clicked");
     }
 
     public void verifyQiblaScreen() {
-        wait.until(ExpectedConditions.visibilityOfElementLocated(qiblaScreen));
+        safeWait(qiblaScreen, 250);
         System.out.println("✅ Qibla screen displayed");
     }
     public void clickHomeIconQibla() {
-    	wait.until(ExpectedConditions.visibilityOfElementLocated(clickHomeIconQiblaBtn));
+    	safeWait(clickHomeIconQiblaBtn, 250);
     	
     }
 }

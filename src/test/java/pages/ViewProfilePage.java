@@ -1,20 +1,12 @@
 package pages;
 
 import driver.DriverFactory;
-import io.appium.java_client.android.AndroidDriver;
-import org.openqa.selenium.*;
-import org.openqa.selenium.support.ui.*;
+import org.openqa.selenium.By;
 
-import java.time.Duration;
-
-public class ViewProfilePage {
-
-    private AndroidDriver driver;
-    private WebDriverWait wait;
+public class ViewProfilePage extends BasePage {
 
     public ViewProfilePage() {
-        driver = DriverFactory.getDriver();
-        wait = new WebDriverWait(driver, Duration.ofSeconds(250));
+        super(DriverFactory.getDriver(), 250);
     }
 
     // ================= LOCATORS =================
@@ -30,20 +22,20 @@ public class ViewProfilePage {
     // ================= ACTIONS =================
 
     public void openSideMenu() {
-        wait.until(ExpectedConditions.elementToBeClickable(sideMenuBtn)).click();
+        safeClick(sideMenuBtn, 250);
         System.out.println("✅ Side menu opened");
     }
 
     public void clickMyProfile() {
-        wait.until(ExpectedConditions.elementToBeClickable(myProfileMenu)).click();
+        safeClick(myProfileMenu, 250);
         System.out.println("✅ My Profile clicked");
     }
 
     public boolean isMyProfileDisplayed() {
-        return wait.until(ExpectedConditions.visibilityOfElementLocated(viewEditDetails)).isDisplayed();
+        return safeWait(viewEditDetails, 250).isDisplayed();
     }
+    
     public void clickHomeIconAfterProfile() {
-    	wait.until(ExpectedConditions.elementToBeClickable(clickHomeIconAfterProfileBtn)).click();
-    	
+    	safeClick(clickHomeIconAfterProfileBtn, 250);
     }
 }

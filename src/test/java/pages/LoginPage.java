@@ -1,58 +1,69 @@
 package pages;
 
 import org.openqa.selenium.By;
-import org.openqa.selenium.WebElement;
-import org.openqa.selenium.support.ui.*;
 import io.appium.java_client.android.AndroidDriver;
 import utils.HybridAppStabilizer;
 
-import java.time.Duration;
+/**
+ * LoginPage — handles the Meezan Bank login screen.
+ *
+ * Hybrid app context notes:
+ *   - Username and Password fields are in WEBVIEW context.
+ *   - Log In button is in NATIVE_APP context.
+ *
+ * Context flow:
+ *   1. enterUsername() / enterPassword() → caller must be in WEBVIEW (enforced by LoginHelper)
+ *   2. clickLogin() → explicitly switches to NATIVE_APP before clicking the button
+ *
+ * safeSendKeys() in BasePage handles:
+ *   - Restoring WEBVIEW context before every retry
+ *   - Popup detection between retries
+ *   - clear() failures (non-fatal)
+ */
+public class LoginPage extends BasePage {
 
-public class LoginPage {
-
-	private AndroidDriver driver;
-	private WebDriverWait wait;
-
-	public LoginPage(AndroidDriver driver) {
-		this.driver = driver;
-		this.wait = new WebDriverWait(driver, Duration.ofSeconds(300));
-	}
-
-	// ✅ WEBVIEW locators
-	private By usernameField = By.id("login_username");
-	private By passwordField = By.id("login_password");
-	private By loginButton = By.xpath("//android.widget.Button[@text='Log In']");
-
-	public void enterUsername(String username) {
-		WebElement user = wait.until(ExpectedConditions.visibilityOfElementLocated(usernameField));
-		user.click();
-
-    try {
-        user.clear();
-    } catch (Exception e) {
-        System.out.println("Unable to clear username field");
+    public LoginPage(AndroidDriver driver) {
+        super(driver);
     }
 
-    user.sendKeys(username);
-	}
+    // ── Locators ──────────────────────────────────────────────────────────────
+    // WEBVIEW elements (require WebView context)
+    private By usernameField = By.id("login_username");
+    private By passwordField = By.id("login_password");
 
-	public void enterPassword(String password) {
-		WebElement pass = wait.until(ExpectedConditions.visibilityOfElementLocated(passwordField));
-		pass.click();
+    // NATIVE element (requires NATIVE_APP context)
+    private By loginButton = By.xpath("//android.widget.Button[@text='Log In']");
 
-    try {
-        pass.clear();
-    } catch (Exception e) {
-        System.out.println("Unable to clear password field");
+    // ── Actions ───────────────────────────────────────────────────────────────
+
+    /**
+     * Enters the username into the WebView login field.
+     * Caller must ensure WebView context before calling (done by LoginHelper).
+     * BasePage.safeSendKeys() preserves WebView context across retries.
+     */
+    public void enterUsername(String username) {
+        safeSendKeys(usernameField, username, TIMEOUT_LONG);
+        System.out.println("✅ Username entered");
     }
 
-    pass.sendKeys(password);
-	}
+    /**
+     * Enters the password into the WebView login field.
+     */
+    public void enterPassword(String password) {
+        safeSendKeys(passwordField, password, TIMEOUT_LONG);
+        System.out.println("✅ Password entered");
+    }
 
-	public void clickLogin() {
-		HybridAppStabilizer.hideKeyboard(driver);
-		HybridAppStabilizer.switchToNative(driver);
-		WebElement btn = wait.until(ExpectedConditions.elementToBeClickable(loginButton));
-		btn.click();
-	}
+    /**
+     * Clicks the Log In button.
+     * Explicitly switches to NATIVE_APP before clicking because the button
+     * is a native overlay element, not inside the WebView.
+     */
+    public void clickLogin() {
+        hideKeyboard();
+        // Must switch to NATIVE — login button is not in WebView
+        HybridAppStabilizer.switchToNative(driver);
+        safeClick(loginButton, TIMEOUT_LONG);
+        System.out.println("✅ Login button clicked");
+    }
 }

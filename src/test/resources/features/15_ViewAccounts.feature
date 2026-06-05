@@ -1,7 +1,7 @@
 
 Feature: Verify Account
  
-  @MyAccounts @NeedsLogin
+  @MyAccounts @NeedsLogin @NeedsDashboard
   Scenario: View Customer Accounts
     Given user is logged in for view Accounts
     When user stores account title from dashboard

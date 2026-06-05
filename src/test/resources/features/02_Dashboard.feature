@@ -1,6 +1,6 @@
 Feature: Dashboard Validation
   
-  @Dashboard @NeedsLogin @Smoke
+  @Dashboard @NeedsLogin
   Scenario: Navigate to Dashboard
    Given user is logged in
    And user clicks on Show Balance

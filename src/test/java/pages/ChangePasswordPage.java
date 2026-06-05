@@ -2,20 +2,11 @@ package pages;
 
 import io.appium.java_client.android.AndroidDriver;
 import org.openqa.selenium.By;
-import org.openqa.selenium.support.ui.ExpectedConditions;
-import org.openqa.selenium.support.ui.WebDriverWait;
-import driver.DriverFactory;
 
-import java.time.Duration;
+public class ChangePasswordPage extends BasePage {
 
-public class ChangePasswordPage {
-
-    private AndroidDriver driver;
-    private WebDriverWait wait;
-
-    public ChangePasswordPage() {
-        this.driver = DriverFactory.getDriver();
-        this.wait = new WebDriverWait(driver, Duration.ofSeconds(250));
+    public ChangePasswordPage(AndroidDriver driver) {
+        super(driver);
     }
 
     // ================= LOCATORS =================
@@ -46,43 +37,43 @@ public class ChangePasswordPage {
     // ================= ACTIONS =================
 
     public void clickSideMenu() {
-        wait.until(ExpectedConditions.elementToBeClickable(sideMenu)).click();
+        safeClick(sideMenu, 250);
         System.out.println("✅ Side menu clicked");
     }
 
     public void clickSettings() {
-        wait.until(ExpectedConditions.elementToBeClickable(settingsOption)).click();
+        safeClick(settingsOption, 250);
         System.out.println("✅ Settings clicked");
     }
 
     public void clickChangePassword() {
-        wait.until(ExpectedConditions.elementToBeClickable(changePassword)).click();
+        safeClick(changePassword, 250);
         System.out.println("✅ Change Password clicked");
     }
 
     public void enterCurrentPassword(String pwd) {
-        wait.until(ExpectedConditions.visibilityOfElementLocated(currentPassword)).sendKeys(pwd);
+        safeSendKeys(currentPassword, pwd, 250);
         System.out.println("✅ Current password entered");
     }
 
     public void enterNewPassword(String pwd) {
-        wait.until(ExpectedConditions.visibilityOfElementLocated(newPassword)).sendKeys(pwd);
+        safeSendKeys(newPassword, pwd, 250);
         System.out.println("✅ New password entered");
     }
 
     public void enterConfirmPassword(String pwd) {
-        wait.until(ExpectedConditions.visibilityOfElementLocated(confirmPassword)).sendKeys(pwd);
+        safeSendKeys(confirmPassword, pwd, 250);
         System.out.println("✅ Confirm password entered");
     }
     
     public void clickChangePasswordSubmit() {
-    	wait.until(ExpectedConditions.visibilityOfElementLocated(changePasswordSubmitBtn)).click();
+    	safeClick(changePasswordSubmitBtn, 250);
         System.out.println("✅ Clicked Submit Button");
     	
     }
 
     public void verifyFieldsFilled() {
-        boolean isDisplayed = wait.until(ExpectedConditions.visibilityOfElementLocated(changePasswordSuccessMsg)).isDisplayed();
+        boolean isDisplayed = safeWait(changePasswordSuccessMsg, 250).isDisplayed();
         if (isDisplayed) {
             System.out.println("✅ Reset Password successfully");
         }
@@ -90,7 +81,7 @@ public class ChangePasswordPage {
     }
     public void clickHomeIconPassword() {
     	
-    	wait.until(ExpectedConditions.elementToBeClickable(clickHomeIconPasswordBtn)).click();
+    	safeClick(clickHomeIconPasswordBtn, 250);
     	
     }
 }

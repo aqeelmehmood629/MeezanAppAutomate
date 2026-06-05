@@ -12,14 +12,10 @@ import org.openqa.selenium.JavascriptExecutor;
 import java.time.Duration;
 import java.util.List;
 
-public class ManageRegisteredDevicesPage {
-
-    private AndroidDriver driver;
-    private WebDriverWait wait;
+public class ManageRegisteredDevicesPage extends BasePage {
 
     public ManageRegisteredDevicesPage(AndroidDriver driver) {
-        this.driver = driver;
-        this.wait = new WebDriverWait(driver, Duration.ofSeconds(30));
+        super(driver);
     }
 
 
@@ -38,20 +34,17 @@ public class ManageRegisteredDevicesPage {
     private By removeButtonVerify = By.xpath("//li[contains(text(),'No items to display')]");
 
     public void clickSideMenu() {
-        WebElement element = wait.until(ExpectedConditions.elementToBeClickable(sideMenu));
-        element.click();
+        safeClick(sideMenu);
         System.out.println("Clicked Side Menu");
     }
 
     public void clickSetting() {
-        WebElement element = wait.until(ExpectedConditions.elementToBeClickable(settingButton));
-        element.click();
+        safeClick(settingButton);
         System.out.println("Clicked Setting");
     }
 
     public void clickManageRegisteredDevices() {
-        WebElement element = wait.until(ExpectedConditions.elementToBeClickable(manageRegisteredDevices));
-        element.click();
+        safeClick(manageRegisteredDevices);
         System.out.println("Clicked Manage Registered Devices");
     }
 
@@ -97,7 +90,7 @@ public class ManageRegisteredDevicesPage {
 }
 
     public void verifyDeviceRemoved() {
-        WebElement msg = wait.until(ExpectedConditions.visibilityOfElementLocated(removeButtonVerify));
+        WebElement msg = safeWait(removeButtonVerify);
         Assert.assertTrue(msg.isDisplayed(), "Device is NOT removed, list still has items");
     }
 }

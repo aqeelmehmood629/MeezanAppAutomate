@@ -3,7 +3,7 @@ Feature: Notification Language Change
   Background:
   Given user is logged in
      
-  @ChangeNotificationLanguage @NeedsLogin @Smoke
+  @ChangeNotificationLanguage @NeedsLogin @NeedsDashboard
   Scenario: User changes notification language
     Given user clicks on Side Menu for change notification language
     When user clicks on Settings for change notification language

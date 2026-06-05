@@ -1,6 +1,6 @@
 Feature: Deals and Discounts
 
-  @DealsDiscounts @NeedsLogin @Smoke
+  @DealsDiscounts @NeedsLogin @NeedsDashboard
   Scenario: View Deals and Discounts
     Given user is logged in
     And user is on dashboard screen for deals

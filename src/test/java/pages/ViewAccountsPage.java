@@ -1,21 +1,14 @@
 package pages;
 
 import driver.DriverFactory;
-import io.appium.java_client.android.AndroidDriver;
 import org.openqa.selenium.*;
-import org.openqa.selenium.support.ui.*;
 
-import java.time.Duration;
 import utils.HybridAppStabilizer;
 
-public class ViewAccountsPage {
-
-    AndroidDriver driver;
-    WebDriverWait wait;
+public class ViewAccountsPage extends BasePage {
 
     public ViewAccountsPage() {
-        this.driver = DriverFactory.initializeDriver();
-        this.wait = new WebDriverWait(driver, Duration.ofSeconds(20));
+        super(DriverFactory.initializeDriver(), 20);
     }
 
     // ===== LOCATORS =====
@@ -39,11 +32,11 @@ public class ViewAccountsPage {
     private By showBalanceBtnAnchor = By.xpath("//android.widget.TextView[@text='SHOW BALANCE']");
 
     public String getDashboardAccountTitle() {
-        HybridAppStabilizer.ensureNative(driver);
+        ensureNativeContext();
         
         System.out.println("⏳ Waiting for Dashboard to fully load...");
         try {
-            wait.until(ExpectedConditions.visibilityOfElementLocated(showBalanceBtnAnchor));
+            safeWait(showBalanceBtnAnchor);
         } catch (Exception e) {
             System.out.println("⚠️ Warning: 'SHOW BALANCE' not found, proceeding anyway...");
         }
@@ -99,23 +92,21 @@ public class ViewAccountsPage {
     }
 
     public void clickSideMenu() {
-        HybridAppStabilizer.ensureNative(driver);
-        wait.until(ExpectedConditions.elementToBeClickable(sideMenuBtn)).click();
+        ensureNativeContext();
+        safeClick(sideMenuBtn);
         System.out.println("✅ Side menu clicked");
     }
 
     public void clickMyAccounts() {
-        HybridAppStabilizer.ensureNative(driver);
-        wait.until(ExpectedConditions.elementToBeClickable(myAccountsBtn)).click();
+        ensureNativeContext();
+        safeClick(myAccountsBtn);
         System.out.println("✅ My Accounts clicked");
     }
 
     public String getMyAccountTitle() {
-        HybridAppStabilizer.ensureNative(driver);
+        ensureNativeContext();
         
-        WebElement el = wait.until(
-                ExpectedConditions.visibilityOfElementLocated(accountTitle)
-        );
+        WebElement el = safeWait(accountTitle);
 
         String text = el.getText().trim();
         if (text.isEmpty()) {
@@ -127,8 +118,8 @@ public class ViewAccountsPage {
     }
 
     public void homeIconAfterViewAccount() {
-        HybridAppStabilizer.ensureNative(driver);
-        wait.until(ExpectedConditions.elementToBeClickable(homeIconAfterViewAccountBtn)).click();
+        ensureNativeContext();
+        safeClick(homeIconAfterViewAccountBtn);
         System.out.println("🏠 Home icon clicked after viewing accounts");
     }
 }

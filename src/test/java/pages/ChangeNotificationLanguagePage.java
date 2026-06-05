@@ -3,21 +3,12 @@ package pages;
 import io.appium.java_client.android.AndroidDriver;
 import io.cucumber.java.en.And;
 
-import java.time.Duration;
-
 import org.openqa.selenium.By;
-import org.openqa.selenium.WebElement;
-import org.openqa.selenium.support.ui.ExpectedConditions;
-import org.openqa.selenium.support.ui.WebDriverWait;
 
-public class ChangeNotificationLanguagePage {
-
-    AndroidDriver driver;
-    WebDriverWait wait;
+public class ChangeNotificationLanguagePage extends BasePage {
 
     public ChangeNotificationLanguagePage(AndroidDriver driver) {
-    	this.wait = new WebDriverWait(driver, Duration.ofSeconds(250));
-        this.driver = driver;
+        super(driver);
     }
 
     // Locators
@@ -33,30 +24,30 @@ public class ChangeNotificationLanguagePage {
 
     // Actions
     public void clickSideMenu() {
-    	wait.until(ExpectedConditions.elementToBeClickable(sideMenuforNotificationBtn)).click();
+    	safeClick(sideMenuforNotificationBtn, 250);
     }
     
 
     public void clickSettings() {
-    	wait.until(ExpectedConditions.elementToBeClickable(settingsBtnNotification)).click();
+    	safeClick(settingsBtnNotification, 250);
     }
 
     public void clickManageNotifications() {
-    	wait.until(ExpectedConditions.elementToBeClickable(manageNotifications)).click();
+    	safeClick(manageNotifications, 250);
     }
 
     public void selectLanguage() {
 
         try {
-            if (wait.until(ExpectedConditions.elementToBeClickable(langBtn)).isDisplayed()) {
-                wait.until(ExpectedConditions.elementToBeClickable(langBtn)).click();
+            if (safeWait(langBtn, 250).isDisplayed()) {
+                safeClick(langBtn, 250);
                 return;
             }
         } catch (Exception ignored) {}
 
         try {
-            if (wait.until(ExpectedConditions.elementToBeClickable(langBtn2)).isDisplayed()) {
-                wait.until(ExpectedConditions.elementToBeClickable(langBtn2)).click();
+            if (safeWait(langBtn2, 250).isDisplayed()) {
+                safeClick(langBtn2, 250);
             }
         } catch (Exception e) {
             throw new RuntimeException("❌ Neither language button is clickable");
@@ -64,7 +55,7 @@ public class ChangeNotificationLanguagePage {
     }
     public void homeIconselectLanguage() {
     	
-    	wait.until(ExpectedConditions.elementToBeClickable(homeIconLan)).click();
+    	safeClick(homeIconLan, 250);
     	
 }
 
