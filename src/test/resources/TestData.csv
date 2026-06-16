@@ -1,2 +1,7 @@
-username,password
-frazkhan,Test@124
+type,username,password
+valid,frazkhan,Test@123
+invalid,        ,Test@124
+invalid,frazkhan,
+invalid,frazkhan,Admin@124
+invalid,Farazkhan,Test@124
+invalid,,

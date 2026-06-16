@@ -37,7 +37,7 @@ public class DriverFactory {
 			caps.setCapability("platformName", "Android");
 			caps.setCapability("automationName", "UiAutomator2");
 			caps.setCapability("deviceName", "Android Device");
-			caps.setCapability("udid", "083672525V005614");
+			caps.setCapability("udid", "082653732Q003887");
 
 			// App details
 			caps.setCapability("appPackage", "com.ofss.tx.meezan");
@@ -46,7 +46,7 @@ public class DriverFactory {
 
 			// WebView handling
 			caps.setCapability("chromedriverExecutable",
-					"C:\\Users\\ma\\Documents\\Aqeel QA\\Automation\\chromedriver-win64 (1)\\chromedriver-win64\\chromedriver.exe");
+					"C:\\Users\\ma\\Documents\\Aqeel QA\\chromedriver-win _148\\chromedriver-win64\\chromedriver.exe");
 			caps.setCapability("ensureWebviewsHavePages", true);
 			caps.setCapability("webviewConnectTimeout", 30000);
 
@@ -59,7 +59,7 @@ public class DriverFactory {
 			caps.setCapability("newCommandTimeout", 600);
 			caps.setCapability("enforceXPath1", true);
 			caps.setCapability("unlockType", "pin");
-			caps.setCapability("unlockKey", "0000");
+			caps.setCapability("unlockKey", "1234");
 			caps.setCapability("autoWebview", false);
 			caps.setCapability("webviewDevtoolsPort", "9222");
 

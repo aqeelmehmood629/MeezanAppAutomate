@@ -60,7 +60,7 @@ public class ScreenDetector {
     
     // Additional unique dashboard element if 'SHOW BALANCE' is hidden after tap
     private static final By DASHBOARD_INDICATOR_2 = By.xpath(
-            "//android.widget.TextView[@text='My Accounts']");
+            "//android.widget.TextView[contains(@text,'PKR')]");
 
     // ── Login indicator — WEBVIEW element ────────────────────────────────────
     // The login form lives inside a WebView — must be in WebView context to find it.

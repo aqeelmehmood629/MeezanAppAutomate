@@ -40,7 +40,8 @@ public class CSVUtils {
                     String value = i < values.length ? values[i].trim() : "";
                     map.put(headers[i], value);
                 }
-                System.out.println("✅ CSV Row: " + map);
+                System.out.println("✅ CSV Row: "
+                + map);
                 dataList.add(map);
             }
         } catch (Exception e) {
@@ -59,6 +60,37 @@ public class CSVUtils {
         if (index < 0 || index >= allData.size())
             throw new IndexOutOfBoundsException("CSV index out of range: " + index);
         return allData.get(index);
+    }
+
+    // ✅ Returns all rows matching the given type ("valid" or "invalid")
+    public static List<Map<String, String>> getLoginDataByType(String type) {
+        List<Map<String, String>> allData = getAllData();
+        List<Map<String, String>> filtered = new ArrayList<>();
+        for (Map<String, String> row : allData) {
+            String rowType = row.getOrDefault("type", "").trim();
+            if (rowType.equalsIgnoreCase(type)) {
+                filtered.add(row);
+            }
+        }
+        if (filtered.isEmpty()) {
+            System.out.println("⚠️ No CSV rows found for type='" + type + "'");
+        } else {
+            System.out.println("✅ CSV rows loaded for type='" + type + "': " + filtered.size());
+        }
+        return filtered;
+    }
+
+    // ✅ Convenience: returns all invalid-credential rows
+    public static List<Map<String, String>> getInvalidLoginData() {
+        return getLoginDataByType("invalid");
+    }
+
+    // ✅ Convenience: returns the first valid-credential row
+    public static Map<String, String> getFirstValidLogin() {
+        List<Map<String, String>> validRows = getLoginDataByType("valid");
+        if (validRows.isEmpty())
+            throw new RuntimeException("❌ No 'valid' rows found in TestData.csv");
+        return validRows.get(0);
     }
 
     // ✅ Donation CSVs

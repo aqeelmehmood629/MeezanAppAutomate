@@ -1,7 +1,7 @@
 
 Feature: Change OTP Preference
 
-  @ChangeOTPPreference @NeedsLogin @NeedsDashboard @Smoke
+  @ChangeOTPPreference @NeedsLogin @NeedsDashboard
   Scenario: User changes OTP preference to SMS
 
     Given user is logged in

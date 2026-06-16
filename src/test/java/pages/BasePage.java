@@ -52,7 +52,7 @@ public class BasePage {
     public static final int TIMEOUT_DEFAULT = 30;
 
     /** Long timeout for operations that genuinely take time (transaction, login) */
-    public static final int TIMEOUT_LONG = 60;
+    public static final int TIMEOUT_LONG = 200;
 
     /** How many times to retry an action after dismissing a popup or recovering driver */
     private static final int MAX_RETRIES = 2;
