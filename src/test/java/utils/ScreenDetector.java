@@ -56,11 +56,11 @@ public class ScreenDetector {
     // Generic elements like "PKR" or "home-icon" often appear on sub-screens
     // (like Funds Transfer or bottom nav bars) causing false positives.
     private static final By DASHBOARD_INDICATOR_1 = By.xpath(
-            "//android.widget.TextView[@text='SHOW BALANCE']");
+            "//android.widget.TextView[contains(@text,'SHOW BALANCE')]");
     
     // Additional unique dashboard element if 'SHOW BALANCE' is hidden after tap
     private static final By DASHBOARD_INDICATOR_2 = By.xpath(
-            "//android.widget.TextView[contains(@text,'PKR')]");
+            "//android.widget.Button[@text='Send Money']");
 
     // ── Login indicator — WEBVIEW element ────────────────────────────────────
     // The login form lives inside a WebView — must be in WebView context to find it.
@@ -97,7 +97,7 @@ public class ScreenDetector {
                 return AppScreen.DASHBOARD;
             }
             if (isElementPresent(driver, DASHBOARD_INDICATOR_2)) {
-                System.out.println("📍 Screen detected: DASHBOARD (Matched indicator: My Accounts)");
+                System.out.println("📍 Screen detected: DASHBOARD (Matched indicator: Send Money)");
                 restoreContext(driver, originalContext);
                 return AppScreen.DASHBOARD;
             }

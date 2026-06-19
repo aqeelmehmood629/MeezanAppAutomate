@@ -1,6 +1,6 @@
 Feature: Meezan Bank Login
 
-  @LOG_TC01 @NeedsLogin @Regression
+  @LOG_TC01 @NeedsLogin
   Scenario: Login with Valid credentials
     Given the Meezan Bank app is launched
     When user enters credentials from csv
@@ -29,9 +29,9 @@ Feature: Meezan Bank Login
     Then verify invalid credential error message is displayed
 
     Examples:
-      | rowIndex | description         |
-      | 2        | Wrong Password Case |
-      | 3        | Wrong Password Case |
+      | rowIndex | description                           |
+      | 2        | Wrong Password Case                   |
+      | 3        | Wrong username or Wrong Password Case |
 
   @LOG_TC04 @NoNeedLogin 
   Scenario: Verify account is locked

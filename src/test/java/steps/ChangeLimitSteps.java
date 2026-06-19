@@ -32,7 +32,7 @@ public class ChangeLimitSteps {
         data = CSVUtils.getAllData("src/test/resources/Limit.csv");
     }
 
-    @And("user selects {string}")
+    @And("user selects limit type {string}")
     public void select_limit_type(String type) {
         init();
         page.selectLimitType(type);

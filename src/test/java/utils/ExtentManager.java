@@ -16,7 +16,7 @@ public class ExtentManager {
         if (extent == null) {
 
             String timestamp = new SimpleDateFormat("yyyyMMdd_HHmmss").format(new Date());
-            String reportPath = "reports/ExtentReport_" + timestamp + ".html";
+            String reportPath = "reports/Regression_" + timestamp + ".html";
 
             ExtentSparkReporter spark = new ExtentSparkReporter(reportPath);
 
@@ -57,8 +57,6 @@ public class ExtentManager {
             // Accent bar on the top of the report header
             ".report-header { border-top: 4px solid #1a7a4a !important; }" +
 
-
-
             // Colour-coded step labels inside test details
             ".badge-success { background:#1a7a4a !important; color:#fff !important; " +
             "  font-size:12px; padding:2px 8px; border-radius:3px; }" +
@@ -70,7 +68,14 @@ public class ExtentManager {
             // Stack-trace collapse styling
             "details summary { cursor:pointer; color:#f0a500; font-weight:600; }" +
             "details pre { background:#1e1e1e; color:#e8e8e8; padding:10px; " +
-            "  border-radius:4px; font-size:11px; overflow-x:auto; white-space:pre-wrap; }";
+            "  border-radius:4px; font-size:11px; overflow-x:auto; white-space:pre-wrap; }" +
+
+            // Child node (data-driven row) styling — left border accent
+            ".node .node-content { border-left: 3px solid #2980b9; " +
+            "  margin-left: 12px; padding-left: 10px; }" +
+
+            // Execution summary node styling
+            ".test-content b { font-size: 13px; }";
     }
 
 

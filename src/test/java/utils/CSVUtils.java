@@ -93,6 +93,17 @@ public class CSVUtils {
         return validRows.get(0);
     }
 
+    // ✅ Returns the target account number from the first valid row
+    public static String getTargetAccountNumber() {
+        Map<String, String> row = getFirstValidLogin();
+        String accountNumber = row.getOrDefault("accountNumber", "").trim();
+        if (accountNumber.isEmpty())
+            throw new RuntimeException("❌ 'accountNumber' column is missing or empty in TestData.csv valid row");
+        System.out.println("📋 Target Account Number from CSV: " + accountNumber);
+        return accountNumber;
+    }
+
+
     // ✅ Donation CSVs
     public static List<Map<String, String>> getDonationData(String donationType) {
         String filePath;

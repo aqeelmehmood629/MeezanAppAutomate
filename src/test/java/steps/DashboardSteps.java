@@ -1,20 +1,18 @@
 package steps;
 
-import java.util.List;
-
-import org.openqa.selenium.By;
-import org.openqa.selenium.WebElement;
-
 import driver.DriverFactory;
 import io.appium.java_client.android.AndroidDriver;
 import io.cucumber.java.en.*;
 import pages.DashboardPage;
+import utils.CSVUtils;
 import utils.LoginHelper;
+import utils.ScreenDetector;
 
 public class DashboardSteps {
 
     private AndroidDriver driver;
     private DashboardPage dashboard;
+    private String targetAccountNumber; // holds CSV account number across TC07 steps
 
     private void init() {
         if (driver == null) {
@@ -38,14 +36,11 @@ public class DashboardSteps {
     public void ensureDashboard() {
     	init();
 
-        List<WebElement> homeIcons = driver.findElements(
-            By.xpath("//android.widget.Image[contains(@text,'home-icon')]"));
-
-        if (homeIcons.isEmpty()) {
-            System.out.println("Not on dashboard → navigating...");
-            dashboard.goToDashboard();
+        if (ScreenDetector.isDashboard(driver)) {
+            System.out.println("✅ Already on Dashboard — skipping navigation.");
         } else {
-            System.out.println("Already on dashboard");
+            System.out.println("📍 Not on Dashboard → navigating via Home icon...");
+            dashboard.goToDashboard();
         }
     }
     // ─────────────────────────────────────────────────────────────────────────
@@ -112,6 +107,9 @@ public class DashboardSteps {
         // Appium doesn't easily inspect the native clipboard without special commands.
         // As requested by user, utilizing a placeholder verification log here.
         System.out.println("✅ Verified (Placeholder): " + expectedResult + " has been copied to clipboard successfully.");
+        
+        // Ensure state is clean for the next data-driven row or scenario
+        dashboard.closeShareOverlays();
     }
 
     // ─────────────────────────────────────────────────────────────────────────
@@ -123,7 +121,7 @@ public class DashboardSteps {
         dashboard.clickShareDetailsScreen();
     }
 
-    @When("user selects {string}")
+    @When("user selects share action {string}")
     public void userSelectsShareAction(String shareAction) {
         init();
         dashboard.clickShareOption(shareAction);
@@ -134,6 +132,12 @@ public class DashboardSteps {
         init();
         // Validating the appearance of Android share sheet (WhatsApp / Bluetooth)
         boolean isShareSheetUp = dashboard.isShareSheetDisplayed();
+        
+        // Try to close overlays first so subsequent tests don't fail, even if assertion fails
+        try {
+            dashboard.closeShareOverlays();
+        } catch (Exception ignored) {}
+
         org.testng.Assert.assertTrue(isShareSheetUp, "❌ Share sheet (WhatsApp/Bluetooth) did not appear for: " + expectedResult);
         System.out.println("✅ Share sheet successfully displayed for: " + expectedResult);
     }
@@ -176,22 +180,42 @@ public class DashboardSteps {
     }
 
     // ─────────────────────────────────────────────────────────────────────────
-    // 🔹 DSB_TC07 Step Definitions
+    // 🔹 DSB_TC07 Step Definitions — CSV-driven Account Favourite
     // ─────────────────────────────────────────────────────────────────────────
-    @When("user clicks on Favourite button")
-    public void userClicksOnFavouriteButton() {
+
+    @Given("user reads target account number from CSV")
+    public void userReadsTargetAccountNumberFromCSV() {
         init();
-        dashboard.clickFavouriteButton();
+        targetAccountNumber = CSVUtils.getTargetAccountNumber();
+        dashboard.setTargetAccountNumber(targetAccountNumber);
+        System.out.println("📌 [TC07] Target account from CSV: '" + targetAccountNumber + "'");
     }
 
-    @And("favourite confirmation popup should be displayed")
-    public void favouriteConfirmationPopupShouldBeDisplayed() {
+    @When("user searches for the account card by swiping if needed")
+    public void userSearchesForAccountCardBySwiping() {
         init();
-        org.testng.Assert.assertTrue(dashboard.isFavouritePopupDisplayed(), "Favourite confirmation popup not displayed");
+        boolean found = dashboard.findAccountCardWithSwipe();
+        org.testng.Assert.assertTrue(found,
+            "❌ [TC07] Account card for '" + targetAccountNumber + "' was not found after swiping through all cards.");
+        System.out.println("✅ [TC07] Account card found for: '" + targetAccountNumber + "'");
     }
 
-    @And("user clicks on Yes button")
-    public void userClicksOnYesButton() {
+    @And("user clicks the favourite star for the target account")
+    public void userClicksFavouriteStarForTargetAccount() {
+        init();
+        dashboard.clickFavouriteStarForTargetAccount();
+    }
+
+    @Then("favourite confirmation popup should appear")
+    public void favouriteConfirmationPopupShouldAppear() {
+        init();
+        org.testng.Assert.assertTrue(dashboard.isFavouritePopupDisplayed(),
+            "❌ [TC07] Favourite confirmation popup did not appear for account: '" + targetAccountNumber + "'");
+        System.out.println("✅ [TC07] Favourite confirmation popup is displayed.");
+    }
+
+    @And("user confirms the favourite action")
+    public void userConfirmsFavouriteAction() {
         init();
         dashboard.clickPopupYesButton();
     }
@@ -199,7 +223,8 @@ public class DashboardSteps {
     @Then("account should be marked as favourite")
     public void accountShouldBeMarkedAsFavourite() {
         init();
-        org.testng.Assert.assertTrue(dashboard.isAccountMarkedAsFavourite(), "Account was not marked as favourite (Done validation missing)");
-        System.out.println("✅ Account marked as favourite successfully");
+        org.testng.Assert.assertTrue(dashboard.isAccountMarkedAsFavourite(),
+            "❌ [TC07] Account was not marked as favourite (Done validation missing) for: '" + targetAccountNumber + "'");
+        System.out.println("✅ [TC07] Account '" + targetAccountNumber + "' successfully marked as favourite!");
     }
-}
+}
